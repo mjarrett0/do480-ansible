@@ -1,0 +1,148 @@
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+
+- name: Create the project for managed cluster
+  k8s:    
+    name: "{{ managed_cluster_name }}"
+    host: "{{ hub_cluster_host }}"    
+    state: present     
+    definition: 
+      apiVersion: project.openshift.io/v1
+      kind: Project
+      name: "{{ managed_cluster_name }}"
+      metadata:
+        labels: 
+          cluster.open-cluster-management.io/managedCluster: "{{ managed_cluster_name }}"
+
+
+- name: Create ManagedCluster
+  k8s:        
+    state: present
+    host: "{{ hub_cluster_host }}"    
+    definition: 
+      apiVersion: cluster.open-cluster-management.io/v1
+      kind: ManagedCluster
+      metadata:
+        name: "{{ managed_cluster_name }}"
+      spec:
+        hubAcceptsClient: true
+- name: Create klusterlet addon
+  k8s:
+    state: present
+    host: "{{ hub_cluster_host }}"    
+    definition:
+      apiVersion: agent.open-cluster-management.io/v1
+      kind: KlusterletAddonConfig
+      metadata:
+        name: "{{ managed_cluster_name }}"
+        namespace: "{{ managed_cluster_name }}"
+      spec:
+        clusterName: "{{ managed_cluster_name }}"
+        clusterNamespace: "{{ managed_cluster_name }}"
+        applicationManager:
+          enabled: true
+        certPolicyController:
+          enabled: true
+        clusterLabels:
+          cloud: auto-detect
+          vendor: auto-detect
+        iamPolicyController:
+          enabled: true
+        policyController:
+          enabled: true
+        searchCollector:
+          enabled: true
+        version: 2.3.2
+#  https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html/clusters/importing-a-target-managed-cluster-to-the-hub-cluster#importing-the-klusterlet
+- name: Importing klusterlet. Get CRDs
+  shell:
+    cmd: oc get secret {{ managed_cluster_name }}-import -n {{ managed_cluster_name }} -o jsonpath={.data.crds\\.yaml} | base64 -d > /tmp/klusterlet-crd.yaml
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"    
+- name: Importing klusterlet. Get Imports
+  shell:
+    cmd: oc get secret {{ managed_cluster_name }}-import -n {{ managed_cluster_name }} -o jsonpath={.data.import\\.yaml} | base64 -d > /tmp/import.yaml
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+    
+
+
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Preparing kubeconfig to connect to managed cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ managed_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+
+
+- name: Create CRDs in managed cluster
+  k8s:
+    ca_cert: "/etc/pki/tls/certs/ca-bundle.crt"
+    host: "{{ managed_cluster_host }}"
+    #context: default/api-ocp4-mng-example-com:6443/admin #context from kubeconfig for managed cluster
+    state: present
+    src: /tmp/klusterlet-crd.yaml
+
+- name: Create Import in managed cluster
+  k8s:
+    ca_cert: "/etc/pki/tls/certs/ca-bundle.crt"
+    host: "{{ managed_cluster_host }}"
+   # context: default/api-ocp4-mng-example-com:6443/admin #context from kubeconfig for managed cluster
+    state: present
+    src: /tmp/import.yaml
+
+
+- name: Check if deployments are ready in 'open-cluster-management-agent'
+  k8s_info:
+    host: "{{ managed_cluster_host }}"
+    kind: Deployment
+    namespace: open-cluster-management-agent
+    name: "{{ item }}"
+    #context: default/api-ocp4-mng-example-com:6443/admin #context from kubeconfig for managed cluster
+  register: output_info
+  until: output_info.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
+  delay: 30
+  retries: 20
+  loop: 
+    - klusterlet
+    - klusterlet-registration-agent
+    - klusterlet-work-agent
+- name: Check if deployments are ready in 'open-cluster-management-agent-addon'
+  k8s_info:
+    host: "{{ managed_cluster_host }}"
+    kind: Deployment
+    namespace: open-cluster-management-agent-addon
+    name: "{{ item }}"
+    #context: default/api-ocp4-mng-example-com:6443/admin #context from kubeconfig for managed cluster
+  register: output_info
+  until: output_info.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
+  delay: 20
+  retries: 40
+  loop:
+    - klusterlet-addon-appmgr
+    - klusterlet-addon-certpolicyctrl
+    - klusterlet-addon-iampolicyctrl
+    - klusterlet-addon-operator
+    - klusterlet-addon-policyctrl-config-policy
+    - klusterlet-addon-policyctrl-framework
+    - klusterlet-addon-search
+    - klusterlet-addon-workmgr
+- name: Set label to imported cluster for adding observability in case of installed
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} && oc label managedcluster "{{ managed_cluster_name }}" 'vendor=OpenShift' --overwrite
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+         

@@ -1,0 +1,214 @@
+= ACM Ansible playbooks
+
+Playbooks and roles to:
+
+ - Deploy and undeploy ACM operator and its resources. 
+ - Import second cluster of DO480 lab
+ - Delete MultiClusterHub
+ - Delete ACM Operator
+ 
+
+
+The objective is having automations for research phase that are also valid for preparing laboratories for each GE.
+
+== Configuration of the Playbooks
+
+ * All needed variables are referenced in the file `vars/main.yaml`.
+
+ * Login to different clusters are made with `oc login` to avoid bringing differents kubeconfig from utility. Every playbook delete kubeconfig from workstation when finished to a clean env for student
+
+
+== List of playbooks
+
+
+[cols="3*", options="header"]
+|===
+|Playbook
+|Description
+|Used Roles
+
+|`acm_install`
+|Installs ACM operator in `open-cluster-management` namespace, and waits for its deployments to be ready. Uses `kubeconfig` from 'utility' server
+|
+- `acm_install`
+
+
+- `acm_clean_workstation`
+
+|`acm_create_multiclusterhub`
+|Instantiates a `MultiClusterHub`, the object that creates ACM console, resources and management hub. Waits for the object to be in phase `Running` (up to 20 minutes). Uses Secret `pull-secret` from the namespace `openshift-config`
+|- `acm_create_multiclusterhub`
+
+
+
+- `acm_clean_workstation`
+
+
+|`acm_import_cluster2`
+| Imports cluster `ocp4-mng.example.com` to ACM. It set label vendor=OpenShift to it, to add Observability addon
+|
+- `acm_import_cluster2`
+
+
+- `acm_clean_workstation`
+
+|`acm_add_observability`
+| Add Observability resources needed for hub cluster and for all managed clusters.It cheks readiness of its deployments)
+|
+- `acm_add_observability`
+
+
+
+- `acm_clean_workstation`
+
+
+|`acm_remove_observability`
+| Remove Observability resources. Not cheking deletion
+|
+- `acm_remove_observability`
+
+- `acm_clean_workstation`
+
+
+
+|`acm_remove_multiclusterhub`
+| Deletes MultiClusterHub object and waits to complete deletion. First it tries to dettach second cluster
+|
+- `acm_dettach_cluster`
+
+- `acm_remove_multiclusterhub`
+
+- `acm_clean_workstation`
+
+|`acm_remove`
+| Remove the ACM Operator and all its objects. This playbook try to delete MCH WITHOUT previous dettaching of cluster2
+|
+ - `acm_remove`
+
+ - `acm_remove_multiclusterhub`
+
+ - `acm_clean_workstation`
+
+
+
+
+
+
+
+|===
+
+== Install ACM and import cluster
+In the actual status of this playbooks, you can create a DO480 lab in rol-stage, clone this repo, and
+ 
+```
+cd $REPO/research/ansible && \
+ansible-playbook -vv acm_install.yaml && \
+ansible-playbook -vv acm_create_multiclusterhub.yaml && \
+ansible-playbook -vv acm_add_observability.yaml && \
+ansible-playbook -vv acm_import_cluster2.yaml 
+
+```
+This will provide you with ACM installed and cluster2 already imported in its MultiClusterHub. Observability will be activated
+
+These are some of the times of differents executions of the playbooks, running in the DO480 lab with this sizing:
+
+- 8 vCPUs and 32 GB of RAM for hub cluster
+
+- 4 vCPUs and 16 GB of RAM for managed cluster
+
+[cols="2*"]
+|===
+
+|`acm_install`
+|
+*Run 1*: 2:54 minutes
+
+*Run 2*: 3:25 minutes
+
+*Run 3*: 2:06 minutes
+
+*Run 4*: 2:39 minutes
+
+*Run 5*: 2:32 minutes
+
+*Run 6*: 2:40 minutes
+
+
+
+
+|`acm_create_multiclusterhub`
+|
+*Run 1*: 8:06 minutes
+
+*Run 2*: 4:28 minutes
+
+*Run 3*: 3:09 minutes
+
+*Run 4*: 6:14 minutes
+
+*Run 5*: 6:10 minutes 
+
+
+|`acm_import_cluster2`
+|
+*Run 1*:  4:04 minutes
+
+*Run 2*:  3:46 minutes
+
+*Run 3*: 4:42 minutes
+
+*Run 4*: 3:23 minutes
+
+
+|`acm_remove_multiclusterhub` (without dettaching cluster 2, **without** Observability)
+|
+*Run 1*:  12:27 minutes
+
+|`acm_remove_multiclusterhub` (without dettaching cluster 2, **with** Observability)
+|
+*Run 1*: 12:29 minutes
+
+*Run 2*: 14:10 minutes
+
+*Run 3*: 12:08 minutes
+
+*Run 4*: 12:54 minutes
+
+*Run 5*: 14:13 minutes
+
+*Run 6*: 12:50 minutes
+
+
+|`acm_remove_multiclusterhub` (dettaching cluster 2)
+|
+*Run 1*:  21:22 minutes
+
+|`acm_remove` (without existing MCH)
+|
+*Run 1*: 2:10 minutes
+
+*Run 2*: 2:19 minutes
+
+*Run 3*: 2:32 minutes
+ 
+
+|===
+
+ * Dettach a cluster means delete all resources in managed cluster,mainly `open-cluster-management-agent` and `open-cluster-management-agent-addon` namespaces and all its resources
+ 
+ * When you delete MultiClusterHub the managed cluster `local_cluster` is implicitly dettached 
+
+== Dettach Cluster and Uninstall ACM
+ 
+```
+cd $REPO/research/ansible && \
+ansible-playbook -vv acm_remove_multiclusterhub.yaml && \
+ansible-playbook -vv acm_remove.yaml 
+
+```
+In case you had not imported the second cluster, you can avoid first command and just run
+
+```
+cd $REPO/research/ansible && \
+ansible-playbook -vv acm_remove.yaml 
+```

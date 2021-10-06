@@ -1,0 +1,41 @@
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+    
+# Delete attached services to MCH. Deattaching of ManagedCluster already in its own playbook
+
+- name: Delete Observability by default, even if it does not exists
+  include_role:
+    name: acm_remove_observability
+# TODO Dettach Bare Metal assets
+
+#This can take 20 minutes to liberate all resources
+- name: Delete MultiClusterHub
+  k8s:
+    api_version: operator.open-cluster-management.io/v1
+    kind: MultiClusterHub
+    state: absent
+    name: multiclusterhub
+    namespace: "open-cluster-management"
+
+- name: Wait to MultiClusterHub deletion
+  k8s_info:
+    kind: MultiClusterHub
+    namespace: "{{ namespace }}"
+    name: multiclusterhub
+  register: output_info
+  # Can take up to 20 mins, docs said. About 10 minutes in do480 hub ocp
+  # 54 retries, f.e.
+  # 57 retries, f.e.
+  # 55 retries, f.e
+  until: not output_info.resources 
+  delay: 10
+  retries: 100

@@ -1,0 +1,13 @@
+- name: Check if pull-secret already exists in a given namespace
+  k8s_info:
+    kind: Secret
+    namespace: "{{ dest_namespace }}"
+    name: pull-secret
+  register: ps_exists
+
+    
+- name: Get the Pull Secret from openshift-config and copy in the given namespace          
+  shell: "oc get secret pull-secret -n openshift-config -o yaml | sed 's/namespace: .*/namespace:  {{ dest_namespace }}/' | oc apply -f - "
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+  when: not ps_exists.resources

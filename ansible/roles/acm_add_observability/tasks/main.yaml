@@ -1,0 +1,119 @@
+
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+    
+- name: Create the project for Observability
+  k8s:
+    api_version: project.openshift.io/v1
+    kind: Project
+    name: "{{ observability_namespace }}"
+    state: present
+    namespace: ""
+
+
+- name: Get Pull Secret
+  include_role:
+    name: copy_pull_secret_from_openshift_config
+  vars:
+    dest_namespace: "{{ observability_namespace }}"
+  
+- name: ObjectBucketClaim for Observability storage 
+  k8s:
+    state: present
+    definition:
+      apiVersion: objectbucket.io/v1alpha1
+      kind: ObjectBucketClaim
+      metadata:
+        name: thanos-bc
+        namespace: open-cluster-management-observability
+      spec:
+        storageClassName: openshift-storage.noobaa.io
+        generateBucketName: observability-bucket
+
+
+- name: retrieve OBC secret
+# Newer version of Ansible call this module k8s_info
+  k8s_facts:
+    api: v1
+    kind: Secret
+    name: "thanos-bc"
+    namespace: "{{ observability_namespace }}"
+  register: obc_secret
+
+
+- name: Get the original cred secrets
+  set_fact:
+    the_secret: "{{ item.data }}"
+    #aws_secret_access_key: "{{ item.resources.data.AWS_SECRET_ACCESS_KEY | b64decode | from_json}}"
+    # | b64decode | from_json
+  with_items: "{{ obc_secret.resources }}"
+  no_log: true
+
+- name: Get the keys
+  set_fact:
+    #secret_string: "{{ the_secret['AWS_ACCESS_KEY_ID'] | b64decode | from_json }}"
+    aws_access_key_id: "{{ the_secret['AWS_ACCESS_KEY_ID'] | b64decode }}"
+    aws_secret_access_key: "{{ the_secret['AWS_SECRET_ACCESS_KEY'] | b64decode }}"
+  no_log: true
+
+- name: retrieve OBC ConfigMap
+# Newer version of Ansible call this module k8s_info
+  k8s_facts:
+    api: v1
+    kind: ConfigMap
+    name: "thanos-bc"
+    namespace: "{{ observability_namespace }}"
+  register: obc_cm
+  no_log: true
+- name: Get the ObjectBucket from ConfigMap
+  set_fact:
+    bucket: "{{ item.data['BUCKET_NAME'] }}"
+    #aws_secret_access_key: "{{ item.resources.data.AWS_SECRET_ACCESS_KEY | b64decode | from_json}}"
+    # | b64decode | from_json
+  with_items: "{{ obc_cm.resources }}"
+  no_log: true
+    
+- name: Creating fulfilled Secret for Thannos Object Storage
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'thannos_object_storage_secret.j2') | from_yaml }}"
+
+- name: Creating MultiClusterObservability
+  k8s:
+    state: present
+    definition:
+      apiVersion: observability.open-cluster-management.io/v1beta2
+      kind: MultiClusterObservability
+      metadata:
+        name: observability
+      spec:
+        observabilityAddonSpec: {}
+        storageConfig:
+          metricObjectStorage:
+            name: thanos-object-storage
+            key: thanos.yaml
+
+- name: Check if deployments are ready in 'open-cluster-management-addon-observability'
+  k8s_info:
+    host: "{{ hub_cluster_host }}"
+    kind: Deployment
+    namespace: open-cluster-management-addon-observability
+    name: "{{ item }}"
+    #context: default/api-ocp4-mng-example-com:6443/admin #context from kubeconfig for managed cluster
+  register: output_info
+  until: output_info.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
+  delay: 10
+  retries: 100
+  loop:
+    - endpoint-observability-operator
+    - metrics-collector-deployment
+   

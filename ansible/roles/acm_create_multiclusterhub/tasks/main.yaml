@@ -1,0 +1,58 @@
+
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+    
+## pull-secret is needed for importing 'local-cluster', so we managed it here
+- name: Get Pull Secret
+  include_role:
+    name: copy_pull_secret_from_openshift_config
+  vars:
+    dest_namespace: "{{ namespace }}"
+
+- name: Instantiate MultiClusterHub
+  k8s:
+    state: present
+    definition:
+      apiVersion: operator.open-cluster-management.io/v1
+      kind: MultiClusterHub
+      metadata:
+        name: multiclusterhub
+        namespace: "{{ namespace }}"
+      spec:
+        imagePullSecret: pull-secret
+
+
+#- name: Waits until MultiClusterHub is ready 
+#  k8s_info:
+#    kind: MultiClusterHub
+#    namespace: "{{ namespace }}"
+#    name: multiclusterhub
+#  register: output_info
+#  # Can take up to 20 mins, docs said. About 2-10 minutes in do480 hub ocp (16/30 retries)
+#  until: output_info.resources |json_query('[*].status.phase')|unique == ["Running"]
+#  delay: 10
+#  retries: 100
+- name: Wait until RHACM MultiClusterHub is Ready
+#  # Can take up to 20 mins, docs said. About 2-10 minutes in do480 hub ocp 
+  k8s_info:
+    api_version: operator.open-cluster-management.io/v1
+    kind: MultiClusterHub
+    name: "multiclusterhub"
+    namespace: "{{ namespace }}"
+  register: rhacm_multiclusterhub
+  retries: 30
+  delay: 30
+  until:
+  - rhacm_multiclusterhub.resources | length > 0
+  - rhacm_multiclusterhub.resources[0].status is defined
+  - rhacm_multiclusterhub.resources[0].status.phase is defined
+  - rhacm_multiclusterhub.resources[0].status.phase == "Running"

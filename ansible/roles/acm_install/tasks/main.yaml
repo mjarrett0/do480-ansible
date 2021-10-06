@@ -1,0 +1,82 @@
+
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+
+- name: Create the project for ACM
+  k8s:
+    api_version: project.openshift.io/v1
+    kind: Project
+    name: "{{ namespace }}"
+    state: present
+    namespace: ""
+
+- name: Create OperatorGroup
+  k8s:        
+    state: present
+    definition:
+      apiVersion: operators.coreos.com/v1
+      kind: OperatorGroup
+      metadata:
+        name: acm-operatorgroup  
+      spec:
+        targetNamespaces:
+        - "{{ namespace }}"
+
+
+- name: Create Subscription to ACM Operator
+  k8s:        
+    state: present        
+    definition: 
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        name: acm-operator-subscription
+      spec:
+        sourceNamespace: openshift-marketplace
+        source: redhat-operators
+        channel: "{{ channel }}"
+        installPlanApproval: Automatic
+        name: advanced-cluster-management
+        namespace: "{{ namespace }}"
+  
+- name: Retrieve CSV Subscription version
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: Subscription
+    name: "acm-operator-subscription"
+    namespace: "{{ namespace }}"
+  register: acm_subs
+  retries: 30
+  delay: 10
+  until:
+  - acm_subs.resources | length > 0
+  - acm_subs.resources[0].status is defined
+  - acm_subs.resources[0].status.installedCSV is defined  
+          
+- name: Wait until ACM Subscription is Ready
+#from https://github.com/redhat-cop/agnosticd/blob/520d2458d34072eba88f58aa9058d0f98cfcea4a/ansible/roles_ocp_workloads/ocp4_workload_rhacm/tasks/workload.yml
+  k8s_info:
+    api_version: operators.coreos.com/v1alpha1
+    kind: ClusterServiceVersion
+    name: "{{ acm_subs.resources[0].status.installedCSV }}"
+    namespace: "{{ namespace }}"
+  register: rhacm_csv
+  retries: 30
+  delay: 20
+  until:
+  - rhacm_csv.resources | length > 0
+  - rhacm_csv.resources[0].status is defined
+  - rhacm_csv.resources[0].status.phase is defined
+  - rhacm_csv.resources[0].status.phase == "Succeeded"
+
+    
+

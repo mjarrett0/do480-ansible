@@ -1,0 +1,34 @@
+---
+#
+#       |`o``\  ,     
+#       |_|-/ \_|__   
+#     _/..\-.\|   |   
+#______\""/`````(o)___
+- name: Login to OpenShift cluster 
+  shell:
+    cmd: oc login -u admin -p redhat {{ hub_cluster_host }} 
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+    
+- name: Dettach second cluster
+# See https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.3/html/install/installing#prerequisite-detach
+  k8s:
+    
+    host: "{{ hub_cluster_host }}"
+    api_version: cluster.open-cluster-management.io/v1
+    kind: ManagedCluster
+    name: "{{ managed_cluster_name }}"
+    namespace: "{{ namespace }}"
+    state: absent
+
+- name: Waits until second cluster is dettached 
+  k8s_info:
+    host: "{{ hub_cluster_host }}"
+    api_version: cluster.open-cluster-management.io/v1
+    kind: ManagedCluster
+    namespace: "{{ namespace }}"
+    name: "{{ managed_cluster_name }}"
+  register: output_info  
+  until: not output_info.resources 
+  delay: 10
+  retries: 100 ## 18 retries

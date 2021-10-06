@@ -1,0 +1,14 @@
+---
+- hosts: workstation
+  vars_files: 
+    - vars/main.yaml
+  module_defaults:
+    group/k8s:
+      namespace: "{{ namespace }}"
+      ca_cert: "/etc/pki/tls/certs/ca-bundle.crt"
+      host: "{{ hub_cluster_host }}"
+      kubeconfig: "{{ kubeconfig }}"
+  roles:
+    
+    - acm_create_multiclusterhub
+    - acm_clean_workstation

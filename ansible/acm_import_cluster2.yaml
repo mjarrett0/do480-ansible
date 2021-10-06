@@ -1,0 +1,13 @@
+---
+- hosts: workstation
+  vars_files:
+    - vars/main.yaml
+  module_defaults:
+    group/k8s:
+      namespace: "{{ namespace }}"
+      ca_cert: "/etc/pki/tls/certs/ca-bundle.crt"      
+      kubeconfig: "{{ kubeconfig }}"
+  roles:    
+    - acm_import_cluster2
+    - acm_clean_workstation
+

@@ -1,0 +1,4 @@
+#classroom ansible_python_interpreter=/usr/bin/python3 ansible_user=instructor
+classroom ansible_user=instructor
+workstation ansible_python_interpreter=/usr/bin/python3 ansible_user=student
+utility ansible_python_interpreter=/usr/bin/python3 ansible_user=lab

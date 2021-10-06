@@ -1,0 +1,10 @@
+---
+- name: Check if kubeconfig file already exists
+  stat: 
+    path: /home/student/.kube/config
+  register: kubeconfig_file
+- name: Clean kubeconfig
+  file:
+    state: absent
+    path: /home/student/.kube/                
+  when: kubeconfig_file.stat.exists == True

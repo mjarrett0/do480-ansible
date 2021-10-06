@@ -1,0 +1,10 @@
+---
+namespace: "open-cluster-management"
+kubeconfig: "/home/student/.kube/config"
+channel: "release-2.3"
+hub_cluster_host: "https://api.ocp4.example.com:6443"
+managed_cluster_name: "cluster2"
+managed_cluster_host: "https://api.ocp4-mng.example.com:6443"
+sno_cluster_name: "sno-managed"
+sno_cluster_host: "https://api.ocp4-sno.example.com:6443"
+observability_namespace: "open-cluster-management-observability"

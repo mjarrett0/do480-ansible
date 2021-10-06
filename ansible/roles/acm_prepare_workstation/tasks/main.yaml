@@ -1,0 +1,18 @@
+---
+
+- name: Check if kubeconfig file already exists
+  stat: 
+    path: "{{ kubeconfig }}"
+  register: kubeconfig_file
+
+- name: Fetch kubeconfig from 'utility'
+  command: scp -r lab@utility:/home/lab/.kube /home/student/
+  when: kubeconfig_file.stat.exists == False
+
+- name: Change owner
+  file:
+    path: /home/student/.kube/        
+    owner: student
+    group: student
+    recurse: yes
+  when: kubeconfig_file.stat.exists == False
