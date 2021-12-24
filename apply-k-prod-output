@@ -1,0 +1,10 @@
+namespace/mysql created
+service/frontend created
+service/mysql created
+persistentvolumeclaim/mysql-pv-claim created
+deployment.apps/frontend created
+deployment.apps/mysql created
+application.app.k8s.io/mysql created
+placementrule.apps.open-cluster-management.io/mysql-placement-1 created
+route.route.openshift.io/frontend created
+
