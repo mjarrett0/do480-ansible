@@ -12,3 +12,14 @@ Resolving deltas: 100% (56/56), done.
 Branch 'kustomize' set up to track remote branch 'kustomize' from 'origin'.
 Switched to a new branch 'kustomize'
 
+[student@workstation do480-apps]$ ll ~/base
+total 32
+-rw-rw-r--. 1 student student 165 Dec 24 06:10 applications.yaml
+-rw-rw-r--. 1 student student 807 Dec 24 06:10 deployment-frontend.yaml
+-rw-rw-r--. 1 student student 692 Dec 24 06:10 deployment.yaml
+-rw-rw-r--. 1 student student  65 Dec 24 06:10 namespace.yaml
+-rw-rw-r--. 1 student student 227 Dec 24 06:10 placementrule.yaml
+-rw-rw-r--. 1 student student 287 Dec 24 06:10 route.yaml
+-rw-rw-r--. 1 student student 166 Dec 24 06:10 service-frontend.yaml
+-rw-rw-r--. 1 student student 165 Dec 24 06:10 service.yaml
+
