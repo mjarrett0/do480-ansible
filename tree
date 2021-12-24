@@ -1,0 +1,18 @@
+base
+├── applications.yaml
+├── deployment-frontend.yaml
+├── deployment.yaml
+├── kustomization.yaml
+├── kustomize-build-ouput
+├── namespace.yaml
+├── placementrule.yaml
+├── route.yaml
+├── service-frontend.yaml
+└── service.yaml
+
+0 directories, 10 files
+[student@workstation ~]$ tree overlays/
+overlays/
+├── development
+└── production
+
