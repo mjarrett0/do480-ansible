@@ -1,0 +1,14 @@
+[student@workstation testge]$ git clone https://github.com/redhattraining/do480-apps
+Cloning into 'do480-apps'...
+remote: Enumerating objects: 144, done.
+remote: Counting objects: 100% (144/144), done.
+remote: Compressing objects: 100% (103/103), done.
+remote: Total 144 (delta 56), reused 104 (delta 36), pack-reused 0
+Receiving objects: 100% (144/144), 18.03 KiB | 18.03 MiB/s, done.
+Resolving deltas: 100% (56/56), done.
+
+
+[student@workstation do480-apps]$ git checkout kustomize 
+Branch 'kustomize' set up to track remote branch 'kustomize' from 'origin'.
+Switched to a new branch 'kustomize'
+

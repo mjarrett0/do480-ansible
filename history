@@ -1,0 +1,949 @@
+    1  exit
+    2  git clone https://github.com/mjarrett0/do480-ansible
+    3  cd do480-ansible/
+    4  cd ansible/
+    5  ansible-playbook acm_install.yaml 
+    6  ansible-playbook acm_create_multiclusterhub.yaml 
+    7  ansible-playbook acm_add_observability.yaml 
+    8  vim vars/main.yaml 
+    9  ansible-playbook acm_import_cluster2.yaml 
+   10  cd
+   11  ls
+   12  vim deployment.yaml 
+   13  rm -f deployment.yaml 
+   14  vim deployment.yaml
+   15  cd do480-ansible/
+   16  cd 
+   17  git clone https://github.com/mjarrett0/do480-apps
+   18  cd do480-apps/
+   19  ls
+   20  cd mysql/
+   21  ls
+   22  oc new-project mysql
+   23  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   24  oc new-project mysql
+   25  ls
+   26  vim deployment.yaml 
+   27  oc create -f service.yaml 
+   28  oc create -f deployment.yaml 
+   29  vim deployment.yaml 
+   30  oc apply -k deployment.yaml 
+   31  cp deployment.yaml ~
+   32  cd
+   33  oc apply -k deployment.yaml 
+   34  oc create -f deployment.yaml 
+   35  cd -
+   36  oc create -f route.yaml 
+   37  oc create -f deployment.yaml 
+   38  vim deployment.yaml 
+   39  oc create -f deployment.yaml 
+   40  cd
+   41  ls
+   42  cd Documents/
+   43  git clone https://github.com/redhattraining/do480-apps
+   44  cd do480-apps/mysql/
+   45  ls
+   46  oc create -f deployment.yaml 
+   47  oc whoami --show-console
+   48  oc status
+   49  oc get pods
+   50  oc get svc
+   51  cd ../subscriptions/mysql/
+   52  ls
+   53  vim application.yaml 
+   54  vim namespace.yaml 
+   55  vim subscription.yaml 
+   56  cd -
+   57  ls
+   58  cd -
+   59  oc create -f application.yaml 
+   60  cd -
+   61  oc create -f deployment-frontend.yaml 
+   62  oc create -f service-frontend.yaml 
+   63  cd -
+   64  oc create -f placementrule.yaml 
+   65  oc create -f namespace.yaml 
+   66  oc create -f subscription.yaml 
+   67  oc status
+   68  oc get pods
+   69  oc get route
+   70  oc create -f application.yaml 
+   71  vim application.yaml 
+   72  vim subscription.yaml 
+   73  vim application.yaml 
+   74  vim subscription.yaml 
+   75  vim application.yaml 
+   76  oc create -f application.yaml 
+   77  vim application.yaml 
+   78  oc create -f application.yaml 
+   79  ls
+   80  vim placementrule.yaml 
+   81  cd 
+   82  ls
+   83  cd do480-ansible/
+   84  ls
+   85  vim yaml-master-file 
+   86  cd
+   87  vim palcementrule.yaml
+   88  vim placementrule.yaml
+   89  oc create -f placementrule.yaml 
+   90  oc projects
+   91  oc project default
+   92  oc project mysql
+   93  oc status
+   94  oc project default
+   95  oc project delete mysql
+   96  oc delete project mysql
+   97  oc project mysql
+   98  oc delete project mysql
+   99  oc project mysql
+  100  oc delete project mysql
+  101  oc status
+  102  oc delete project mysql
+  103  oc status
+  104  cd -
+  105  cd ..
+  106  ls
+  107  cd Documents/
+  108  ls
+  109  cd do480-apps/
+  110  ls
+  111  cd
+  112  vim service.yaml 
+  113  cd -
+  114  ls
+  115  cd mysql/
+  116  ls
+  117  oc create -f service.yaml 
+  118  oc new-project mysql
+  119  oc create -f service.yaml 
+  120  oc create -f deployment.yaml 
+  121  oc create -f route.yaml 
+  122  cd ../subscriptions/mysql/
+  123  ls
+  124  cd -
+  125  ls
+  126  cd 
+  127  oc create -f placementrule.yaml 
+  128  oc get pods
+  129  oc get svc
+  130  oc get route
+  131  cd -
+  132  ls
+  133  cd ../subscriptions/mysql/
+  134  ls
+  135  oc create -f application.yaml 
+  136  cd
+  137  vim do480-ansible/yaml-master-file 
+  138  vim subscription.yaml
+  139  oc create -f subscription.yaml 
+  140  cd -
+  141  ls
+  142  cd ../mysql/
+  143  ls
+  144  pwd
+  145  cd ..
+  146  cd mysql/
+  147  ls
+  148  oc create service-frontend.yaml 
+  149  oc create -f service-frontend.yaml 
+  150  oc create -f deployment-frontend.yaml 
+  151  oc get pods
+  152  oc status
+  153  ls
+  154  pwd
+  155  vim deployment-frontend.yaml 
+  156  oc get pods
+  157  oc delete project mysql
+  158  oc status
+  159  oc project default
+  160  cd
+  161  ls
+  162  vim pv.yaml
+  163  cd Downloads/
+  164  ls
+  165  vim pv-volume.yaml 
+  166  kubectl apply -k pv-volume.yaml 
+  167  oc create -f pv-volume.yaml 
+  168  oc get pv
+  169  vim pv-claim.yaml 
+  170  oc create -f pv-claim.yaml 
+  171  oc get pvc
+  172  oc get pv
+  173  ls
+  174  cd ../Documents/
+  175  ls
+  176  cd do480-apps/
+  177  ls
+  178  cd
+  179  ls
+  180  vim subscription.yaml 
+  181  vim channel.yaml
+  182  vim subscription.yaml 
+  183  oc new-project mysql
+  184  cd Documents/do480-apps/
+  185  ll
+  186  cd mysql/
+  187  ll
+  188  oc create -f service.yaml 
+  189  oc create -f deployment.yaml 
+  190  oc create -f route.yaml 
+  191  cd
+  192  ll
+  193  vim subscription.yaml 
+  194  oc create -f subscription.yaml 
+  195  oc create -f channel.yaml 
+  196  ll
+  197  vim placementrule.yaml 
+  198  oc create -f placementrule.yaml 
+  199  cd -
+  200  ll
+  201  oc create -f service-frontend.yaml 
+  202  ll
+  203  cd ../subscriptions/mysql/
+  204  ll
+  205  oc create -f application.yaml 
+  206  oc status
+  207  oc get pods
+  208  oc get route
+  209  curl -k https://todo.apps.ocp4.example.com/todo/
+  210  curl http://todo.apps.ocp4.example.com/todo/
+  211  oc status
+  212  oc get pods
+  213  oc delete project mysql
+  214  oc get pods
+  215  cd
+  216  git clone https://github.com/itaysk/kubectl-neat
+  217  cd kubectl-neat/
+  218  ls
+  219  make
+  220  yum -y install make
+  221  sudo yum -y install make
+  222  make
+  223  yum provides go
+  224  yum -y install go
+  225  sudo yum -y install go
+  226  make
+  227  ls
+  228  kubectl krew install neat
+  229  vim krew-package.sh 
+  230  ./krew-package.sh 
+  231  yum install -y jq
+  232  sudo yum install -y jq
+  233  sudo ./krew-package.sh 
+  234  yum provides sponge
+  235  yum -y install sponge
+  236  sudo yum -y install sponge
+  237  yum -y install moreutils
+  238  sudo yum -y install moreutils
+  239  sudo yum -y install moreutils --skip-broken
+  240  sudo yum -y install perl-ipc-run
+  241  sudo yum providesperl-ipc-run
+  242  sudo yum provides perl-ipc-run
+  243  make
+  244  yum provides neat
+  245  yum provides bats
+  246  sudo yum -y install bats
+  247  make
+  248  sudo yum install goreleaser -y
+  249  yum provides goreleaser
+  250  ls
+  251  cd dist/
+  252  ls
+  253  cp kubectl-neat_linux_amd64 /usr/local/bin
+  254  sudo cp kubectl-neat_linux_amd64 /usr/local/bin
+  255  cd
+  256  kubectl get deployment myapp -o yaml -n demo \
+  257  kubectl get deployment mysql -o yaml -n mysql | kubectl-neat_linux_amd64 > mysql-deployment.yaml
+  258  vim mysql-deployment.yaml 
+  259  vim .bash_profile 
+  260  mkdir base
+  261  cd  base/
+  262   neat deploymentconfig todojs -n mysql 
+  263  .source
+  264  source
+  265  cd
+  266  source .bash_profile 
+  267  cd -
+  268   neat deploymentconfig todojs -n mysql 
+  269   neat deploymentconfig mysql -n mysql 
+  270   neat deployment mysql -n mysql 
+  271  ls
+  272  ls -l
+  273  vim mysql-deployment
+  274  vim mysql-deployment.yaml 
+  275   neat deployment todonodejs -n mysql 
+  276   neat deploymentconfig todonodejs -n mysql 
+  277   neat deploymentconfig mysql -n mysql 
+  278   neat application my -n mysql 
+  279  vim mysql-application.yaml 
+  280   neat subscription mysql -n mysql 
+  281   neat subscriptionw mysql -n mysql 
+  282   neat subscriptions mysql -n mysql 
+  283   neat subscriptions todonodejs -n mysql 
+  284   neat svc mysql -n mysql 
+  285   neat route mysql -n mysql 
+  286  oc get route
+  287   neat route frontend -n mysql 
+  288   neat deployment frontend -n mysql 
+  289   neat svc frontend -n mysql 
+  290  ll
+  291   neat placement mysql -n mysql 
+  292   neat placementrule mysql -n mysql 
+  293  vim mysql-deployment.yaml 
+  294  vim mysql-route.yaml 
+  295  vim mysql-svc.yaml 
+  296  vim mysql-application.yaml 
+  297  vim mysql-deployment.yaml 
+  298   neat replicaset mysql -n mysql 
+  299   neat replicaset frontend -n mysql 
+  300  history
+  301  kubectl get deployment mysql -n mysql
+  302  kubectl get deployment mysql -o yaml -n mysql
+  303  oc delete project mysql
+  304  oc status
+  305  oc get pods
+  306  oc delete project mysql
+  307  ls
+  308  ll
+  309  oc create -f mysql-deployment.yaml 
+  310  oc new-project mysql
+  311  oc create -f mysql-deployment.yaml 
+  312  oc create -f mysql-svc.yaml 
+  313  oc create -f mysql-application.yaml 
+  314  oc create -f frontend-deployment.yaml 
+  315  oc create -f frontend-svc.yaml 
+  316  oc create -f frontend-route.yaml 
+  317  oc get pods
+  318  vim ~/placementrule.yaml 
+  319  oc create -f ~/placementrule.yaml 
+  320  vim ~/subscription.yaml 
+  321  oc create -f ~/subscription.yaml 
+  322  oc delette project mysql
+  323  oc delete project mysql
+  324  oc status
+  325  oc delete project mysql
+  326  cd ~/Documents/
+  327  ls
+  328  cd do480-apps/
+  329  ls
+  330  cd mysql/
+  331  ls
+  332  oc create -f deployment.yaml 
+  333  oc new-project mysql
+  334  oc create -f deployment.yaml 
+  335  ll
+  336  oc create -f service.yaml 
+  337  oc create -f route.yaml 
+  338  oc create -f deployment-frontend.yaml 
+  339  oc create -f ~/subscription.yaml 
+  340  oc create -f ~/placementrule.yaml 
+  341  ll ~
+  342  vim ~/service.yaml 
+  343  vim ~/deployment.yaml 
+  344  oc create -f ~/channel.yaml 
+  345  ll
+  346  cd ../subscriptions/mysql/
+  347  ll
+  348  oc create -f application.yaml 
+  349  ll
+  350  cd ..
+  351  cd mysql/
+  352  oc create -f service-frontend.yaml 
+  353  oc get route
+  354  oc get pods
+  355  curl todo.apps.ocp4.example.com/todo/
+  356  ls
+  357  vim deployment-frontend.yaml 
+  358  ll
+  359  vim deployment.yaml 
+  360  vim ~/channel.yaml 
+  361  vim service.yaml 
+  362  vim ~/channel.yaml 
+  363  vim ~/subscription.yaml 
+  364  cd ../subscriptions/mysql/
+  365  ls
+  366  vim ~/placementrule.yaml 
+  367  vim application.yaml 
+  368  oc get all -n mysql
+  369  oc get pvc
+  370  neat
+  371  cd
+  372  source .bash_profile 
+  373  neat
+  374  history |grep login
+  375  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  376  ls
+  377  cd do480-apps/
+  378  ls
+  379  ll mysql/
+  380  cd ../do480-ansible/
+  381  ll
+  382  cd ..
+  383  cd Downloads/
+  384  ll
+  385  vim pv-claim.yaml 
+  386  vim pv-volume.yaml 
+  387  cp pv* ~/do480-ansible/
+  388  cd ~/do480-ansible/
+  389  git status
+  390  git add .
+  391  git status
+  392  git push
+  393  git commit 
+  394  git push
+  395  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  396  oc status
+  397  oc get pvc
+  398  oc get pv
+  399  oc get pvc
+  400  oc new-project wordpress
+  401  cd ~/Downloads/
+  402  ls
+  403  vim wordpress-deployment.yaml 
+  404  vim mysql-deployment.yaml 
+  405  vim wordpress-deployment.yaml 
+  406  oc create -f mysql-deployment.yaml 
+  407  oc get pods
+  408  oc status
+  409  oc log svc/wordpress-mysql
+  410  oc logs svc/wordpress-mysql
+  411  oc create -f wordpress-deployment.yaml 
+  412  oc get pods
+  413  oc logs
+  414  oc logs wordpress-mysql-6c479567b-bqhbr
+  415  oc logs wordpress-5994d99f46-k6kn6
+  416  oc statu
+  417  oc status
+  418  oc status --suggest
+  419  oc logs wordpress-mysql-6c479567b-bqhbr
+  420  oc delete project wordpress
+  421  oc logs wordpress-mysql-6c479567b-bqhbr
+  422  cd ../do480-apps/
+  423  ls
+  424  cd mysql/
+  425  ls
+  426  vim deployment.yaml 
+  427  cd ~/Downloads/
+  428  ls
+  429  oc status
+  430  vim mysql-deployment.yaml 
+  431  oc new-project word
+  432  oc create -f mysql-deployment.yaml 
+  433  oc get pods
+  434  vim wordpress-deployment.yaml 
+  435  oc get pods
+  436  vim mysql-deployment.yaml 
+  437  oc delete project word
+  438  oc new-project words
+  439  oc create -f mysql-deployment.yaml 
+  440  oc get pods
+  441  oc describe registry.redhat.io/rhel8/mysql-80:1-152
+  442  oc describe wordpress-mysql-6c88679c76-7tp55
+  443  ls
+  444  vim deployment.yaml
+  445  oc get pods
+  446  oc delete project words
+  447  oc new-project wording
+  448  oc create -f deployment.yaml 
+  449  oc get pods
+  450  oc project mysql
+  451  oc status
+  452  oc get pv
+  453  oc get pvc
+  454  oc get pvc  default/task-pv-claim
+  455  oc delete pvc  default/task-pv-claim
+  456  oc status
+  457  oc delete pv
+  458  oc delete pv  default/task-pv-claim
+  459  oc delete pv task-pv-claim
+  460  oc delete pv task-pv-volume
+  461  oc status
+  462  oc delete project mysql
+  463  oc status
+  464  oc proejct mysql
+  465  oc project mysql
+  466  oc status
+  467  oc get pods
+  468  oc get pv
+  469  oc get pvc
+  470  ls
+  471  vim pv-volume.yaml 
+  472  vim pv-claim.yaml 
+  473  oc create -f pv-volume.yaml 
+  474  oc create -f pv-claim.yaml 
+  475  oc status
+  476  oc status --sugges
+  477  oc status --suggest
+  478  oc logs mysql-6795745b9d-fq2vk -c mysql
+  479  vim pv-volume.yaml 
+  480  oc status
+  481  oc get pv
+  482  oc get pvc
+  483  oc get pvc mysql-persistent-storage 
+  484  oc delete pv mysql-persistent-storage 
+  485  oc get pvc
+  486  oc get pv
+  487  oc get pvc mysql-persistent-storage 
+  488  oc get pv
+  489  oc get pvC
+  490  oc get pvc
+  491  oc delete pvc mysql-pv-claim
+  492  oc get pvc
+  493  oc get pv
+  494  vim pv-volume.yaml 
+  495  oc new-project mysql
+  496  oc delete project mysql
+  497  oc new-project mysql
+  498  oc create -f pv-volume.yaml 
+  499  vim pv-volume.yaml 
+  500  oc create -f pv-volume.yaml 
+  501  oc create -f pv-claim.yaml 
+  502  oc get pvc
+  503  oc get pv
+  504  oc get pvc
+  505  oc get pv
+  506  vimpv-volume.yaml 
+  507  vim pv-volume.yaml 
+  508  vim pv-claim.yaml 
+  509  vim pv-volume.yaml 
+  510  oc create -f pv-volume.yaml 
+  511  oc get pvc
+  512  oc status
+  513  oc status mysql-persistent-storage 
+  514  oc status --suggest
+  515  oc logs mysql-6795745b9d-s2dkd -c mysql
+  516  vim pv-volume.yaml 
+  517  oc get pvc
+  518  oc get pvc oc logs mysql-6795745b9d-s2dkd -c mysql
+  519  oc get pvc mysql-pv-claim
+  520  oc delete pvc mysql-pv-claim
+  521  oc delete pv mysql-persistent-storage
+  522  OC GET PVC
+  523  oc get pvc
+  524  oc get pv
+  525  oc get pvc
+  526  oc status
+  527  oc get pvc
+  528  oc delete project mysql
+  529  oc create -f pv-volume.yaml 
+  530  oc create -f pv-claim.yaml 
+  531  oc new-project mysql
+  532  oc create -f pv-claim.yaml 
+  533  oc get pvc
+  534  watch oc get pods
+  535  CD
+  536  cd
+  537  lab start features-console 
+  538  oc projects
+  539  oc new-project mysql
+  540  ls
+  541  history |grep login
+  542  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  543  oc projects
+  544  oc project company-applications-5
+  545  oc status
+  546  oc get pods
+  547  history |grep kubectl
+  548   kubectl get deployment mysql-finance-2 -o yaml -n company-application-5
+  549   kubectl get deployment mysql-finance-2 -o yaml -n company-applications-5
+  550   kubectl get deployment mysql-finance-application-2 -o yaml -n company-applications-5
+  551  oc get svc
+  552  oc get 
+  553   kubectl get svc mysql-finance-application-2 -o yaml -n company-applications-5
+  554   kubectl get deployment config mysql-finance-application-2 -o yaml -n company-applications-5
+  555   kubectl get deploymentconfig mysql-finance-application-2 -o yaml -n company-applications-5
+  556   kubectl get deployment config mysql-finance-application-2 -o yaml -n company-applications-5 > rafa-deployment.yaml
+  557   kubectl get deployment mysql-finance-application-2 -o yaml -n company-applications-5 > rafa-deployment.yaml
+  558  vim rafa-deployment.yaml 
+  559  oc get pv
+  560  oc get pvc
+  561   kubectl get pvc dbclaim -o yaml 
+  562   kubectl get pvc dbclaim -o yaml > rafa-pvc.yaml
+  563  history |grep neat
+  564  neat pvc dbclaim -o yaml > neat-pvc.yaml
+  565  source .bash_profile 
+  566  neat pvc dbclaim -o yaml > n
+  567  vim neat-pvc.yaml 
+  568  oc status
+  569  neat pvc dbclaim -n company-applications-5
+  570  ls
+  571  ls -lth |more
+  572  vim dbclaim-pvc.yaml 
+  573  vim rafa-deployment.yaml 
+  574  neat pvc mysql-finance-application-2 -n company-applications-5
+  575  neat deployment mysql-finance-application-2 -n company-applications-5
+  576  vim mysql-finance-application-2-deployment.yaml 
+  577  neat svc mysql-finance-application-2 -n company-applications-5
+  578  vim mysql-finance-application-2-svc.yaml 
+  579   kubectl get svc mysql-finance-application-2 -o yaml -n company-applications-5 > rafa-svc.yaml
+  580  vim rafa-svc.yaml 
+  581  vim rafa-pvc.yaml 
+  582  vim mysql-finance-application-2-pvc.yaml 
+  583  neat pvc mysql-finance-application-2 -n company-applications-5
+  584  vim dbclaim-pvc.yaml 
+  585  vim Downloads/pv-claim.yaml 
+  586  vim dbclaim-pvc.yaml 
+  587  vim Downloads/pv-claim.yaml 
+  588  vim dbclaim-pvc.yaml 
+  589  vim mysql-finance-application-2-deployment.yaml 
+  590  oc get pv
+  591  oc project mysql
+  592  oc get pvc
+  593  oc delete project mysql
+  594  vim dbclaim-pvc.yaml 
+  595  history |grep dbclaim
+  596  vim neat-pvc.yaml 
+  597  vim mysql-finance-application-2-deployment.yaml 
+  598  oc new-project mysql
+  599  oc create -f dbclaim-pvc.yaml 
+  600  ls
+  601  oc create mysql-finance-application-2-deployment.yaml -f
+  602  oc create -f mysql-finance-application-2-deployment.yaml 
+  603  oc projects
+  604  lab finish features-console 
+  605  ls
+  606  oc create -f mysql-finance-application-2-deployment.yaml 
+  607  oc new-project company-applications-5
+  608  cd do480-ansible/
+  609  ls
+  610  cd ..
+  611  vim placementrule.yaml 
+  612  cp placementrule.yaml ~/do480-ansible/
+  613  cp dbclaim-pvc.yaml ~/do480-ansible/
+  614  vim channel.yaml 
+  615  cp channel.yaml ~/do480-ansible/
+  616  vim deployment.yaml 
+  617  cp deployment.yaml ~/do480-ansible/no-pv-deployment.yaml
+  618  vim service.yaml 
+  619  rm -f service.yaml 
+  620  vim subscription.yaml 
+  621  cp subscription.yaml ~/do480-ansible/
+  622  cp mysql-* ~/do480-ansible/
+  623  cp rafa-* ~/do480-ansible/
+  624  cd Do
+  625  cd Downloads/
+  626  ls
+  627  vim mysql-deployment.yaml 
+  628  vim wordpress-deployment.yaml 
+  629  cp mysql-deployment.yaml ~/do480-ansible/
+  630  cp wordpress-deployment.yaml ~/do480-ansible/
+  631  cp pv-* ~/do480-ansible/
+  632  ll
+  633  cd ../Documents/
+  634  ld
+  635  ls
+  636  cd do480-apps/
+  637  l
+  638  ll
+  639  cd mysql/
+  640  ls
+  641  vim service.yaml 
+  642  cd ../subscriptions/mysql/
+  643  ls
+  644  vim placementrule.yaml 
+  645  vim subscription.yaml 
+  646  vim application.yaml 
+  647  vim namespace.yaml 
+  648  cp application.yaml namespace.yaml subscription.yaml ~/do480-ansible/
+  649  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  650  cd
+  651  mkdir yaml-holder
+  652  cd yaml-holder/
+  653  cd ~/do480-ansible/
+  654  ls
+  655  vim mysql-deployment.yaml 
+  656  cd ~/Documents/do480-apps/
+  657  ls
+  658  cd mysql/
+  659  ls
+  660  oc new-project mysql
+  661  oc delete project mysql
+  662  oc new-project mysql
+  663  vim deployment.yaml 
+  664  ls
+  665  vim service.yaml 
+  666  oc create -f service.yaml 
+  667  oc create -f deployment.yaml 
+  668  oc create -f route.yaml 
+  669  oc create -f deployment-frontend.yaml 
+  670  oc create -f service-frontend.yaml 
+  671  cd ~/do480-ansible/
+  672  ls
+  673  oc create -f placementrule.yaml 
+  674  oc status
+  675  oc get pods
+  676  ls
+  677  oc create -f application.yaml 
+  678  oc get pods
+  679  oc status
+  680  ls
+  681  oc status
+  682  oc create -f channel.yaml 
+  683  oc status
+  684  ls
+  685  oc status
+  686  oc create -f subscription.yaml 
+  687  oc status
+  688  oc get pods
+  689  oc logs frontend-5cbdf5bf85-xsqph
+  690  oc delete frontend-5cbdf5bf85-xsqph
+  691  oc delete pod frontend-5cbdf5bf85-xsqph
+  692  oc get pods
+  693  oc delete project mysql
+  694  oc get pods
+  695  ll
+  696  ll ~
+  697  vim ~/deployment.yaml 
+  698  vim ~/do480-ansible/mysql-deployment.yaml 
+  699  vim ~/do480-ansible/no-pv-deployment.yaml 
+  700  oc status
+  701  vim mysql-deployment.yaml 
+  702  vim ~/deployment.yaml 
+  703  oc new-project mysql
+  704  vim ~/deployment.yaml 
+  705  cd ~/base/
+  706  ls
+  707  vim frontend-deployment.yaml 
+  708  vim mysql-deployment.yaml 
+  709  cd -
+  710  ll
+  711  vim mysql-finance-application-2-deployment.yaml 
+  712  vim mysql-deployment.yaml 
+  713  mv mysql-deployment.yaml ~
+  714  cp ~/deployment.yaml .
+  715  vim deployment.yaml 
+  716  oc status
+  717  oc delete project mysql
+  718  cd
+  719  mv base base1
+  720  ll
+  721  mkdir base
+  722  cd  do480-ansible/
+  723  ls
+  724  cp application.yaml ~/base
+  725  cp deployment.yaml ~/base
+  726  vim placementrule.yaml 
+  727  cp placementrule.yaml ~/base
+  728  vim ~/base/deployment.yaml 
+  729  cd ~/Documents/
+  730  ls
+  731  cd do480-apps/
+  732  ls
+  733  cd mysql/
+  734  ls
+  735  vim deployment.yaml 
+  736  cp deployment.yaml ~/base
+  737  cp service-* ~/base
+  738  cp route.yaml ~/base
+  739  cp deployment-frontend.yaml ~/base
+  740  cat ~/base
+  741  ll ~/base
+  742  cp service.yaml ~/base
+  743  cp kustomiation.yaml ~/base
+  744  cd ~/base
+  745  ll
+  746  vim kustomiation.yaml 
+  747  kustomize edit set nameprefix 'prod-'
+  748  cd
+  749  yum -y install kustomize
+  750  sudo yum -y install kustomize
+  751  kubectl --help
+  752  kubectl kustomize base
+  753  cd  base
+  754  ls
+  755  mv kustomiation.yaml kustomization.yaml
+  756  kubectl kustomize base
+  757  kubectl kustomize .
+  758  ll
+  759  mv application.yaml applications.yaml 
+  760  kubectl kustomize .
+  761  kustomize build . | kubectl apply -f -
+  762  kubectl kustomize build . | kubectl apply -f -
+  763  kubectl kustomize build ../base | kubectl apply -f -
+  764  vim kustomization.yaml 
+  765  history |grep prod
+  766  kubectl kustomize edit set nameprefix 'prod-'
+  767  cd ..
+  768  kubectl kustomize base edit set nameprefix 'prod-'
+  769  mkdir overlays
+  770  cd overlays/
+  771  mkdir production
+  772  mkdir development
+  773  vim ../base/kustomization.yaml 
+  774  kubectl kustomize ../base/kustomization.yaml edit set nameprefix 'prod-'
+  775  kubectl kustomize 
+  776  cd ..
+  777  tree base
+  778  tree 
+  779  tree |more
+  780  cd -
+  781  cd ..
+  782  ll
+  783  kubectl kustomize /base/kustomization.yaml edit set nameprefix 'prod-'
+  784  kubectl kustomize 
+  785  kubectl kustomize /base/kustomization.yaml 
+  786  kubectl kustomize --help
+  787  kubectl kustomize base/kustomization.yaml 
+  788  kubectl kustomize ~/base/kustomization.yaml 
+  789  kubectl kustomize ~/base/
+  790  kubectl kustomize ~/base edit set nameprefix 'prod-'
+  791  kubectl kustomize ~/b edit 
+  792  kubectl kustomize kustomization.yaml edit set nameprefix 'prod-'
+  793  kubectl kustomize edit set nameprefix 'prod-'
+  794  kubectl kustomize edit set nameprefix 'prod-' base
+  795  kubectl kustomize edit set nameprefix 'prod-' base/kustomization.yaml 
+  796  cd base
+  797  ls
+  798  vim kustomization.yaml 
+  799  cd ../overlays/
+  800  ls
+  801  cd production/
+  802  cat <<'EOF' > $DEMO_HOME/persistent-disk.yaml
+  803  apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+  804  kind: Deployment
+  805  metadata:
+  806    name: mysql
+  807  spec:
+  808    template:
+  809      spec:
+  810        volumes:
+  811        - name: mysql-persistent-storage
+  812          emptyDir: null
+  813          gcePersistentDisk:
+  814            pdName: mysql-persistent-storage
+  815  EOF
+  816  cat <<'EOF' > persistent-disk.yaml
+  817  apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+  818  kind: Deployment
+  819  metadata:
+  820    name: mysql
+  821  spec:
+  822    template:
+  823      spec:
+  824        volumes:
+  825        - name: mysql-persistent-storage
+  826          emptyDir: null
+  827          gcePersistentDisk:
+  828            pdName: mysql-persistent-storage
+  829  EOF
+  830  cat <<'EOF' >> $DEMO_HOME/kustomization.yaml
+  831  patchesStrategicMerge:
+  832  - persistent-disk.yaml
+  833  cat <<'EOF' >> $DEMO_HOME/kustomization.yaml
+  834  patchesStrategicMerge:
+  835  - persistent-disk.yaml
+  836  EOF
+  837  cat <<'EOF' >> kustomization.yaml 
+  838  patchesStrategicMerge:
+  839  - persistent-disk.yaml
+  840  EOF
+  841  ls
+  842  vim ~/dbclaim-pvc.yaml 
+  843  ls
+  844  vim persistent-disk.yaml 
+  845  vim kustomization.yaml 
+  846  vim persistent-disk.yaml 
+  847  ls
+  848  kubectl kustomize build
+  849  cd ..
+  850  kubectl kustomize production
+  851  ls
+  852  cd ..
+  853  vim base/deployment.yaml 
+  854  cd overlays/production/
+  855  ls
+  856  cd ..
+  857  kubectl kustomize production
+  858  kubectl kustomize production | kubectl apply -f -
+  859  ll ~/do480-ansible/
+  860  vim ~/do480-ansible/
+  861  vim ~/do480-ansible/namespace.yaml 
+  862  cd ..
+  863  cd base
+  864  ll
+  865  cp ~/do480-ansible/namespace.yaml .
+  866  vim kustomization.yaml 
+  867  cd ..
+  868  kubectl kustomize base
+  869  cd overlays/
+  870  ls
+  871  kubectl kustomize production
+  872  kubectl kustomize production | kubectl apply -f -
+  873  ls
+  874  vim production/persistent-disk.yaml 
+  875  oc status
+  876  oc delete project mysql
+  877  cd production/
+  878  ls
+  879  vim persistent-disk.yaml 
+  880  oc status
+  881  vim persistent-disk.yaml 
+  882  vim ~/dbclaim-pvc.yaml 
+  883  vim persistent-disk.yaml 
+  884  cp persistent-disk.yaml ~
+  885  vim persistent-disk.yaml 
+  886  cd ..
+  887  kubectl kustomize production | kubectl apply -f -
+  888  ls
+  889  vim production/persistent-disk.yaml 
+  890  kubectl kustomize production | kubectl apply -f -
+  891  vim production/kustomization.yaml 
+  892  cp ~/dbclaim-pvc.yaml production/
+  893  cd production/
+  894  ls
+  895  mv persistent-disk.yaml ~
+  896  cd ..
+  897  kubectl kustomize production | kubectl apply -f -
+  898   ll production/
+  899  cd production/
+  900  mv dbclaim-pvc.yaml db-claim-pvc.yaml 
+  901  cd ..
+  902  kubectl kustomize production | kubectl apply -f -
+  903  vim production/kustomization.yaml 
+  904  kubectl kustomize production | kubectl apply -f -
+  905  oc status
+  906  oc get pods
+  907  oc status --suggest
+  908  oc logs
+  909  oc logs frontend-5cbdf5bf85-7wjk4 
+  910  oc get pods
+  911  oc get pvc
+  912  oc get pods
+  913  history
+  914  cd base
+  915  ls
+  916  mv kustomization.yaml ~
+  917  ls
+  918  cd ..
+  919  cd Documents/do480-apps/
+  920  git status
+  921  ls -lth
+  922  ls -lth mysql/
+  923  cd /tmp/
+  924  git clone https://github.com/redhattraining/do480-apps
+  925  cd  do480-apps/
+  926  git branch -av
+  927  git checkout kustomize 
+  928  ls
+  929  git rm mysql/
+  930  git rm mysql/ -r
+  931  git rm subscriptions/ -r
+  932  ls
+  933  vim README.md 
+  934  cp -a ~/base .
+  935  ls
+  936  git status
+  937  git add .
+  938  git status
+  939  git commit 
+  940  git push
+  941  cd
+  942  mkdir testge
+  943  cd testge/
+  944  git clone https://github.com/redhattraining/do480-apps
+  945  vim ~/do480-ansible/ge
+  946  cd do480-apps/
+  947  git checkout kustomize 
+  948  ls
+  949  history > history
