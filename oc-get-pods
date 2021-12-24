@@ -1,0 +1,5 @@
+[student@workstation base]$ oc get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-5cbdf5bf85-94qwl   1/1     Running   0          12m
+mysql-6c5d98dd9b-q94c8      1/1     Running   0          12m
+
