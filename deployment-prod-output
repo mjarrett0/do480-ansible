@@ -1,0 +1,155 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todonodejs
+    name: frontend
+  name: frontend
+spec:
+  ports:
+  - port: 8080
+  selector:
+    name: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: todonodejs
+    name: mysql
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    name: mysql
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  namespace: mysql
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+  storageClassName: nfs-storage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todonodejs
+    name: frontend
+  name: frontend
+  namespace: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todonodejs
+      name: frontend
+  template:
+    metadata:
+      labels:
+        app: todonodejs
+        name: frontend
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ENV_MYSQL_DATABASE
+          value: items
+        - name: MYSQL_ENV_MYSQL_USER
+          value: user1
+        - name: MYSQL_ENV_MYSQL_PASSWORD
+          value: mypa55
+        - name: APP_PORT
+          value: "8080"
+        image: quay.io/redhattraining/todo-single:v1.0
+        name: todonodejs
+        ports:
+        - containerPort: 8080
+          name: nodejs-http
+        resources:
+          limits:
+            cpu: "0.5"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todonodejs
+    name: mysql
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todonodejs
+      name: mysql
+  template:
+    metadata:
+      labels:
+        app: todonodejs
+        name: mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: r00tpa55
+        - name: MYSQL_USER
+          value: user1
+        - name: MYSQL_PASSWORD
+          value: mypa55
+        - name: MYSQL_DATABASE
+          value: items
+        image: registry.redhat.io/rhel8/mysql-80:1-156
+        name: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: mysql
+  name: mysql-placement-1
+  namespace: mysql
+spec:
+  clusterSelector:
+    matchLabels:
+      local-cluster: "true"
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: todonodejs
+    name: route-frontend
+  name: frontend
+  namespace: mysql
+spec:
+  host: todo.apps.ocp4.example.com
+  path: /todo
+  to:
+    kind: Service
+    name: frontend
+    weight: 100
+  wildcardPolicy: None
