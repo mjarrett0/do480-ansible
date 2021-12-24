@@ -1,0 +1,4 @@
+student@workstation base]$ oc get pvc
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound    pvc-c95583c8-3fea-45d4-bcba-330a33eea6ff   10Mi       RWO            nfs-storage    5m32s
+
