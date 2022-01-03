@@ -6,3 +6,7 @@ bases:
 
 resources:
 - db-claim-pvc.yaml
+
+replicas:
+- name: myapp
+  count: 3
