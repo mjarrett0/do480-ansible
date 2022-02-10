@@ -44,7 +44,7 @@ _targets = ["localhost","workstation"]
 # Default namespace for the resources
 NAMESPACE = "mysql"
 
-disable_warnings(InsecureRequestWarning)
+
 
 # TODO: Change this to LabError
 class GradingError(Exception):
@@ -167,6 +167,16 @@ class ApplicationsReview(OpenShift):
                 "type": "Deployment",
                 "api": "apps/v1",
                 "namespace": "mysql",
+                "fatal": True
+            },
+             {
+                "label": "Image 'registry.redhat.io/rhel8/mysql-80:1-156' is present",
+                "task": self._fail_if_not_exists,
+                "name": "mysql",
+                "type": "Deployment",
+                "api": "apps/v1",
+                "namespace": "mysql",
+                "image": "registry.redhat.io/rhel8/mysql-80:1-156",
                 "fatal": True
             },
             {
