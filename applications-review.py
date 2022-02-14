@@ -180,6 +180,17 @@ class ApplicationsReview(OpenShift):
                 "fatal": True
             },
             {
+                "label": "PlacementRule 'mysql-placement-1' is present",
+                "task": self._fail_if_not_exists,
+                "name": "mysql-placement-1",
+                "type": "PlacementRule",
+                "api": "apps/v1",
+                "namespace": "mysql",
+                "env": "development",
+                "fatal": True
+            },
+ 
+            {
                 "label": "Checking image registry config",
                 "task": self._check_cluster_imageregistry,
                 "fatal": True,
