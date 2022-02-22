@@ -1,0 +1,104 @@
+[student@workstation ~]$ oc get profilebundle.compliance -n openshift-compliance
+NAME     CONTENTIMAGE                                                                                                                               CONTENTFILE         STATUS
+ocp4     registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:6f24fec15e651a0db1d02b5dcc2884e32e8639bda7f90f72abd8853ccdf4b166   ssg-ocp4-ds.xml     VALID
+rhcos4   registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:6f24fec15e651a0db1d02b5dcc2884e32e8639bda7f90f72abd8853ccdf4b166   ssg-rhcos4-ds.xml   VALID
+[student@workstation ~]$ oc get profilebundle.compliance rhcos4 -o yaml
+Error from server (NotFound): profilebundles.compliance.openshift.io "rhcos4" not found
+[student@workstation ~]$ oc get profilebundle.compliance rhcos4-8 -o yaml
+Error from server (NotFound): profilebundles.compliance.openshift.io "rhcos4-8" not found
+[student@workstation ~]$ oc get profilebundle.compliance rhcos4-e8 -o yaml
+Error from server (NotFound): profilebundles.compliance.openshift.io "rhcos4-e8" not found
+[student@workstation ~]$ oc get profilebundle.compliance -n openshift-compliance rhcos4-e8 -o yaml
+Error from server (NotFound): profilebundles.compliance.openshift.io "rhcos4-e8" not found
+[student@workstation ~]$ oc get profilebundle.compliance -n openshift-compliance rhcos4 -o yaml
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ProfileBundle
+metadata:
+  creationTimestamp: "2022-02-22T00:33:56Z"
+  finalizers:
+  - profilebundle.finalizers.compliance.openshift.io
+  generation: 1
+  name: rhcos4
+  namespace: openshift-compliance
+  resourceVersion: "360453"
+  uid: 5e31cf88-ce36-4446-b5b9-754bb3b85c05
+spec:
+  contentFile: ssg-rhcos4-ds.xml
+  contentImage: registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:6f24fec15e651a0db1d02b5dcc2884e32e8639bda7f90f72abd8853ccdf4b166
+status:
+  conditions:
+  - lastTransitionTime: "2022-02-22T00:35:09Z"
+    message: Profile bundle successfully parsed
+    reason: Valid
+    status: "True"
+    type: Ready
+  dataStreamStatus: VALID
+
+[student@workstation ~]$ oc get profile.compliance -l compliance.openshift.io/profile-bundle=rhcos4  -n openshift-compliance
+NAME              AGE
+rhcos4-e8         127m
+rhcos4-moderate   127m
+rhcos4-nerc-cip   127m
+[student@workstation ~]$ oc get rule.compliance rhcos4-accounts-no-uid-except-zero -n openshift-compliance -o yaml
+apiVersion: compliance.openshift.io/v1alpha1
+checkType: Node
+description: |-
+  If any account other than root has a UID of 0, this misconfiguration should be investigated and the accounts other than root should be removed or have their UID changed.
+
+  If the account is associated with system commands or applications the UID should be changed to one greater than "0" but less than "1000." Otherwise assign a UID greater than "1000" that has not already been assigned.
+id: xccdf_org.ssgproject.content_rule_accounts_no_uid_except_zero
+instructions: |-
+  To list all password file entries for accounts with UID 0, run the
+  following command:
+  $ awk -F: '($3 == \"0\") {print}' /etc/passwd
+  This should print only one line, for the user root.
+
+  If there is a finding, change the UID of the failing (non-root) user. If
+  the account is associated with the system commands or applications the UID
+  should be changed to one greater than 0 but less than
+  1000. Otherwise assign a UID of greater than 1000 that
+  has not already been assigned.
+kind: Rule
+metadata:
+  annotations:
+    compliance.openshift.io/image-digest: pb-rhcos4wt4pm
+    compliance.openshift.io/rule: accounts-no-uid-except-zero
+    control.compliance.openshift.io/NERC-CIP: CIP-003-8 R5.1.1;CIP-003-8 R5.3;CIP-004-6
+      R2.2.3;CIP-004-6 R2.3;CIP-007-3 R5.1;CIP-007-3 R5.1.2;CIP-007-3 R5.2;CIP-007-3
+      R5.3.1;CIP-007-3 R5.3.2;CIP-007-3 R5.3.3
+    control.compliance.openshift.io/NIST-800-53: IA-2;AC-6(5);IA-4(b)
+    policies.open-cluster-management.io/controls: CIP-003-8 R5.1.1,CIP-003-8 R5.3,CIP-004-6
+      R2.2.3,CIP-004-6 R2.3,CIP-007-3 R5.1,CIP-007-3 R5.1.2,CIP-007-3 R5.2,CIP-007-3
+      R5.3.1,CIP-007-3 R5.3.2,CIP-007-3 R5.3.3,IA-2,AC-6(5),IA-4(b)
+    policies.open-cluster-management.io/standards: NERC-CIP,NIST-800-53
+  creationTimestamp: "2022-02-22T00:34:20Z"
+  generation: 1
+  labels:
+    compliance.openshift.io/profile-bundle: rhcos4
+  name: rhcos4-accounts-no-uid-except-zero
+  namespace: openshift-compliance
+  ownerReferences:
+  - apiVersion: compliance.openshift.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ProfileBundle
+    name: rhcos4
+    uid: 5e31cf88-ce36-4446-b5b9-754bb3b85c05
+  resourceVersion: "359013"
+  uid: 44d6f7ce-d1bb-4337-9c67-da64a9032fcb
+rationale: An account has root authority if it has a UID of 0. Multiple accounts with
+  a UID of 0 afford more opportunity for potential intruders to guess a password for
+  a privileged account. Proper configuration of sudo is recommended to afford multiple
+  system administrators access to root privileges in an accountable manner.
+severity: high
+title: Verify Only Root Has UID 0
+
+[student@workstation ~]$ oc get compliancesuite -n openshift-compliance
+NAME   PHASE   RESULT
+e8     DONE    NON-COMPLIANT
+[student@workstation ~]$ oc get compliancescan -n openshift-compliance
+NAME               PHASE   RESULT
+ocp4-e8            DONE    NON-COMPLIANT
+rhcos4-e8-master   DONE    NON-COMPLIANT
+rhcos4-e8-worker   DONE    NON-COMPLIANT
+
