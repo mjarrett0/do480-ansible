@@ -1,35 +1,9 @@
-    1  exit
-    2  lab start policy-gatekeeper 
-    3  oc 
-    4  oc whoami --show-console
-    5  oc whoami
-    6  oc login -u admin -p redhat https://api.ocp4.example.com:6443
-    7  oc whoami --show-console
-    8  lab finish policy-gatekeeper
-    9  oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}`
-   10  oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}`'
-   11  oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}'
-   12  oc project openshift-operatorss
-   13  oc project openshift-operators
-   14  oc login -u admin -p redhat https://api.ocp4.example.com:6443
-   15  oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}'
-   16  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d)
-   17  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d)'
-   18  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
-   19  oc get pods -l=app.kubernetes.io/name=argocd-dex-server
-   20  oc get pods -l=app.kubernetes.io/name=argocd-dex-server -n openshift-gitops
-   21  oc get pods -n openshift-gitops
-   22  oc edit cm argocd-cm
-   23  oc project openshift-gitops
-   24  oc edit cm argocd-cm
-   25  oc adm groups add-users argocdusers john
-   26  oc adm groups new argocdusers
-   27  oc adm groups new argocdadmin
-   28  oc adm groups add-users argocdusers john
-   29  oc adm groups add-users argocdadmin bill
-   30  lab start features-users
-   31  oc adm groups add-users argocdusers stage-admin
-   32  oc login -u admin -p redhat https://api.ocp4.example.com:6443
-   33  oc project openshift-gitops
-   34  oc adm groups add-users argocdusers stage-admin
-   35  history > history
+    1  lab install -u --env test --version 2.4.0.dev0+pr.365 do480
+    2  lab start observability-customize 
+    3  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+    4  oc get deployment -n openshift-storage noobaa-endpoint
+    5  oc edit multiclusterobservability -n openshift-multicluster-observability
+    6  watch oc get pods -n open-cluster-management-observability
+    7  oc get deployment -n openshift-storage noobaa-endpoint
+    8  history
+    9  history > history

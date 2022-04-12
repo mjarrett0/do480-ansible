@@ -1,0 +1,358 @@
+    1  lab install -u --env test --version 2.4.0.dev0+pr.365 do480
+    2  lab start observability-customize 
+    3  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+    4  oc get deployment -n openshift-storage noobaa-endpoint
+    5  oc edit multiclusterobservability -n openshift-multicluster-observability
+    6  watch oc get pods -n open-cluster-management-observability
+    7  oc get deployment -n openshift-storage noobaa-endpoint
+    8  history
+    9  history > history
+   10  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   11  oc whoami --show-console
+   12  oc new-project keycloak
+   13  history
+   14  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   15  oc get keycloak keycloak-dev -n keycloak -o jsonpath='{.status.ready}'
+   16  oc get keycloak example-keycloak -n keycloak -o jsonpath='{.status.ready}'
+   17   oc get keycloakrealm keycloakrealm -n keycloak -o jsonpath='{.status.ready}'
+   18   oc get keycloakrealm example-keycloakrealm -n keycloak -o jsonpath='{.status.ready}'
+   19  oc get keycloak keycloak-dev --output="jsonpath={.status.credentialSecret}"
+   20  oc get keycloak example-keycloak --output="jsonpath={.status.credentialSecret}"
+   21  $ oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   22   oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   23  KEYCLOAK_URL=https://$(oc get route keycloak --template='{{ .spec.host }}')/auth && echo "" && echo "Keycloak:                 $KEYCLOAK_URL" && echo "Keycloak Admin Console:   $KEYCLOAK_URL/admin" && echo "Keycloak Account Console: $KEYCLOAK_URL/realms/myrealm/account" && echo ""
+   24  ls
+   25  vim secret
+   26  echo -n '<argocd credential>' | base64
+   27  cat secret 
+   28  echo -n '6e85bf20-79f2-4a8c-a4de-617137f4db1a' | base64
+   29  oc edit secret argocd-secret -n openshift-gitops
+   30  oc edit argocd -n openshift-gitops
+   31  history > history-sso-to-argocd
+   32  vim authclient
+   33  oc create -f <(echo ' 
+   34  kind: OAuthClient
+   35  apiVersion: oauth.openshift.io/v1
+   36  metadata:
+   37   name: keycloak-broker 
+   38  secret: "redhat"
+   39  redirectURIs:
+   40  - "https://keycloak-keycloak.apps.ocp4.example.com/auth/realms/keycloakrealm/broker/openshift-v4/endpoint"
+   41  grantMethod: prompt 
+   42  ')
+   43  oc edit configmap argocd-rbac-cm -n openshift-gitops
+   44  keycloakrealm -n keycloak -o jsonpath='{.status.ready}'
+   45  oc create -f <(echo ' 
+   46  kind: OAuthClient
+   47  apiVersion: oauth.openshift.io/v1
+   48  metadata:
+   49   name: keycloak-broker 
+   50  secret: "redhat"
+   51  redirectURIs:
+   52  - "https://keycloak-keycloak.apps.ocp4.example.com/auth/realms/example-keycloak/broker/openshift-v4/endpoint"
+   53  grantMethod: prompt 
+   54  ')
+   55  oc edit keycloak-broker
+   56  oc edit keycloak-broker -n keycloak
+   57  oc edit oc keycloak-broker -n keycloak
+   58  oc edit oauthclient keycloak-broker -n keycloak
+   59  history
+   60  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   61  oc get secret credential-keycloak-dev -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   62  oc get secret credential-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   63  $ oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   64   oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   65  clear
+   66  oc edit argocd -n openshift-gitops
+   67  oc get keycloakrealm keycloakrealm -n keycloak -o jsonpath='{.status.ready}'
+   68  oc get keycloakrealm example-keycloak -n keycloak -o jsonpath='{.status.ready}'
+   69  oc get keycloakrealm example-keycloakrealm -n keycloak -o jsonpath='{.status.ready}'
+   70  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   71  history |grep secret
+   72   oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   73  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   74   oc get secret credential-example-keycloak -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+   75  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+   76  oc project sping-clinic
+   77  oc project spring-clinic
+   78  oc new-project spring-clinic
+   79  oc label namespace spring-petclinic argocd.argoproj.io/managed-by=openshift-gitops
+   80  oc new-project spring-petclinic
+   81  clear
+   82   git clone https://github.com/dsanchor/ocp-cicd-intro.git
+   83  cd ocp-cicd-intro/
+   84  ls
+   85  cd lab3/
+   86  ls
+   87  cd ../lab5/
+   88  ls
+   89  vim application-dev.yaml 
+   90  git branch -av
+   91  oc apply -f application-dev.yaml 
+   92  vim application-dev.yaml 
+   93  oc apply -f application-dev.yaml 
+   94  vim application-dev.yaml 
+   95  oc apply -f application-dev.yaml a
+   96  oc get pods
+   97  vim application-dev.yaml 
+   98  oc get pods
+   99  cd ..
+  100  cd 
+  101  ls
+  102  git clone https://github.com/redhat-developer/openshift-gitops-getting-started
+  103  cd openshift-gitops-getting-started/
+  104  ls
+  105  cd argo/
+  106  ls
+  107  vim app.yaml 
+  108  vi cluster.yaml 
+  109  vi argocd.yaml 
+  110  vim app.yaml 
+  111  oc apply -f app.yaml 
+  112  oc get pods
+  113  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  114  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  115  oc projects
+  116  vim app.yaml 
+  117  oc apply -f app.yaml 
+  118  vim app.yaml 
+  119  oc get pods -n opensshift-gitops
+  120  pwd
+  121  cd ~/ocp-cicd-intro/
+  122  ls
+  123  cd lab5
+  124  ls
+  125  vim application-dev.yaml 
+  126  vim application-prod.yaml 
+  127  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  128  oc new-project spring-petclinic-dev
+  129  oc get pods
+  130  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  131  oc new-project spring-petclinic-prod
+  132  oc get applications quarkus-test
+  133  oc describe quarkus-test
+  134  oc describe quarkus-petclinic
+  135  oc describe quarkus-petclinic -n quarkus-test
+  136  oc describe cm quarkus-petclinic -n quarkus-test
+  137  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  138  oc describe cm quarkus-petclinic -n quarkus-test
+  139  oc project quarkus-test 
+  140  oc get pods
+  141  cd
+  142  git clone https://github.com/mjarrett0/petclinic-config2
+  143  cd petclinic-config2/
+  144  ls
+  145  git branch -av
+  146  git checkout simple
+  147  ls
+  148   ll development/
+  149  vim development/deployment.yaml 
+  150  cd ~/ocp-cicd-intro/lab5/
+  151  ls
+  152  vim application-dev.yaml 
+  153  oc apply -f application-dev.yaml 
+  154  vim application-dev.yaml 
+  155  oc status
+  156  oc get pods
+  157  cd
+  158  git clone https://github.com/mjarrett0/petclinic.git
+  159  cd petclinic
+  160  ls
+  161  cd ..
+  162  git clone https://github.com/mjarrett0/petclinic-config.git
+  163  cd petclinic-config
+  164  ls
+  165  git checkout simple
+  166  ls
+  167  vim development/deployment.yaml 
+  168  oc status
+  169  oc projects dev
+  170  oc project dev
+  171  oc get pods
+  172  oc status
+  173  oc project quarkus-test
+  174  oc describe 
+  175  oc describe deployment config quarkus-test
+  176  oc describe dc quarkus-petclinic
+  177  oc project dev
+  178  cd ~/ocp-cicd-intro/lab
+  179  cd ~/ocp-cicd-intro/lab5
+  180  ls
+  181  vim application-dev.yaml 
+  182  oc apply -f application-dev.yaml 
+  183  oc status
+  184  oc get pods
+  185  vim application-dev.yaml 
+  186  cd ~/petclinic-config2/
+  187  ls
+  188  git status
+  189  cd development/
+  190  ls
+  191  vim deployment.yaml 
+  192  vim service.yaml 
+  193  vim route.yaml 
+  194  oc apply -f deployment.yaml 
+  195  oc apply -f service.yaml 
+  196  oc apply -f route.yaml
+  197  oc get pods
+  198  oc status
+  199  oc get pofds
+  200  oc get pods
+  201  oc describe svc/quarkus-petclinic
+  202  vim deployment.yaml 
+  203  oc describe deployment/quarkus-petclinic
+  204  oc describe deployment/quarkus-petclinic -o yaml
+  205  oc describe deployment/quarkus-petclinic 
+  206  oc delete project dev
+  207  oc project default
+  208  oc get pods
+  209  oc project quarkus-test
+  210  oc describe svc/quarkus-petclinic
+  211  vim deployment.yaml 
+  212  vim service.yaml 
+  213  vim route.yaml 
+  214  oc apply -f deployment.yaml 
+  215  oc apply -f service.yaml 
+  216  oc apply -f route.yaml 
+  217  oc status
+  218  vim route.yaml 
+  219  oc apply -f route.yaml 
+  220  oc delete quarkus-petclinic-dev
+  221  oc get pods
+  222  oc delete quarkus-petclinic-dev-6bbf8856c9-8ck4r
+  223  oc delete pod quarkus-petclinic-dev-6bbf8856c9-8ck4r
+  224  oc project default
+  225  oc get pods
+  226  oc project quarkus-test
+  227  oc get pods
+  228  oc new-project quarkus-prod
+  229  cd ../production/
+  230  ls
+  231  vim deployment.yaml 
+  232  vim route.yaml
+  233  vim service.yaml 
+  234  cd 
+  235  ls
+  236  cd petclinic
+  237  ls
+  238  cd quarkus-petclinic
+  239  ls
+  240  cd src/
+  241  ls
+  242  cd main/
+  243  ls
+  244  cd resources/
+  245  ls
+  246  cd templates/
+  247  ls
+  248  cd ../../.././
+  249  cd ..
+  250  cd ../spring-petclinic/
+  251  ls
+  252  cd ..
+  253  oc get applications.app.k8s.io 
+  254  oc project quarkus-test
+  255  oc get applications.app.k8s.io 
+  256  oc get pods
+  257  oc get applications.app.k8s.io quarkus-petclinic
+  258  oc get applications.app.k8s.io quarkus-petclinic-66dfd4b6c8-5dzsv  
+  259  oc get applications.app.k8s.io quarkus-petclinic -o yaml -n quarkus-test
+  260  oc get applications.argoproj.io quarkus-petclinic -o yaml -n quarkus-test
+  261  oc get applications.argoproj.io quarkus-petclinic-dev -o yaml -n quarkus-test
+  262  ls
+  263  cd ..
+  264  cd ocp-cicd-intro/lab5/
+  265  ls
+  266  vim application-dev.yaml 
+  267  pwd
+  268  vim ~/petclinic-config/development/deployment.yaml 
+  269  vim ~/petclinic-config2/development/deployment.yaml 
+  270  vim ~/petclinic-config2/production/deployment.yaml 
+  271  vim application-dev.yaml 
+  272  vim application-prod.yaml 
+  273  oc new-project petclinic-prod
+  274  oc apply -f application-prod.yaml -n petclinic-prod
+  275  oc status
+  276  oc get pods
+  277  oc status
+  278  history |grep secret
+  279  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  280  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  281  clear
+  282  history
+  283  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  284  ps -ef |grep firefox
+  285  kill -9 2478
+  286  kill -9 3074
+  287  clear
+  288  git clone https://github.com/mjarrett0/do480-apps
+  289  git clone https://github.com/mjarrett0/do480-ansible
+  290  history > history-sso-to-argocd 
+  291  cp history-sso-to-argocd history do480-ansible/
+  292  cd do480-ansible/
+  293  git status
+  294  git add history
+  295  git restore history
+  296  vim history
+  297  git add history-sso-to-argocd 
+  298  cd ~/do480-apps/
+  299  ls
+  300  cd mysql/
+  301  ls
+  302  vim deployment.yaml 
+  303  git add deployment.yaml 
+  304  git commit 
+  305  git push
+  306  vim deployment.yaml 
+  307  vim here
+  308  oc project openshift-gitops
+  309  oc get pods
+  310  vim here
+  311  ls
+  312  vim deployment.yaml 
+  313  git add deployment.yaml 
+  314  git commit 
+  315  git push
+  316  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  317  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  318  oc project mysql
+  319  ll ~/Downloads/
+  320  cd
+  321  export ARGO_VERSION="v2.12.13"
+  322  curl -sLO https://github.com/argoproj/argo-workflows/releases/download/${ARGO_VERSION}/argo-linux-amd64.gz
+  323  ls
+  324  gunzip argo-linux-amd64.gz
+  325  ls
+  326  chmod +x argo-linux-amd64
+  327  sudo mv ./argo-linux-amd64 /usr/local/bin/argo
+  328  argo version --short
+  329  history |grep secret
+  330  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  331  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  332  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  333  oc new-project mysql
+  334  oc status
+  335  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  336  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  337  argo login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com 
+  338  argocd login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com 
+  339  wget -q -O argocd "https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64"
+  340  ls
+  341  export ARGOCD_VERSION="v2.3.3"
+  342  wget -q -O argocd "https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64"
+  343  LS
+  344  ls
+  345  ls -l
+  346  curl -sLO  "https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64"
+  347  ls
+  348  ls -l
+  349  vim argocd
+  350  chmod +x argocd-linux-amd64 
+  351  ./argocd-linux-amd64 login
+  352  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com 
+  353  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  354  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com 
+  355  kubectx
+  356  kubectlx
+  357  cd do480-ansible/
+  358  history > history-argocd-appsets
