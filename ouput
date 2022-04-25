@@ -1,0 +1,8 @@
+student@workstation ~]$ ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --upsert
+WARNING: This will create a service account `argocd-manager` on the cluster referenced by context `default/api-ocp4-mng-example-com:6443/admin` with full cluster level admin privileges. Do you want to continue [y/N]? y
+INFO[0002] ServiceAccount "argocd-manager" already exists in namespace "kube-system" 
+INFO[0002] ClusterRole "argocd-manager-role" updated    
+INFO[0002] ClusterRoleBinding "argocd-manager-role-binding" updated 
+FATA[0002] rpc error: code = Unknown desc = Get "https://api.ocp4-mng.example.com:6443/version?timeout=32s": x509: certificate signed by unknown authority 
+[student@workstation ~]$ 
+

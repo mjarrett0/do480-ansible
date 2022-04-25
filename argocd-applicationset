@@ -1,52 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  creationTimestamp: '2022-04-12T11:06:09Z'
-  generation: 3
-  managedFields:
-    - apiVersion: argoproj.io/v1alpha1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:spec':
-          .: {}
-          'f:generators': {}
-          'f:template':
-            .: {}
-            'f:metadata':
-              .: {}
-              'f:name': {}
-            'f:spec':
-              .: {}
-              'f:destination':
-                .: {}
-                'f:namespace': {}
-                'f:server': {}
-              'f:project': {}
-              'f:source':
-                .: {}
-                'f:path': {}
-                'f:repoURL': {}
-                'f:targetRevision': {}
-              'f:syncPolicy':
-                .: {}
-                'f:automated':
-                  .: {}
-                  'f:prune': {}
-                  'f:selfHeal': {}
-      manager: Mozilla
-      operation: Update
-      time: '2022-04-12T11:06:09Z'
   name: mysql
   namespace: openshift-gitops
-  resourceVersion: '10014647'
-  uid: 47dae6e1-ce83-4b38-839b-78a99c81a821
 spec:
   generators:
     - list:
         elements:
           - cluster: local-cluster
-            url: 'https://kubernetes.default.svc'
-          - cluster: managed-cluster
             url: 'https://kubernetes.default.svc'
   template:
     metadata:
@@ -64,4 +25,3 @@ spec:
         automated:
           prune: true
           selfHeal: true
-
