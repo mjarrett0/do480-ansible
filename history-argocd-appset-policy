@@ -1,0 +1,362 @@
+    1  lab start applications-review 
+    2  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+    3  oc whoami --show-console
+    4  vim do480-ansible/history-argocd-appsets 
+    5  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+    6  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+    7  git clone https://github.com/mjarrett0/do480-ansible
+    8  vim do480-ansible/history-argocd-appsets 
+    9   export ARGOCD_VERSION="v2.3.3"
+   10  curl -sLO  "https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64"
+   11  ls
+   12  chmod +x argocd-linux-amd64
+   13  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+   14  ./argocd-linux-amd64 cluster 
+   15  kubectl config view
+   16  ./argocd-linux-amd64 cluster add  api-ocp4-mng-example-com:6443
+   17  ./argocd-linux-amd64 cluster add  cluster:api-ocp4-mng-example-com:6443
+   18  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin
+   19  ./argocd-linux-amd64 cluster list
+   20  kubectl get --context managed-cluster sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}')
+   21  kubectl get --context managed-cluster sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   22  kubectl get --context local-cluster sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   23  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin
+   24  ./argocd-linux-amd64 cluster list
+   25  kubectl config get-contexts
+   26  ./argocd-linux-amd64 cluster add managed-cluster
+   27  ./argocd-linux-amd64 cluster add api-ocp4-mng-example-com:6443 
+   28  ./argocd-linux-amd64 cluster add admin/api-ocp4-mng-example-com:6443/kube:admin
+   29  kubectl get --context  default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   30  oc login -u admin -p redhat https://api-ocp4-mng.example.com:6443
+   31  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+   32  kubectl get --context  default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   33  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   34  kubectl get --context  default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   35  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+   36  kubectl get --context  default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   37  kind
+   38  ./argocd-linux-amd64 create
+   39  kubectl create
+   40  oc get sa argocd-manager -n kube-system
+   41  cd do480-ansible/
+   42  ls
+   43  ls -lth |more
+   44  ls
+   45  vim argocd-applicationset 
+   46  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin --insecure
+   47  cd 
+   48  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin --insecure
+   49  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin --insecure -name default
+   50  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin --insecure --name default
+   51  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin --insecure --name openshift-gitops
+   52  vim do480-ansible/history-argocd-appsets 
+   53  vim do480-ansible/argocd-applicationset 
+   54  history |grep secret
+   55  history |grep login
+   56  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   57  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+   58  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+   59  kubectl get --context  default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   60  kubectl get --context  default/api-ocp4-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   61  history |grep ADD
+   62  history |grep add
+   63  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/kube:admin
+   64  ./argocd-linux-amd64 cluster add default/api-ocp4-example-com:6443/kube:admin
+   65  kubectl get --context ocp4 sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   66  kubectl get --context admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+   67  ./argocd-linux-amd64 cluster add ocp4
+   68  ./argocd-linux-amd64 cluster list
+   69  vim do480-ansible/argocd-applicationset 
+   70  oc project mysql
+   71  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+   72  oc project mysql
+   73  sudo updatedb
+   74  sudo locate kubeconfig
+   75  oc get sa argocd-manager -n kube-system
+   76  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   77  oc get sa argocd-manager -n kube-system
+   78  oc get sa argocd-manager 
+   79  oc project openshift-gitops
+   80  oc get sa argocd-manager 
+   81  king create cluster
+   82  kind create cluster
+   83  oc get secrets -n openshift-gitops -l argocd.argoproj.io/secret-type=cluster
+   84  ./argocd-linux-amd64 cluster list
+   85  oc logs -l app.kubernetes.io/name=argocd-applicationset-controller | grep generated
+   86  oc project openshift-gitops
+   87  oc get pods
+   88  oc logs -l app.kubernetes.io/name=openshift-gitops-applicationset-controller | grep generated
+   89  oc get secrets
+   90  oc get secrets -n openshift-gitops -l argocd.argoproj.io/secret-type=cluster
+   91  oc get secrets -n openshift-gitops
+   92  oc get secrets -n openshift-gitops -l argocd.argoproj.io/secret-type=openshift-gitops-cluster
+   93  oc get secrets -n openshift-gitops -l argocd.argoproj.io
+   94  vim .kube/config 
+   95  ./argocd-linux-amd64 cluster list
+   96  ./argocd-linux-amd64 cluster add default/api-ocp4-example-com:6443/admin
+   97  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin
+   98  oc status
+   99  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --insecure
+  100  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --upsert
+  101  argocd cluster get https://api.ocp4-mng.example.com:6443
+  102  ./argocd-linux-amd64 cluster get https://api.ocp4-mng.example.com:6443
+  103  ./argocd-linux-amd64 cluster get https://api.ocp4-mng.example.com:6443 --insecure
+  104  ./argocd-linux-amd64 cluster get https://api.ocp4.example.com:6443 --insecure
+  105  history |grep login
+  106  history |grep secret
+  107  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  108  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+  109  ./argocd-linux-amd64 cluster get https://api.ocp4.example.com:6443 --insecure
+  110  ./argocd-linux-amd64 cluster get https://api.ocp4.example.com:6443 --upsert
+  111  ./argocd-linux-amd64 cluster get https://api.ocp4.example.com:6443 
+  112  ./argocd-linux-amd64 cluster get https://api.ocp4-mng.example.com:6443 
+  113  ./argocd-linux-amd64 cluster get https://api.ocp4-mng.example.com:6443 --plaintext
+  114  vim .kube/config 
+  115  oc get secrets
+  116  oc get secrets -n kube-system
+  117  oc whoami
+  118  oc status |more
+  119  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  120  oc get secrets -n kube-system
+  121  kubectl delete secret argocd-manager-token-c8bk6 -n kube-system
+  122  ./argocd-linux-amd64 cluster get https://api.ocp4-mng.example.com:6443 
+  123  ./argocd-linux-amd64 cluster add https://api.ocp4-mng.example.com:6443 
+  124  oc project openshift-gitops
+  125  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  126  ./argocd-linux-amd64 cluster add https://api.ocp4-mng.example.com:6443 
+  127  oc status |more
+  128  oc project openshift-gitops
+  129  ./argocd-linux-amd64 cluster add https://api.ocp4-mng.example.com:6443 
+  130  history |grep add
+  131  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --insecure
+  132  oc get secrets
+  133  oc get secrets -n kube-system
+  134  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  135  oc get secrets -n kube-system
+  136  kubectl delete secret argocd-manager-token-k6s77  -n kube-system
+  137  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  138  oc project openshift-gitops
+  139  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --insecure
+  140  oc get token
+  141  oc get tokens
+  142  oc get 
+  143  oc get -h
+  144  ./argocd-linux-amd64 cluster add
+  145  ./argocd-linux-amd64 cluster add --help
+  146  oc get secrets -n kube-system
+  147  kubeadm list tokens
+  148  kubectl describe secret default-token | grep -E '^token' | cut -f2 -d':' | tr -d " "
+  149  vim do480-ansible/argocd-applicationset 
+  150  vim kubeconfig 
+  151  history |grep login
+  152  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  153  vim .kube/config 
+  154  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  155  history |grep secret
+  156  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  157  history |grep argocd
+  158  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+  159  ./argocd-linux-amd64 admin cluster kubeconfig https:///api.ocp4.example.com:6443 /tmp/kubeconfig --namespace argocd
+  160  ./argocd-linux-amd64 admin cluster kubeconfig https://api.ocp4.example.com:6443 /tmp/kubeconfig 
+  161  ./argocd-linux-amd64 admin cluster kubeconfig https://api.ocp4.example.com:6443 /tmp/kubeconfig --namespace openshift-gitops
+  162  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --insecure
+  163  oc get secrets --namespace openshift-gitops
+  164  ./argocd-linux-amd64 admin cluster kubeconfig https://api.ocp4.example.com:6443 /tmp/kubeconfig --namespace openshift-gitops
+  165  oc sa get-token
+  166  oc sa get-token -n openshift-gitops
+  167  oc sa get-token -h
+  168  oc sa get-token openshift-gitops
+  169  oc sa get-token dfault
+  170  oc sa get-token default
+  171  oc status
+  172  vim kubeconfig 
+  173  updatedb 
+  174  sudo updatedb 
+  175  locate kubeconfig
+  176  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin 
+  177  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  178  ./argocd-linux-amd64 cluster add 
+  179  ./argocd-linux-amd64 cluster add -h
+  180  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --kubconfig ~/kubeconfig 
+  181  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --kubeconfig ~/kubeconfig 
+  182  oc project
+  183  oc project openshift-gitops
+  184  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --kubeconfig ~/kubeconfig 
+  185  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --plaintext
+  186  kubectl config view
+  187  kubectl describe ca
+  188  kubectl get ca
+  189  kubectl get csr
+  190  kubectl get csr -n default
+  191  kubectl get csr default
+  192  kubectl get ca default
+  193  kubectl get cacert default
+  194  oc describe argcd_manager
+  195  kubectl get secrets
+  196  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  197  kubectl get tokens
+  198  kubectl get-token
+  199  oc get-token
+  200  history |grep token
+  201  kubectl describe secret default-token | grep -E '^token' | cut -f2 -d':' | tr -d " "
+  202  kubectl describe secret default-token -n openshift-gitops| grep -E '^token' | cut -f2 -d':' | tr -d " "
+  203  kubectl describe secret default-token -n openshift-gitops | grep -E '^token' | cut -f2 -d':' | tr -d " "
+  204  sudo updatedb
+  205  locate kubeconfig
+  206  vim kubeconfig 
+  207  vim secret.yaml
+  208  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  209  oc project openshift-gitops
+  210  kubectl apply -k secret.yaml 
+  211  oc apply -k secret.yaml 
+  212  vim secret.yaml 
+  213  oc apply -k secret.yaml 
+  214  kubectl get --context default/api.ocp4-mng.example.com:6443 sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  215  history |grep add
+  216  kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  217  name=$(kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}')
+  218  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/$name -o jsonpath='{.data.ca\.crt}'
+  219  kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  220  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg-bhd7x -o jsonpath='{.data.ca\.crt}'
+  221  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  222  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg-bhd7x -o jsonpath='{.data.ca\.crt}'
+  223  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg-bhd7x 
+  224  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg-bhd7x  -o jsonpath='{.data.token}' | base64 --decode
+  225  kubectl apply -n openshift-gitops secret.yaml -f -
+  226  kubectl apply secret.yaml -n openshift-gitops -f -
+  227  vim secret.yaml 
+  228  mv secret.yaml managed-cluster-secret.yaml
+  229  kubectl apply managed-cluster-secret.yaml -f -
+  230  kubectl apply -h
+  231  kubectl apply managed-cluster-secret.yaml -f
+  232  kubectl apply -f managed-cluster-secret.yaml 
+  233  vim managed-cluster-secret.yaml 
+  234  kubectl apply -f managed-cluster-secret.yaml 
+  235  vim managed-cluster-secret.yaml 
+  236  kubectl apply -f managed-cluster-secret.yaml 
+  237  oc get secrets
+  238  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg- -o jsonpath='{.data.ca\.crt}'
+  239  kubectl get --context default/api-ocp4-mng-example-com:6443/admin -n kube-system secret/argocd-manager-dockercfg-bhd7x -o jsonpath='{.data.ca\.crt}'
+  240  kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  241  oc get secrets -n openshift-gitops
+  242  kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  243  vim managed-cluster-secret.yaml 
+  244  kubectl apply -f managed-cluster-secret.yaml 
+  245  vim managed-cluster-secret.yaml 
+  246  kubectl apply -f managed-cluster-secret.yaml 
+  247  vim managed-cluster-secret.yaml 
+  248  kubectl apply -f managed-cluster-secret.yaml 
+  249  vim managed-cluster-secret.yaml 
+  250  oc describe builder-token-7q5t4 
+  251  oc describe secret builder-token-7q5t4 
+  252  oc describe secret builder-token-7q5t4 
+  253  history |grep login
+  254  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  255  history |grep argocd-mana
+  256  kubectl get --context default/api-ocp4-mng-example-com:6443/admin sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  257  kubectl get sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  258  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  259  kubectl get sa -n kube-system argocd-manager -o jsonpath='{.secrets[0].name}'
+  260  oc get secret
+  261  history |grep add
+  262  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --plaintext
+  263  history |grep secret
+  264  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  265  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  266  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  267  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+  268  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  269  ./argocd-linux-amd64 login openshift-gitops-server-openshift-gitops.apps.ocp4.example.com
+  270  ./argocd-linux-amd64 cluster list
+  271  ./argocd-linux-amd64 get userinfo
+  272  ./argocd-linux-amd64 get cert
+  273  ./argocd-linux-amd64 get 
+  274  ./argocd-linux-amd64
+  275  ./argocd-linux-amd64 cluster add default/api-ocp4-mng-example-com:6443/admin --upsert
+  276  vim do480-ansible/ouput
+  277  git push
+  278  cd do480-ansible/
+  279  git add .
+  280  git commit 
+  281  git push
+  282  cd
+  283  vim managedclusterbinding.yaml
+  284  oc status
+  285  oc apply -f managedclusterbinding.yaml 
+  286  vim placement.yaml
+  287  apiVersion: cluster.open-cluster-management.io/v1alpha1
+  288  kind: Placement
+  289  metadata:
+  290    name: all-openshift-clusters
+  291    namespace: openshift-gitops
+  292  spec:
+  293    predicates:
+  294    - requiredClusterSelector:
+  295        labelSelector:
+  296          matchExpressions:
+  297          - key: vendor
+  298            operator: "In"
+  299            values:
+  300  vim placement.yaml
+  301  oc apply -f placement.yaml 
+  302  vim placement.yaml
+  303  gedit &
+  304  vim placement.yaml
+  305  oc apply -f placement.yaml 
+  306  gedit &
+  307  vim argo-acm-clusters.yaml
+  308  oc apply -f argo
+  309  oc apply -f argo-acm-clusters.yaml 
+  310  vim argo-acm-clusters.yaml 
+  311* argo-acm-clusters.yaml 
+  312  vim gitops-operator-orig.yaml
+  313  vim policy-openshift-gitops.yaml
+  314  vim gitops-operator-orig.yaml 
+  315  vim policy-openshift-gitops.yaml
+  316  vim argo-acm-clusters.yaml 
+  317  vim policy-openshift-gitops.yaml
+  318  vim argo-acm-clusters.yaml 
+  319  vim gitops-operator-orig.yaml 
+  320  vim policy-openshift-gitops.yaml
+  321  oc get secret/openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d
+  322  oc get pod
+  323  oc get pods
+  324  oc status
+  325  oc apply -f policy-openshift-gitops.yaml 
+  326  oc get pods
+  327  oc project openshift-gitops
+  328  oc get pods
+  329  oc delete project openshift-gitops
+  330  oc get pods
+  331  oc apply -f policy-openshift-gitops.yaml 
+  332  oc new-project openshift-gitops
+  333  oc apply -f policy-openshift-gitops.yaml 
+  334  vim policy-openshift-gitops.yaml
+  335  vim gitops-operator-orig.yaml 
+  336  vim policy-openshift-gitops.yaml
+  337  oc apply -f policy-openshift-gitops.yaml 
+  338  vim gitops-operator-orig.yaml 
+  339  vim policy-openshift-gitops.yaml 
+  340  oc apply -f policy-openshift-gitops.yaml 
+  341  oc status
+  342  oc delete project openshift-gitops
+  343  oc apply -f policy-openshift-gitops.yaml 
+  344  oc new-project openshift-gitops
+  345  oc apply -f policy-openshift-gitops.yaml 
+  346  oc get pods
+  347  oc apply -f policy-openshift-gitops.yaml 
+  348  oc api-resources --verbs=list --namespaced -o name | xargs -n 1 oc get --show-kind --ignore-not-found -n openshift-gitops
+  349  oc projects mysql
+  350  oc project mysql
+  351  oc get pods
+  352  oc apply -f policy-openshift-gitops.yaml 
+  353  oc get pods
+  354  oc project openshift-gitops
+  355  oc get pods
+  356  oc project openshift-operators
+  357  oc apply -f policy-openshift-gitops.yaml 
+  358  ls
+  359  cp gitops-operator-orig.yaml managed-cluster-secret.yaml placement.yaml policy-openshift-gitops.yaml do480-ansible/
+  360  cd do480-ansible/
+  361  git add .
+  362  history > history-argocd-appset-policy
