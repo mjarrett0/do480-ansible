@@ -1,0 +1,599 @@
+    1  cd
+    2  ls
+    3  vim deployment-output 
+    4  cd do480-apps/
+    5  ls
+    6  git checkout kus
+    7  cd /tmp/redhat/do480-apps/
+    8  git checkout kustomize
+    9  ls
+   10  vim kustomize/
+   11  cp kustomize/deployment.yaml ~/DO480/labs/applications-kustomize/base/
+   12  lab start applications-resources 
+   13  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   14  oc whoami --show-console
+   15  vim deployment-output
+   16  git clone https://github.com/mjarrett0/do480-apps
+   17  cd do480-apps/
+   18  ls
+   19  cd mysql/
+   20  ls
+   21  cd ~/DO480/
+   22  lab start applications-kustomize 
+   23  cd ~/DO480/labs/applications-kustomize/
+   24  mkdir base
+   25  cp -a ~/do480-apps .
+   26  ls
+   27  cd base/
+   28  cd ..
+   29  ls
+   30  cd do480-apps/
+   31  git status
+   32  ls
+   33  cd ..
+   34  ls
+   35  cd base/
+   36  cp ../do480-apps/mysql/* .
+   37  ls
+   38  rm -f db-data.sql route.yaml.old todo-frontend.yaml.old todo-db.yaml.old 
+   39  ls
+   40  cp ../do480-apps/subscriptions/mysql/* .
+   41  ll
+   42  vim placementrule.yaml 
+   43  vim subscription.yaml 
+   44  vim application.yaml 
+   45  vim subscription.yaml 
+   46  vim kustomization.yaml
+   47  vim placementrule.yaml 
+   48  rm -f placementrule.yaml 
+   49  vim subscription.yaml 
+   50  vim namespace.yaml 
+   51  rm -f namespace.yaml 
+   52  vim kustomiation.yaml 
+   53  rm -f kustomiation.yaml 
+   54  ls
+   55  kubectl kustomize .
+   56  ls
+   57  mv subscription.yaml ~
+   58  kubectl kustomize .
+   59  vim kustomization.yaml 
+   60  mv ~/subscription.yaml .
+   61  ll
+   62  kubectl kustomize .
+   63  vim kustomization.yaml 
+   64  kubectl kustomize .
+   65  vim deployment.yaml 
+   66  kubectl kustomize .
+   67  vim deployment.yaml 
+   68  vim kustomization.yaml 
+   69  kubectl kustomize .
+   70  cd
+   71  ll
+   72  cd do480-apps/
+   73  ls
+   74  git status
+   75  c 
+   76  cd 
+   77  git clone https://github.com/mjarrett0/do480-ansible
+   78  cd do480-ansible/
+   79  ls
+   80  vim deployment.yaml 
+   81  diff deployment.yaml  ~/do480-apps/mysql/deployment.yaml 
+   82  cd /tmp
+   83  mkdir redhat
+   84  cd redhat/
+   85  git clone https://github.com/redhattraining/do480-apps
+   86  cd do480-apps/mysql/
+   87  ls
+   88  vim deployment
+   89  vim deployment.yaml 
+   90  cp deployment.yaml ~/DO480/labs/applications-kustomize/base/
+   91  cd -
+   92  cd ~/DO480/labs/applications-kustomize/base/
+   93  ~/DO480/labs/applications-kustomize/base/
+   94  ls
+   95  kubectl kustomize .
+   96  vim deployment.yaml 
+   97  cd do480-apps
+   98  cd ../do480-apps/
+   99  git status
+  100  ls
+  101  cd -
+  102  kubectl kustomize .
+  103  pwd
+  104  vim kustomization.yaml 
+  105  ls
+  106  kubectl kustomize .
+  107  vim kustomization.yaml 
+  108  kubectl kustomize .
+  109  diff deployment.yaml ~/DO480/labs/applications-kustomize/do480-apps/mysql/deployment.yaml 
+  110  vim ~/DO480/labs/applications-kustomize/do480-apps/mysql/deployment.yaml 
+  111  vim deployment.yaml 
+  112  kubectl kustomize .
+  113  mkdir overlays
+  114  cd overlays/
+  115  mkdir production
+  116  mkdir development
+  117  cd ..
+  118  ls
+  119  vim route.yaml 
+  120  cp route.yaml route-mng.yaml 
+  121  vim route-mng.yaml 
+  122  kubectl kustomize .
+  123  vim kustomization.yaml 
+  124  kubectl kustomize .
+  125  grep -Ri "route-frontend" *
+  126  vim route-mng.yaml 
+  127  kubectl kustomize .
+  128  vim route-mng.yaml 
+  129  kubectl kustomize .
+  130  cd ..
+  131  ls
+  132  mkdir overlays/production
+  133  mkdir overlays
+  134  cd overlays/
+  135  mkdir production
+  136  mkdir development
+  137  vim production/kustomization.yaml
+  138  cp ~/do480-ansible/dbclaim-pvc.yaml production/
+  139  vim production/dbclaim-pvc.yaml 
+  140  vim production/kustomization.yaml 
+  141  cd ../../
+  142  cd applications-kustomize/base/
+  143  kubectl kustomize overlays/production
+  144  kubectl kustomize ../overlays/production
+  145  vim ../overlays/production/kustomization.yaml 
+  146  kubectl kustomize ../overlays/production
+  147  kubectl kustomize ../overlays/production | kubectl apply -f -
+  148  oc get pods
+  149  vim kustomization.yaml 
+  150  oc get pods
+  151  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  152  oc get pods
+  153  oc project mysql
+  154  oc get pods
+  155  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  156  oc get pods
+  157  oc status
+  158  oc status --suggest
+  159  oc get pods
+  160  ls
+  161  vim service-frontend.yaml 
+  162  vim service.yaml 
+  163  vim ../overlays/production/kustomization.yaml 
+  164  vim ../overlays/development/kustomization.yaml
+  165  oc get pv
+  166  oc status
+  167  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  168  oc get pv
+  169  oc get pvc
+  170  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  171  oc get pvc
+  172  oc status
+  173  oc status --suggest
+  174  vim subscription.yaml 
+  175  oc describe svc/frontend
+  176  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  177  oc describe svc/frontend
+  178  ll
+  179  vim deployment-frontend.yaml 
+  180  vim service-frontend.yaml 
+  181  diff deployment.yaml ~/do480-apps/mysql/deployment.yaml 
+  182  vim deployment.yaml 
+  183  vim subscription.yaml 
+  184  oc get pods
+  185  oc status
+  186  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  187  oc get pods
+  188  oc status
+  189  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  190  oc status
+  191  oc get pods
+  192  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  193  oc status
+  194  oc get pods
+  195  oc delete project mysql
+  196  oc status
+  197  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  198  oc delete project mysql
+  199  oc project mysql
+  200  oc get pods
+  201  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  202  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  203  oc get pods
+  204  oc status
+  205  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  206  oc status
+  207  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  208  oc status
+  209  oc get pods
+  210  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  211  oc get posd
+  212  oc get pods
+  213  oc delete project mysql
+  214  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  215  ls
+  216  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  217  oc status
+  218  cd DO480/labs/applications-kustomize/do480-apps/
+  219  ls
+  220  git status
+  221  git log
+  222  cd ~/do480-apps/
+  223  git log
+  224  pwd
+  225  cd -
+  226  git pull
+  227  git branch -av
+  228  pwd
+  229  cd -
+  230  git branch -av
+  231  cd
+  232  ls
+  233  cd /tmp/redhat/
+  234  ls
+  235  cd do480-apps/
+  236  ls
+  237  git checkout main
+  238  git pull
+  239  ls
+  240  cd mysql/
+  241  ls
+  242  pwd
+  243  cd ..
+  244  cd ~/DO480/labs/applications-kustomize/base/
+  245  ls
+  246  cd overlays/
+  247  ls
+  248  cd ..
+  249  oc status
+  250  kubectl apply -f -
+  251  kubectl kustomize | kubectl apply -f -
+  252  oc status
+  253  oc get pods
+  254  oc delete project mysql
+  255  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  256  oc get pods
+  257  oc delete project mysql
+  258  ls
+  259  cd 
+  260  mkdir first-base
+  261  cd first-base/
+  262  ls
+  263  cp ~/DO480/labs/applications-kustomize/base/* .
+  264  ls
+  265  cd ~/DO480/labs/applications-kustomize/base
+  266  ls
+  267  rm -f *
+  268  ls
+  269  cp -a ~/first-base/* .
+  270  ls
+  271  vim kustomization.yaml 
+  272  kubectl kustomize | kubectl apply -f -
+  273  ls
+  274  rm -f *
+  275  cp -a /tmp/redhat/do480-apps/mysql/* .
+  276  ls
+  277  cp -a /tmp/redhat/do480-apps/subscriptions/mysql/* .
+  278  ls
+  279  vim subscription.yaml 
+  280  kubectl kustomize | kubectl apply -f -
+  281  ls
+  282  cd DO480/labs/applications-kustomize/
+  283  ls
+  284  cd base/
+  285  ls
+  286  vim kustomiation.yaml 
+  287  rm -f kustomiation.yaml 
+  288  vim kustomization.yaml
+  289  history
+  290  kubectl kustomize | kubectl apply -f -
+  291  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  292  kubectl kustomize | kubectl apply -f -
+  293  oc new-project mysql
+  294  oc get pods
+  295  kubectl kustomize | kubectl apply -f -
+  296  oc get pods
+  297  vim kustomization.yaml 
+  298  ls
+  299  vim route.yaml 
+  300  vim kustomization.yaml 
+  301  ll
+  302  ll ../do480-apps/mysql/
+  303  ll ~/do480-apps/mysql/
+  304  ll ~/tmp/do480-apps/mysql/
+  305  ll /tmp/do480-apps/mysql/
+  306  ls
+  307  vim kustomization.yaml 
+  308  vim namespace.yaml 
+  309  cd overlays/
+  310  cd ..
+  311  ls
+  312  cd overlays/
+  313  ls
+  314  cd production/
+  315  ls
+  316  oc project delete mysql
+  317  oc delete project mysql
+  318  ls
+  319  vim dbclaim-pvc.yaml 
+  320  CD ..
+  321  cd ..
+  322  cd  base/
+  323  kubectl kustomize ../overlays/production |kubectl apply -f -
+  324  vim kustomization.yaml 
+  325  vim deployment.yaml 
+  326  kubectl kustomize ../overlays/production |kubectl apply -f -
+  327  cd 
+  328  ll do480-apps/
+  329  ll first-base/
+  330  oc delete project mysql
+  331  cd -
+  332  rm -f *
+  333  ls
+  334  cp ~/first-base/* .
+  335  ll
+  336  vim kustomization.yaml 
+  337  kubectl kustomize ../overlays/production |kubectl apply -f -
+  338  ls
+  339  oc new-project mysql
+  340  kubectl kustomize ../overlays/production |kubectl apply -f -
+  341  oc get pods
+  342  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  343  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  344  oc get pods
+  345  cd ..
+  346  ls
+  347  cd overlays/development/
+  348  ls
+  349  vim kustomization.yaml
+  350  vim ../production/kustomization.yaml 
+  351  vim kustomization.yaml
+  352  cp ../production/dbclaim-pvc.yaml .
+  353  vim dbclaim-pvc.yaml 
+  354  cd ..
+  355  cd base/
+  356  kubectl kustomize ../overlays/development |kubectl apply -f -
+  357  vim ../overlays/development/kustomization.yaml 
+  358  kubectl kustomize ../overlays/development |kubectl apply -f -
+  359  vim ../overlays/development/kustomization.yaml 
+  360  kubectl kustomize ../overlays/development |kubectl apply -f -
+  361  ls
+  362  oc get pods
+  363  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  364  oc get pods
+  365  kubectl kustomize ../overlays/development |kubectl apply -f -
+  366  vim ../overlays/development/dbclaim-pvc.yaml 
+  367  kubectl kustomize ../overlays/development |kubectl apply -f -
+  368  oc get pods
+  369  ll ~/first-base/
+  370  cd 
+  371  ll
+  372  mkdir redhat
+  373  cd  redhat/
+  374  git clone https://github.com/redhattraining/do480-apps
+  375  cd do480-apps/
+  376  cd mysql/
+  377  ll
+  378  diff deployment-frontend.yaml ~/DO480/labs/applications-kustomize/base/deployment.yaml 
+  379  git status
+  380  git checkout -b production-kustomize
+  381  git checkout -b main-kustomize
+  382  ls
+  383  cp ~/DO480/labs/applications-kustomize/base/* .
+  384  ls
+  385  cp -r ~/DO480/labs/applications-kustomize/base/overlays .
+  386  ls
+  387  cd overlays/
+  388  ls
+  389  rm -rf production/
+  390  ls
+  391  git status
+  392  cd ..
+  393  git status
+  394  git add .
+  395  ls
+  396  git status
+  397  git restore --staged deployment.yaml
+  398  git status
+  399  git commit 
+  400  git push
+  401  git push --set-upstream origin main-kustomize
+  402  oc delete project mysql
+  403  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  404  oc delete project mysql
+  405* pwdw
+  406  vim deployment.yaml 
+  407  git status
+  408  git add deployment.yaml 
+  409  git commit 
+  410  git push
+  411  ls
+  412  ll ~/redhat/do480-apps/
+  413  ll ~/redhat/do480-apps/mysql/
+  414  git checkout main
+  415  ls
+  416  vim ~/do480-ansible/placementrule.yaml 
+  417  cp ~/do480-ansible/placementrule.yaml .
+  418  git add placementrule.yaml 
+  419  git commit 
+  420  git push
+  421  ls
+  422  oc status
+  423  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  424  kubectl apply -f - 
+  425  kubectl apply -f - placementrule.yaml 
+  426  kubectl apply placementrule.yaml -f - 
+  427  kubectl apply placementrule.yaml -f
+  428  pwd
+  429  cd 
+  430  cd ~/DO480/labs/applications-kustomize/
+  431  cd base/
+  432  ll
+  433  cp ~/do480-ansible/placementrule.yaml .
+  434  kubectl kustomize ../overlays/development |kubectl apply -f -
+  435  oc get pods
+  436  oc get pvc
+  437  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  438  oc get pvc
+  439  cd -
+  440  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  441  ls
+  442  cd ~/redhat/do480-apps/
+  443  ls
+  444  git status
+  445  cd mysql/
+  446  ls
+  447  git checkout main-kustomize 
+  448  ls
+  449  git checkout -b prod-kustomize
+  450  ls
+  451  git checkout main
+  452  ls
+  453  cp placementrule.yaml ~
+  454  git checkout main-kustomize 
+  455  ls
+  456  rm -r kustomiation.yaml 
+  457  ls
+  458  cp route-mng.yaml ~
+  459  rm -f route-mng.yaml 
+  460  ls
+  461  cp ~/placementrule.yaml .
+  462  vim placementrule.yaml 
+  463  ls
+  464  git status
+  465  git add placementrule.yaml 
+  466  git commit 
+  467  git push
+  468  ls
+  469  git checkout prod-kustomize 
+  470  l
+  471  ls
+  472  cp ~/route-mng.yaml .
+  473  cp ~/placementrule.yaml .
+  474  vim placementrule.yaml 
+  475  cd overlays/
+  476  ls
+  477  cd development/
+  478  ls
+  479  git status
+  480  git add ../../placementrule.yaml 
+  481  git push
+  482  git push --set-upstream origin prod-kustomize
+  483  git checkout main
+  484  git commit 
+  485  git push
+  486  git checkout main
+  487  git checkout main-kustomize 
+  488  git status
+  489  pwd
+  490  cd ..
+  491  ls
+  492  cd ..
+  493  ls
+  494  cd overlays/
+  495  ls
+  496  cd ..
+  497  ls
+  498  pwd
+  499  cd overlays/
+  500  ls
+  501  cd development/
+  502  ls
+  503  cp ~/DO480/labs/applications-kustomize/overlays/production/* .
+  504  ls
+  505  vim kustomization.yaml 
+  506  vim dbclaim-pvc.yaml 
+  507  git status
+  508  pwd
+  509  cd ..
+  510  ls
+  511  cd development/
+  512  git status
+  513  ls
+  514  pwd
+  515  git add ../
+  516  pwd
+  517  git status
+  518  git commit 
+  519  git push
+  520  ls
+  521  oc get pods
+  522  oc delete project mysql
+  523  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  524  oc delete project mysql
+  525  oc get pvc
+  526  oc get route
+  527  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  528  oc get pvc
+  529  oc login -u admin -p redhat https://api.ocp4-mngexample.com:6443
+  530  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  531  oc status
+  532  ls
+  533  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  534  oc status
+  535  oc get pvc
+  536  oc project mysql
+  537  oc get pvc
+  538  oc get route
+  539  ls
+  540  oc get pv
+  541  vim kustomization.yaml 
+  542  ls
+  543  cd ..
+  544  ls
+  545  cd ..
+  546  ls
+  547  vim placementrule.yaml 
+  548  vim kustomization.yaml 
+  549  ls
+  550  rm -f route-mng.yaml 
+  551  cp subscription.yaml ~
+  552  vim subscription.yaml 
+  553  git status
+  554  git add .
+  555  git commit 
+  556  git push
+  557  vim subscription.yaml 
+  558* 
+  559  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  560  oc delete project mysql
+  561  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  562  pwd
+  563  git status
+  564  ls
+  565  vim kustomization.yaml 
+  566  git status
+  567  git add kustomization.yaml 
+  568  git commit 
+  569  git push
+  570  vim kustomization.yaml 
+  571  vim placementrule.yaml 
+  572  vim subscription.yaml 
+  573  git status
+  574  git add subscription.yaml 
+  575  ls
+  576  git commit 
+  577  git push
+  578  oc get pvc
+  579  oc get pv
+  580  oc delete project mysql
+  581  oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+  582  oc delete project mysql
+  583  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+  584  vim deployment.yaml 
+  585  vim subscription.yaml 
+  586  grep -Ri "mng" *
+  587  cd ..
+  588  grep -Ri "mng" mysql/
+  589  oc get pods
+  590  oc get route
+  591  oc project mysql
+  592  oc get route
+  593  oc get pods
+  594  oc project defaut
+  595  oc project default
+  596  oc get pods
+  597  oc delete pod mysql-749f7c57fb-dccxj
+  598  oc get pods
+  599  history > history-new-app
