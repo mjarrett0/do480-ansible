@@ -1,12 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
- 
+
+bases:
+  - ../../base
+
+nameSuffix: -apac
+
 resources:
-- applications.yaml
-- deployment-frontend.yaml
-- deployment.yaml
-- service.yaml
-- service-frontend.yaml
-- namespace.yaml
-- placementrule.yaml
-- route.yaml
+# - dbclaim-pvc.yaml
+  - route.yaml
+
+images: 
+ - name: mysql
+   newName: registry.redhat.io/rhel8/mysql-80
+   newTag: 1-152
+   
