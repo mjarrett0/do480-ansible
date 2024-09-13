@@ -1,0 +1,108 @@
+2024-09-12 12:26:52,186:storage-multiple:INFO:lablog.py(201)                #################### storage-multiple ####################
+2024-09-12 12:26:52,459:storage-multiple:DEBUG:storage-multiple.py(64)                DO316 / __init__
+2024-09-12 12:26:52,460:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:26:52,497:storage-multiple:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:26:52,499:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:26:52,499:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:26:52,499:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:26:52,500:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:26:52,598:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:26:52,600:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:26:52,600:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~juCTK6uEi0_wXKtZ_5QNLvGYjQjO-wiQPrkgg9VIZCA&state=1&grant_type=authorization_code
+2024-09-12 12:26:52,600:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:26:52,676:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:26:52,684:storage-multiple:DEBUG:storage-multiple.py(92)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 12:26:52,685:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a1967d790>
+2024-09-12 12:26:52,685:storage-multiple:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f5a1967d790>
+2024-09-12 12:26:52,816:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a195304c0>
+2024-09-12 12:26:52,825:storage-multiple:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f5a195304c0>
+2024-09-12 12:26:52,951:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a195304f0>
+2024-09-12 12:26:52,996:storage-multiple:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f5a195304f0>
+2024-09-12 12:26:53,085:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a19530520>
+2024-09-12 12:26:53,264:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a19530520>
+2024-09-12 12:26:53,350:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a19530550>
+2024-09-12 12:26:53,352:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:26:53,353:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:26:53,353:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:26:53,353:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:26:56,750:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a19530550>
+2024-09-12 12:26:56,757:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a19530580>
+2024-09-12 12:26:56,758:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:26:56,758:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:26:56,758:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:26:56,758:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:27:08,937:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a19530580>
+2024-09-12 12:27:09,041:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a195305b0>
+2024-09-12 12:27:09,043:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:27:09,043:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:27:09,044:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:27:09,044:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:27:10,750:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a195305b0>
+2024-09-12 12:27:10,872:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a195305e0>
+2024-09-12 12:27:10,873:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:27:10,873:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:27:10,873:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:27:10,873:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:27:17,776:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a195305e0>
+2024-09-12 12:27:17,841:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a19530610>
+2024-09-12 12:27:17,843:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:27:17,843:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:27:17,843:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:27:17,843:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:27:19,833:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a19530610>
+2024-09-12 12:27:19,930:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5a19530640>
+2024-09-12 12:27:19,932:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:27:19,933:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:27:19,933:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:27:19,933:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:29:18,341:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5a19530640>
+
+2024-09-12 12:29:34,051:storage-multiple:INFO:lablog.py(201)                #################### storage-multiple ####################
+2024-09-12 12:29:34,317:storage-multiple:DEBUG:storage-multiple.py(64)                DO316 / __init__
+2024-09-12 12:29:34,319:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:29:34,356:storage-multiple:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:29:34,358:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:29:34,358:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:29:34,358:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:29:34,359:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:29:34,478:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:29:34,480:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:29:34,480:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~uIbHnoLDNbjuzIYIuJyrtNon9TTe3qKBJnlvzEPTB3M&state=1&grant_type=authorization_code
+2024-09-12 12:29:34,480:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:29:34,562:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 12:30:05,169:storage-multiple:INFO:lablog.py(201)                #################### storage-multiple ####################
+2024-09-12 12:30:05,416:storage-multiple:DEBUG:storage-multiple.py(64)                DO316 / __init__
+2024-09-12 12:30:05,418:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:30:05,453:storage-multiple:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:30:05,455:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:30:05,455:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:30:05,455:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:30:05,456:storage-multiple:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:30:05,553:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:30:05,554:storage-multiple:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:30:05,555:storage-multiple:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~c0d7bW6DKNnyRO8GzLgmD0XxvEeL52K6wYLUeSb0ObI&state=1&grant_type=authorization_code
+2024-09-12 12:30:05,555:storage-multiple:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:30:05,629:storage-multiple:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:30:05,637:storage-multiple:DEBUG:storage-multiple.py(179)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 12:30:05,639:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc25807d5e0>
+2024-09-12 12:30:05,640:storage-multiple:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fc25807d5e0>
+2024-09-12 12:30:05,771:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc257f31460>
+2024-09-12 12:30:05,773:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:30:05,774:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:30:05,774:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:30:05,774:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:30:29,524:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fc257f31460>
+2024-09-12 12:30:29,574:storage-multiple:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc257f31490>
+2024-09-12 12:30:29,575:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:30:29,576:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:30:29,576:storage-multiple:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:30:29,576:storage-multiple:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:30:31,034:storage-multiple:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fc257f31490>
+

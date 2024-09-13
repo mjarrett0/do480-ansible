@@ -1,0 +1,2 @@
+NAMESPACE   NAME                                          PHASE       PROGRESS   RESTARTS   AGE
+vm-images   datavolume.cdi.kubevirt.io/web-server-image   Succeeded   100.0%                150m

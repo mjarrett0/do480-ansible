@@ -1,0 +1,114 @@
+2024-09-12 13:12:35,393:advanced-clone:INFO:lablog.py(201)                #################### advanced-clone ####################
+2024-09-12 13:12:35,654:advanced-clone:DEBUG:advanced-clone.py(62)                DO316 / __init__
+2024-09-12 13:12:35,655:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:12:35,691:advanced-clone:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:12:35,693:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:12:35,693:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:12:35,693:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:12:35,694:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:12:35,779:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:12:35,780:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:12:35,780:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~FMNRRIrwxeSFCoBBDz6RTFlii4n4NwD_16ALzDuAiEg&state=1&grant_type=authorization_code
+2024-09-12 13:12:35,780:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:12:35,849:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:12:35,856:advanced-clone:DEBUG:advanced-clone.py(90)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:12:35,860:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1975bd790>
+2024-09-12 13:12:35,860:advanced-clone:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fa1975bd790>
+2024-09-12 13:12:35,994:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1974704c0>
+2024-09-12 13:12:36,008:advanced-clone:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fa1974704c0>
+2024-09-12 13:12:36,132:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1974704f0>
+2024-09-12 13:12:36,188:advanced-clone:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fa1974704f0>
+2024-09-12 13:12:36,267:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470520>
+2024-09-12 13:12:36,376:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470520>
+2024-09-12 13:12:36,399:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470550>
+2024-09-12 13:12:36,402:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:12:36,403:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:12:36,403:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:12:36,404:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:12:39,745:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470550>
+2024-09-12 13:12:39,803:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470580>
+2024-09-12 13:12:39,805:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:12:39,805:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:12:39,805:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:12:39,805:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:12:50,994:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470580>
+2024-09-12 13:12:51,042:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1974705b0>
+2024-09-12 13:12:51,044:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:12:51,044:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:12:51,044:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:12:51,044:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:12:52,662:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa1974705b0>
+2024-09-12 13:12:52,740:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1974705e0>
+2024-09-12 13:12:52,742:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:12:52,742:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:12:52,742:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:12:52,742:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:12:56,135:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa1974705e0>
+2024-09-12 13:12:56,267:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470610>
+2024-09-12 13:12:56,268:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:12:56,268:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:12:56,268:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:12:56,269:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:13:02,849:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470610>
+2024-09-12 13:13:02,940:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470640>
+2024-09-12 13:13:02,941:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:13:02,941:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:13:02,942:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:13:02,942:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:14:02,133:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470640>
+2024-09-12 13:14:02,208:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa197470670>
+2024-09-12 13:14:02,210:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:14:02,210:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:14:02,210:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:14:02,210:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:14:55,851:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa197470670>
+2024-09-12 13:14:55,959:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa1974706a0>
+2024-09-12 13:14:55,960:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa1974706a0>
+
+2024-09-12 13:15:11,757:advanced-clone:INFO:lablog.py(201)                #################### advanced-clone ####################
+2024-09-12 13:15:12,012:advanced-clone:DEBUG:advanced-clone.py(62)                DO316 / __init__
+2024-09-12 13:15:12,013:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:15:12,049:advanced-clone:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:15:12,051:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:15:12,051:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:15:12,051:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:15:12,051:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:15:12,150:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:15:12,152:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:15:12,152:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~bCvM70NIIog7Tt7yi6i1He6YUMQjXEtUTDRFwpgbClA&state=1&grant_type=authorization_code
+2024-09-12 13:15:12,152:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:15:12,219:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:15:42,824:advanced-clone:INFO:lablog.py(201)                #################### advanced-clone ####################
+2024-09-12 13:15:43,089:advanced-clone:DEBUG:advanced-clone.py(62)                DO316 / __init__
+2024-09-12 13:15:43,090:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:15:43,128:advanced-clone:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:15:43,130:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:15:43,130:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:15:43,130:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:15:43,131:advanced-clone:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:15:43,247:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:15:43,249:advanced-clone:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:15:43,249:advanced-clone:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~6NTYyTvL3PiAC4hqajC31OB5ATdf4ct7xhgJPc-5xJk&state=1&grant_type=authorization_code
+2024-09-12 13:15:43,249:advanced-clone:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:15:43,326:advanced-clone:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:15:43,335:advanced-clone:DEBUG:advanced-clone.py(193)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:15:43,339:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4cec77e5e0>
+2024-09-12 13:15:43,340:advanced-clone:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f4cec77e5e0>
+2024-09-12 13:15:43,472:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4cec631460>
+2024-09-12 13:15:43,476:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:15:43,476:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:15:43,476:advanced-clone:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:15:43,477:advanced-clone:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:06,835:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4cec631460>
+2024-09-12 13:16:06,838:advanced-clone:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4cec631490>
+2024-09-12 13:16:06,838:advanced-clone:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/advanced-clone
+2024-09-12 13:16:06,839:advanced-clone:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/advanced-clone
+2024-09-12 13:16:06,839:advanced-clone:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4cec631490>
+

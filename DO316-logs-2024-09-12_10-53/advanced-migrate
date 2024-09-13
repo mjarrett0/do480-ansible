@@ -1,0 +1,122 @@
+2024-09-12 13:16:22,644:advanced-migrate:INFO:lablog.py(201)                #################### advanced-migrate ####################
+2024-09-12 13:16:22,963:advanced-migrate:DEBUG:advanced-migrate.py(63)                DO316 / __init__
+2024-09-12 13:16:22,966:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:16:23,006:advanced-migrate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:16:23,009:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:16:23,009:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:16:23,009:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:16:23,010:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:16:23,138:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:16:23,141:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:16:23,141:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~xiL8h2mZKSF6kNiU7rT9sL7LG30tB_VtG2TbwYoZ894&state=1&grant_type=authorization_code
+2024-09-12 13:16:23,141:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:16:23,231:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:16:23,240:advanced-migrate:DEBUG:advanced-migrate.py(91)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:16:23,243:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a77e790>
+2024-09-12 13:16:23,244:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f667a77e790>
+2024-09-12 13:16:23,377:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a6314c0>
+2024-09-12 13:16:23,391:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f667a6314c0>
+2024-09-12 13:16:23,514:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a6314f0>
+2024-09-12 13:16:23,558:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f667a6314f0>
+2024-09-12 13:16:23,649:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631520>
+2024-09-12 13:16:23,756:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631520>
+2024-09-12 13:16:23,783:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631550>
+2024-09-12 13:16:23,787:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:23,788:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:23,788:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:23,788:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:27,360:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631550>
+2024-09-12 13:16:27,455:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631580>
+2024-09-12 13:16:27,457:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:27,458:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:27,458:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:27,458:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:40,241:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631580>
+2024-09-12 13:16:40,249:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a6315b0>
+2024-09-12 13:16:40,251:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:40,251:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:40,251:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:40,251:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:41,923:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a6315b0>
+2024-09-12 13:16:41,944:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a6315e0>
+2024-09-12 13:16:41,946:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:41,946:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:41,946:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:41,946:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:48,603:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a6315e0>
+2024-09-12 13:16:48,612:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631610>
+2024-09-12 13:16:48,614:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:48,614:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:48,614:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:48,615:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:16:52,029:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631610>
+2024-09-12 13:16:52,135:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631640>
+2024-09-12 13:16:52,137:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:16:52,138:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:16:52,138:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:16:52,138:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:17:41,693:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631640>
+2024-09-12 13:17:41,739:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f667a631670>
+2024-09-12 13:17:41,741:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f667a631670>
+
+2024-09-12 13:17:57,488:advanced-migrate:INFO:lablog.py(201)                #################### advanced-migrate ####################
+2024-09-12 13:17:57,771:advanced-migrate:DEBUG:advanced-migrate.py(63)                DO316 / __init__
+2024-09-12 13:17:57,772:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:17:57,810:advanced-migrate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:17:57,812:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:17:57,812:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:17:57,812:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:17:57,813:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:17:57,897:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:17:57,898:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:17:57,898:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~xTGwfLTFZvr49Y8Db0WGHDQlTFqQ4i-Wek1638CBwaU&state=1&grant_type=authorization_code
+2024-09-12 13:17:57,899:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:17:57,955:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:18:28,558:advanced-migrate:INFO:lablog.py(201)                #################### advanced-migrate ####################
+2024-09-12 13:18:28,812:advanced-migrate:DEBUG:advanced-migrate.py(63)                DO316 / __init__
+2024-09-12 13:18:28,814:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:18:28,850:advanced-migrate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:18:28,852:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:18:28,852:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:18:28,852:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:18:28,853:advanced-migrate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:18:28,967:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:18:28,969:advanced-migrate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:18:28,969:advanced-migrate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~6W-FHmMovGdG0VYvvjKYBesnL0NENh1TkBWxkFiFv2o&state=1&grant_type=authorization_code
+2024-09-12 13:18:28,969:advanced-migrate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:18:29,035:advanced-migrate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:18:29,042:advanced-migrate:DEBUG:advanced-migrate.py(186)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:18:29,044:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8dfd5e0>
+2024-09-12 13:18:29,045:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f44a8dfd5e0>
+2024-09-12 13:18:29,177:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8cb1460>
+2024-09-12 13:18:29,282:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f44a8cb1460>
+2024-09-12 13:18:29,311:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8cb1490>
+2024-09-12 13:18:29,314:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:18:29,314:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:18:29,314:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:18:29,314:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:18:32,496:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f44a8cb1490>
+2024-09-12 13:18:32,573:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8cb14c0>
+2024-09-12 13:18:32,575:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:18:32,575:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:18:32,575:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:18:32,575:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:18:35,930:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f44a8cb14c0>
+2024-09-12 13:18:35,967:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8cb14f0>
+2024-09-12 13:18:35,969:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:18:35,970:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:18:35,970:advanced-migrate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:18:35,970:advanced-migrate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:19:04,561:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f44a8cb14f0>
+2024-09-12 13:19:04,693:advanced-migrate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f44a8cb1520>
+2024-09-12 13:19:04,693:advanced-migrate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/advanced-migrate
+2024-09-12 13:19:04,694:advanced-migrate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/advanced-migrate
+2024-09-12 13:19:04,694:advanced-migrate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f44a8cb1520>
+

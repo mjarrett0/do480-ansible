@@ -1,0 +1,343 @@
+2024-09-12 14:53:04,739:review-cr3:INFO:lablog.py(201)                #################### review-cr3 ####################
+2024-09-12 14:53:05,009:review-cr3:DEBUG:review-cr3.py(65)                DO316 / __init__
+2024-09-12 14:53:05,011:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 14:53:05,046:review-cr3:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 14:53:05,048:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 14:53:05,048:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 14:53:05,048:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 14:53:05,049:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 14:53:05,144:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 14:53:05,146:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 14:53:05,146:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~3SkXCRFZmoBG_RgvCHpiPoRRrk9zSQiXFCqLLc08vHY&state=1&grant_type=authorization_code
+2024-09-12 14:53:05,146:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 14:53:05,222:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 14:53:05,229:review-cr3:DEBUG:review-cr3.py(93)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 14:53:05,231:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912c7d790>
+2024-09-12 14:53:05,231:review-cr3:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f4912c7d790>
+2024-09-12 14:53:05,364:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e190>
+2024-09-12 14:53:05,372:review-cr3:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f4912b2e190>
+2024-09-12 14:53:05,499:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e1c0>
+2024-09-12 14:53:05,538:review-cr3:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f4912b2e1c0>
+2024-09-12 14:53:05,633:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e1f0>
+2024-09-12 14:53:05,722:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4912b2e1f0>
+2024-09-12 14:53:05,765:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e220>
+2024-09-12 14:53:05,768:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 14:53:05,769:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 14:53:05,769:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 14:53:05,769:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 14:53:09,101:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4912b2e220>
+2024-09-12 14:53:09,171:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e250>
+2024-09-12 14:53:09,173:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 14:53:09,173:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 14:53:09,173:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 14:53:09,173:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 14:53:20,717:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4912b2e250>
+2024-09-12 14:53:20,790:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e280>
+2024-09-12 14:53:20,791:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 14:53:20,791:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 14:53:20,791:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 14:53:20,791:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 14:53:32,313:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4912b2e280>
+2024-09-12 14:53:32,426:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e2b0>
+2024-09-12 14:53:32,427:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 14:53:32,427:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 14:53:32,427:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 14:53:32,428:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 14:53:42,566:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4912b2e2b0>
+2024-09-12 14:53:42,651:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4912b2e2e0>
+2024-09-12 14:53:42,653:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 14:53:42,653:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 14:53:42,653:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 14:53:42,654:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                
+PLAY [Install the 'NMState' operator] ******************************************
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create project: openshift-nmstate] ****************
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:43 -0400 (0:00:00.040)       0:00:00.040 **** 
+2024-09-12 15:09:37,208:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: kubernetes<24.2.0 is not supported or tested. Some features may not[0m
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                [1;35mwork.[0m
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create namespace: openshift-nmstate] **************
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:44 -0400 (0:00:01.403)       0:00:01.444 **** 
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Wait for namespace creation] **********************
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:45 -0400 (0:00:01.124)       0:00:02.569 **** 
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,209:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Identify if an operator group exists for openshift-nmstate] ***
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:46 -0400 (0:00:01.178)       0:00:03.748 **** 
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Print current operator group name] ****************
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:48 -0400 (0:00:01.120)       0:00:04.869 **** 
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility] => {[0m
+[0;32m    "msg": "openshift-nmstate"[0m
+[0;32m}[0m
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create operator group: openshift-nmstate] *********
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:48 -0400 (0:00:00.031)       0:00:04.900 **** 
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create subscription for operator: kubernetes-nmstate-operator] ***
+2024-09-12 15:09:37,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:49 -0400 (0:00:01.084)       0:00:05.984 **** 
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Wait for creation of subscription: kubernetes-nmstate-operator] ***
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  14:53:50 -0400 (0:00:01.150)       0:00:07.134 **** 
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (30 retries left).[0m
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (29 retries left).[0m
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (28 retries left).[0m
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (27 retries left).[0m
+2024-09-12 15:09:37,211:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (26 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (25 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (24 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (23 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (22 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (21 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (20 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (19 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (18 retries left).[0m
+2024-09-12 15:09:37,212:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (17 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (16 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (15 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (14 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (13 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (12 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (11 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (10 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (9 retries left).[0m
+2024-09-12 15:09:37,213:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (8 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (7 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (6 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (5 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (4 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (3 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (2 retries left).[0m
+2024-09-12 15:09:37,214:review-cr3:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (1 retries left).[0m
+2024-09-12 15:09:37,216:review-cr3:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 73, in run_playbook
+    messages = runner.run(**kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/playbooks.py", line 83, in run
+    msg = event["event_data"]["res"]["msg"]
+KeyError: 'msg'
+2024-09-12 15:09:37,217:review-cr3:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f4912b2e2e0>
+        - An unexpected error ocurred: 'msg'
+        - Check the log file for more details
+[31m        - Cannot continue starting lab[0m
+2024-09-12 15:09:37,306:review-cr3:ERROR:userinterface.py(119)                The 'Install the 'NMstate' operator' fatal step has failed
+2024-09-12 15:09:37,307:review-cr3:ERROR:lab.py(54)                Lab script has failed due to an error: The 'Install the 'NMstate' operator' fatal step has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 287, in start
+    grading.start()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/review-cr3.py", line 196, in start
+    userinterface.Console(items).run_items(action="Starting")
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/userinterface.py", line 120, in run_items
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Install the 'NMstate' operator' fatal step has failed
+[31m
+An error has occurred.[0m
+
+For more details, run: lab logs review-cr3[0m
+2024-09-12 15:09:52,961:review-cr3:INFO:lablog.py(201)                #################### review-cr3 ####################
+2024-09-12 15:09:53,221:review-cr3:DEBUG:review-cr3.py(65)                DO316 / __init__
+2024-09-12 15:09:53,223:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 15:09:53,261:review-cr3:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 15:09:53,263:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 15:09:53,263:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 15:09:53,263:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 15:09:53,264:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 15:09:53,371:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 15:09:53,373:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 15:09:53,373:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~LSOV-VIXdCzKNpfMe8oHAS2FvG5ZHwFSd0xxxDZMI2A&state=1&grant_type=authorization_code
+2024-09-12 15:09:53,373:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 15:09:53,473:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 15:10:09,111:review-cr3:INFO:lablog.py(201)                #################### review-cr3 ####################
+2024-09-12 15:10:09,362:review-cr3:DEBUG:review-cr3.py(65)                DO316 / __init__
+2024-09-12 15:10:09,363:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 15:10:09,400:review-cr3:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 15:10:09,401:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 15:10:09,402:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 15:10:09,402:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 15:10:09,402:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 15:10:09,481:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 15:10:09,483:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 15:10:09,483:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~B7fGIAB3YUb9LbChQZLcWwulwX8TTAiTZ7VHyf2Xqds&state=1&grant_type=authorization_code
+2024-09-12 15:10:09,483:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 15:10:09,534:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 15:10:09,542:review-cr3:DEBUG:review-cr3.py(202)                DO316 / grade
+[1m
+Grading lab.
+[0m
+2024-09-12 15:10:09,544:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f4fd5e0>
+2024-09-12 15:10:09,544:review-cr3:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f3d9f4fd5e0>
+2024-09-12 15:10:09,676:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae130>
+2024-09-12 15:10:09,768:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae130>
+2024-09-12 15:10:09,809:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae160>
+2024-09-12 15:10:09,812:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:10:09,813:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:10:09,814:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:10:09,814:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:10:12,881:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae160>
+2024-09-12 15:10:12,942:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae190>
+2024-09-12 15:10:12,944:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:10:12,944:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:10:12,944:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:10:12,944:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:10:36,310:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae190>
+2024-09-12 15:10:36,335:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae1c0>
+2024-09-12 15:10:36,336:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:10:36,337:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:10:36,337:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:10:36,337:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:04,491:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae1c0>
+2024-09-12 15:11:04,541:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae1f0>
+2024-09-12 15:11:04,544:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:11:04,544:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:11:04,544:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:11:04,544:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:12,666:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae1f0>
+2024-09-12 15:11:12,776:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f3d9f3ae220>
+2024-09-12 15:11:12,778:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:11:12,778:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:11:12,778:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:11:12,778:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:20,208:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 15:11:20,208:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 15:11:20,208:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,208:review-cr3:ERROR:playbooks.py(93)                
+PLAY [Grade the 'NMState' operator] ********************************************
+2024-09-12 15:11:20,208:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Check project: openshift-nmstate] *******************
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:13 -0400 (0:00:00.040)       0:00:00.040 **** 
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                [1;35m[WARNING]: kubernetes<24.2.0 is not supported or tested. Some features may not[0m
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                [1;35mwork.[0m
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Check namespace: openshift-nmstate] *****************
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:15 -0400 (0:00:01.643)       0:00:01.683 **** 
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Identify if an operator group exists for: openshift-nmstate] ***
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:16 -0400 (0:00:01.012)       0:00:02.696 **** 
+2024-09-12 15:11:20,209:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Print current operator group name] ******************
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:17 -0400 (0:00:01.048)       0:00:03.744 **** 
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility] => {[0m
+[0;32m    "msg": "openshift-nmstate"[0m
+[0;32m}[0m
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Check operator group: openshift-nmstate] ************
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:17 -0400 (0:00:00.031)       0:00:03.775 **** 
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Check subscription: kubernetes-nmstate-operator] ****
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:18 -0400 (0:00:00.925)       0:00:04.700 **** 
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                
+TASK [ocp-operator-grade : Check resources from file] **************************
+2024-09-12 15:11:20,210:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:18 -0400 (0:00:00.955)       0:00:05.656 **** 
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                [0;31mfailed: [utility] (item=nmstate/openshift-nmstate-nmstate.yaml) => {"ansible_loop_var": "item", "api_found": false, "changed": false, "failed_when_result": true, "item": "nmstate/openshift-nmstate-nmstate.yaml", "msg": "Failed to find API for resource with apiVersion \"nmstate.io/v1\" and kind \"NMState\"", "resources": []}[0m
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                
+PLAY RECAP *********************************************************************
+[0;31mutility[0m                    : [0;32mok=6   [0m changed=0    unreachable=0    [0;31mfailed=1   [0m skipped=0    rescued=0    ignored=0   
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                Thursday 12 September 2024  15:11:20 -0400 (0:00:01.058)       0:00:06.714 **** 
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                =============================================================================== 
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Check project: openshift-nmstate ------------------- 1.64s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Check resources from file -------------------------- 1.06s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Identify if an operator group exists for: openshift-nmstate --- 1.05s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Check namespace: openshift-nmstate ----------------- 1.01s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Check subscription: kubernetes-nmstate-operator ---- 0.96s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Check operator group: openshift-nmstate ------------ 0.93s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                ocp-operator-grade : Print current operator group name ------------------ 0.03s
+2024-09-12 15:11:20,211:review-cr3:ERROR:playbooks.py(93)                Playbook run took 0 days, 0 hours, 0 minutes, 6 seconds
+2024-09-12 15:11:20,213:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f3d9f3ae220>
+        - Playbook failed: grade-openshift-nmstate.yaml
+        - utility: Check resources from file: One or more items failed
+[31m        - Cannot continue grading lab[0m
+2024-09-12 15:11:20,234:review-cr3:ERROR:userinterface.py(119)                The 'Check if the 'NMstate' operator is installed' fatal step has failed
+2024-09-12 15:11:20,235:review-cr3:ERROR:lab.py(54)                Lab script has failed due to an error: The 'Check if the 'NMstate' operator is installed' fatal step has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 331, in grade
+    grading.grade()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/review-cr3.py", line 337, in grade
+    ui.run_items(action="Grading")
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/userinterface.py", line 120, in run_items
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Check if the 'NMstate' operator is installed' fatal step has failed
+[31m
+An error has occurred.[0m
+
+For more details, run: lab logs review-cr3[0m
+2024-09-12 15:11:35,851:review-cr3:INFO:lablog.py(201)                #################### review-cr3 ####################
+2024-09-12 15:11:36,117:review-cr3:DEBUG:review-cr3.py(65)                DO316 / __init__
+2024-09-12 15:11:36,119:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 15:11:36,154:review-cr3:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 15:11:36,156:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 15:11:36,156:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 15:11:36,156:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 15:11:36,157:review-cr3:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 15:11:36,245:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 15:11:36,247:review-cr3:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 15:11:36,247:review-cr3:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~amAyHasARUu4k9AuwfJBrN25AmPUPvAgzI_PqY2psrI&state=1&grant_type=authorization_code
+2024-09-12 15:11:36,247:review-cr3:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 15:11:36,302:review-cr3:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 15:11:36,311:review-cr3:DEBUG:review-cr3.py(344)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 15:11:36,314:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adc3d5e0>
+2024-09-12 15:11:36,315:review-cr3:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f12adc3d5e0>
+2024-09-12 15:11:36,448:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adaee130>
+2024-09-12 15:11:36,578:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f12adaee130>
+2024-09-12 15:11:36,582:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adaee160>
+2024-09-12 15:11:36,585:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:11:36,586:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:11:36,586:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:11:36,586:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:39,640:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f12adaee160>
+2024-09-12 15:11:39,716:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adaee190>
+2024-09-12 15:11:39,718:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:11:39,718:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:11:39,718:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:11:39,718:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:45,838:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f12adaee190>
+2024-09-12 15:11:45,868:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adaee1c0>
+2024-09-12 15:11:45,870:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 15:11:45,870:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 15:11:45,870:review-cr3:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 15:11:45,870:review-cr3:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 15:11:48,283:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f12adaee1c0>
+2024-09-12 15:11:48,345:review-cr3:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f12adaee1f0>
+2024-09-12 15:11:48,345:review-cr3:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/review-cr3
+2024-09-12 15:11:48,345:review-cr3:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/review-cr3
+2024-09-12 15:11:48,345:review-cr3:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f12adaee1f0>
+

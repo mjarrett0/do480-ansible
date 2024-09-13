@@ -1,0 +1,102 @@
+2024-09-12 13:09:29,805:advanced-snapshot:INFO:lablog.py(201)                #################### advanced-snapshot ####################
+2024-09-12 13:09:30,058:advanced-snapshot:DEBUG:advanced-snapshot.py(62)                DO316 / __init__
+2024-09-12 13:09:30,059:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:09:30,100:advanced-snapshot:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:09:30,101:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:09:30,102:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:09:30,102:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:09:30,102:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:09:30,209:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:09:30,211:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:09:30,211:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~HuovllL0NO9b0CSRLo89_8tqlJixVQQKRjVT5HR_f0E&state=1&grant_type=authorization_code
+2024-09-12 13:09:30,211:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:09:30,279:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:09:30,286:advanced-snapshot:DEBUG:advanced-snapshot.py(90)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:09:30,288:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9099fd790>
+2024-09-12 13:09:30,288:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fd9099fd790>
+2024-09-12 13:09:30,419:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b14c0>
+2024-09-12 13:09:30,429:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fd9098b14c0>
+2024-09-12 13:09:30,555:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b14f0>
+2024-09-12 13:09:30,593:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fd9098b14f0>
+2024-09-12 13:09:30,689:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b1520>
+2024-09-12 13:09:30,794:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b1520>
+2024-09-12 13:09:30,822:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b1550>
+2024-09-12 13:09:30,825:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:30,826:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:30,826:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:30,826:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:33,943:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b1550>
+2024-09-12 13:09:33,958:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b1580>
+2024-09-12 13:09:33,960:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:33,960:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:33,960:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:33,960:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:45,296:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b1580>
+2024-09-12 13:09:45,324:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b15b0>
+2024-09-12 13:09:45,327:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:45,327:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:45,327:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:45,327:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:47,083:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b15b0>
+2024-09-12 13:09:47,158:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b15e0>
+2024-09-12 13:09:47,160:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:47,160:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:47,160:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:47,160:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:53,888:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b15e0>
+2024-09-12 13:09:53,951:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b1610>
+2024-09-12 13:09:53,954:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:53,954:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:53,954:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:53,954:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:11:07,602:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b1610>
+2024-09-12 13:11:07,671:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd9098b1640>
+2024-09-12 13:11:07,672:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd9098b1640>
+
+2024-09-12 13:11:23,480:advanced-snapshot:INFO:lablog.py(201)                #################### advanced-snapshot ####################
+2024-09-12 13:11:23,749:advanced-snapshot:DEBUG:advanced-snapshot.py(62)                DO316 / __init__
+2024-09-12 13:11:23,751:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:11:23,790:advanced-snapshot:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:11:23,791:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:11:23,792:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:11:23,792:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:11:23,792:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:11:23,880:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:11:23,882:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:11:23,882:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~kKC5G5SXPvfH-kCOYgRjJJEEO4sVvwz0ZzCYBLWbgA0&state=1&grant_type=authorization_code
+2024-09-12 13:11:23,882:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:11:23,938:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:11:54,564:advanced-snapshot:INFO:lablog.py(201)                #################### advanced-snapshot ####################
+2024-09-12 13:11:54,830:advanced-snapshot:DEBUG:advanced-snapshot.py(62)                DO316 / __init__
+2024-09-12 13:11:54,832:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:11:54,868:advanced-snapshot:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:11:54,870:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:11:54,870:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:11:54,870:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:11:54,871:advanced-snapshot:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:11:55,002:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:11:55,004:advanced-snapshot:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:11:55,004:advanced-snapshot:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~xzzQhivJgCjkgQ6-1gHndJQQ2GnImNP8ZY7gL1TfxyA&state=1&grant_type=authorization_code
+2024-09-12 13:11:55,004:advanced-snapshot:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:11:55,095:advanced-snapshot:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:11:55,102:advanced-snapshot:DEBUG:advanced-snapshot.py(177)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:11:55,103:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f68980fd910>
+2024-09-12 13:11:55,104:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f68980fd910>
+2024-09-12 13:11:55,235:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f6897fb0430>
+2024-09-12 13:11:55,237:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:11:55,238:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:11:55,238:advanced-snapshot:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:11:55,239:advanced-snapshot:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:12:19,577:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f6897fb0430>
+2024-09-12 13:12:19,650:advanced-snapshot:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f6897fb0460>
+2024-09-12 13:12:19,650:advanced-snapshot:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/advanced-snapshot
+2024-09-12 13:12:19,651:advanced-snapshot:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/advanced-snapshot
+2024-09-12 13:12:19,651:advanced-snapshot:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f6897fb0460>
+

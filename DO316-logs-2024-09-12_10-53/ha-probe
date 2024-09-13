@@ -1,0 +1,126 @@
+2024-09-12 13:49:22,422:ha-probe:INFO:lablog.py(201)                #################### ha-probe ####################
+2024-09-12 13:49:22,695:ha-probe:DEBUG:ha-probe.py(62)                DO316 / __init__
+2024-09-12 13:49:22,697:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:49:22,734:ha-probe:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:49:22,736:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:49:22,736:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:49:22,736:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:49:22,737:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:49:22,873:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:49:22,875:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:49:22,875:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~rb1wJ0oFkpdv7p0Ic1KA5O-dQIwT8ZGktHOkOvXMmkc&state=1&grant_type=authorization_code
+2024-09-12 13:49:22,875:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:49:22,974:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:49:22,981:ha-probe:DEBUG:ha-probe.py(90)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:49:22,982:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd0a7d790>
+2024-09-12 13:49:22,983:ha-probe:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f0fd0a7d790>
+2024-09-12 13:49:23,114:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e190>
+2024-09-12 13:49:23,122:ha-probe:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f0fd092e190>
+2024-09-12 13:49:23,249:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e1c0>
+2024-09-12 13:49:23,287:ha-probe:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f0fd092e1c0>
+2024-09-12 13:49:23,382:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e1f0>
+2024-09-12 13:49:23,481:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e1f0>
+2024-09-12 13:49:23,515:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e220>
+2024-09-12 13:49:23,519:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:49:23,520:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:49:23,520:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:49:23,520:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:49:26,581:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e220>
+2024-09-12 13:49:26,664:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e250>
+2024-09-12 13:49:26,665:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:49:26,665:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:49:26,665:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:49:26,665:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:49:37,717:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e250>
+2024-09-12 13:49:37,745:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e280>
+2024-09-12 13:49:37,747:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:49:37,747:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:49:37,747:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:49:37,747:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:49:39,468:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e280>
+2024-09-12 13:49:39,587:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e2b0>
+2024-09-12 13:49:39,589:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:49:39,589:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:49:39,589:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:49:39,589:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:49:46,275:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e2b0>
+2024-09-12 13:49:46,391:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e2e0>
+2024-09-12 13:49:46,394:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:49:46,394:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:49:46,394:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:49:46,394:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:50:39,901:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e2e0>
+2024-09-12 13:50:40,032:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e310>
+2024-09-12 13:50:40,034:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:50:40,035:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:50:40,035:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:50:40,035:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:51:33,685:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e310>
+2024-09-12 13:51:33,793:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e340>
+2024-09-12 13:51:33,795:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:51:33,796:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:51:33,796:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:51:33,796:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:52:27,660:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e340>
+2024-09-12 13:52:27,684:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e370>
+2024-09-12 13:52:27,686:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:52:27,686:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:52:27,686:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:52:27,686:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:53:31,642:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e370>
+2024-09-12 13:53:31,761:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e3a0>
+2024-09-12 13:53:31,764:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:53:31,764:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:53:31,764:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:53:31,764:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:53:37,076:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e3a0>
+2024-09-12 13:53:37,119:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0fd092e3d0>
+2024-09-12 13:53:37,120:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0fd092e3d0>
+
+2024-09-12 13:53:52,906:ha-probe:INFO:lablog.py(201)                #################### ha-probe ####################
+2024-09-12 13:53:53,177:ha-probe:DEBUG:ha-probe.py(62)                DO316 / __init__
+2024-09-12 13:53:53,179:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:53:53,215:ha-probe:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:53:53,217:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:53:53,217:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:53:53,217:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:53:53,218:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:53:53,305:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:53:53,307:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:53:53,307:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~4POTueJrC4O0YZDYA6TyYkYsQOpquwlO0fYGBfgdU8E&state=1&grant_type=authorization_code
+2024-09-12 13:53:53,307:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:53:53,364:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:54:24,009:ha-probe:INFO:lablog.py(201)                #################### ha-probe ####################
+2024-09-12 13:54:24,266:ha-probe:DEBUG:ha-probe.py(62)                DO316 / __init__
+2024-09-12 13:54:24,267:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:54:24,304:ha-probe:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:54:24,306:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:54:24,306:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:54:24,306:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:54:24,306:ha-probe:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:54:24,432:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:54:24,434:ha-probe:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:54:24,434:ha-probe:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~YGp5SQnBbpKlWJROK7RvF1mgWFiO00qx_gxvpzGVMvk&state=1&grant_type=authorization_code
+2024-09-12 13:54:24,434:ha-probe:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:54:24,488:ha-probe:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:54:24,495:ha-probe:DEBUG:ha-probe.py(209)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:54:24,496:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc8b5bfd5e0>
+2024-09-12 13:54:24,497:ha-probe:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fc8b5bfd5e0>
+2024-09-12 13:54:24,628:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc8b5aae130>
+2024-09-12 13:54:24,630:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:54:24,631:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:54:24,631:ha-probe:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:54:24,631:ha-probe:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:56:23,373:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fc8b5aae130>
+2024-09-12 13:56:23,422:ha-probe:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fc8b5aae160>
+2024-09-12 13:56:23,422:ha-probe:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/ha-probe
+2024-09-12 13:56:23,422:ha-probe:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/ha-probe
+2024-09-12 13:56:23,422:ha-probe:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fc8b5aae160>
+

@@ -1,0 +1,217 @@
+2024-09-12 12:52:04,289:advanced-import:INFO:lablog.py(201)                #################### advanced-import ####################
+2024-09-12 12:52:04,567:advanced-import:DEBUG:advanced-import.py(66)                DO316 / __init__
+2024-09-12 12:52:04,568:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:52:04,606:advanced-import:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:52:04,608:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:52:04,608:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:52:04,608:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:52:04,609:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:52:04,733:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:52:04,734:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:52:04,734:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~aC9V0_bOwGLPwu4LTc_QHTvPZSUU23XWQqlFsiZCxAo&state=1&grant_type=authorization_code
+2024-09-12 12:52:04,735:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:52:04,785:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:52:04,792:advanced-import:DEBUG:advanced-import.py(94)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 12:52:04,793:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0d3d790>
+2024-09-12 12:52:04,793:advanced-import:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f11c0d3d790>
+2024-09-12 12:52:04,925:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf04c0>
+2024-09-12 12:52:04,936:advanced-import:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f11c0bf04c0>
+2024-09-12 12:52:05,064:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf04f0>
+2024-09-12 12:52:05,109:advanced-import:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f11c0bf04f0>
+2024-09-12 12:52:05,198:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf0520>
+2024-09-12 12:52:05,307:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f11c0bf0520>
+2024-09-12 12:52:05,331:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf0550>
+2024-09-12 12:52:05,334:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:52:05,335:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:52:05,335:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:52:05,336:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:52:08,566:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f11c0bf0550>
+2024-09-12 12:52:08,612:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf0580>
+2024-09-12 12:52:08,613:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:52:08,613:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:52:08,613:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:52:08,613:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:52:17,317:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f11c0bf0580>
+2024-09-12 12:52:17,373:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf05b0>
+2024-09-12 12:52:17,375:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:52:17,376:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:52:17,376:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:52:17,376:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:52:30,029:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f11c0bf05b0>
+2024-09-12 12:52:30,053:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f11c0bf05e0>
+2024-09-12 12:52:30,055:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:52:30,055:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:52:30,055:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:52:30,055:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:08:13,385:advanced-import:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                
+PLAY [Install the 'NMState' operator] ******************************************
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create project: openshift-nmstate] ****************
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:30 -0400 (0:00:00.048)       0:00:00.048 **** 
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                [1;35m[WARNING]: kubernetes<24.2.0 is not supported or tested. Some features may not[0m
+2024-09-12 13:08:13,386:advanced-import:ERROR:playbooks.py(93)                [1;35mwork.[0m
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create namespace: openshift-nmstate] **************
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:32 -0400 (0:00:01.602)       0:00:01.651 **** 
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Wait for namespace creation] **********************
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:33 -0400 (0:00:01.030)       0:00:02.681 **** 
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Identify if an operator group exists for openshift-nmstate] ***
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:34 -0400 (0:00:01.200)       0:00:03.882 **** 
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,387:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Print current operator group name] ****************
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:35 -0400 (0:00:01.017)       0:00:04.899 **** 
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility] => {[0m
+[0;32m    "msg": "openshift-nmstate"[0m
+[0;32m}[0m
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create operator group: openshift-nmstate] *********
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:35 -0400 (0:00:00.028)       0:00:04.928 **** 
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create subscription for operator: kubernetes-nmstate-operator] ***
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:36 -0400 (0:00:01.001)       0:00:05.929 **** 
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Wait for creation of subscription: kubernetes-nmstate-operator] ***
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:52:37 -0400 (0:00:01.030)       0:00:06.960 **** 
+2024-09-12 13:08:13,388:advanced-import:ERROR:playbooks.py(93)                
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (30 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (29 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (28 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (27 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (26 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (25 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (24 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (23 retries left).[0m
+2024-09-12 13:08:13,389:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (22 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (21 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (20 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (19 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (18 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (17 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (16 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (15 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (14 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (13 retries left).[0m
+2024-09-12 13:08:13,390:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (12 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (11 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (10 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (9 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (8 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (7 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (6 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (5 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (4 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (3 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (2 retries left).[0m
+2024-09-12 13:08:13,391:advanced-import:ERROR:playbooks.py(93)                [1;30mFAILED - RETRYING: [utility]: Wait for creation of subscription: kubernetes-nmstate-operator (1 retries left).[0m
+2024-09-12 13:08:13,394:advanced-import:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 73, in run_playbook
+    messages = runner.run(**kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/playbooks.py", line 83, in run
+    msg = event["event_data"]["res"]["msg"]
+KeyError: 'msg'
+2024-09-12 13:08:13,394:advanced-import:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f11c0bf05e0>
+        - An unexpected error ocurred: 'msg'
+        - Check the log file for more details
+[31m        - Cannot continue starting lab[0m
+2024-09-12 13:08:13,483:advanced-import:ERROR:userinterface.py(119)                The 'Install the 'NMstate' operator' fatal step has failed
+2024-09-12 13:08:13,484:advanced-import:ERROR:lab.py(54)                Lab script has failed due to an error: The 'Install the 'NMstate' operator' fatal step has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 287, in start
+    grading.start()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/advanced-import.py", line 211, in start
+    userinterface.Console(items).run_items(action="Starting")
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/userinterface.py", line 120, in run_items
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Install the 'NMstate' operator' fatal step has failed
+[31m
+An error has occurred.[0m
+
+For more details, run: lab logs advanced-import[0m
+2024-09-12 13:08:29,096:advanced-import:INFO:lablog.py(201)                #################### advanced-import ####################
+2024-09-12 13:08:29,351:advanced-import:DEBUG:advanced-import.py(66)                DO316 / __init__
+2024-09-12 13:08:29,353:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:08:29,388:advanced-import:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:08:29,390:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:08:29,390:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:08:29,390:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:08:29,391:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:08:29,512:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:08:29,514:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:08:29,514:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~BXWtMBxwy07fEMLEpSd57VoOaFiZoWupcxFFIalK72k&state=1&grant_type=authorization_code
+2024-09-12 13:08:29,514:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:08:29,588:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:09:00,208:advanced-import:INFO:lablog.py(201)                #################### advanced-import ####################
+2024-09-12 13:09:00,458:advanced-import:DEBUG:advanced-import.py(66)                DO316 / __init__
+2024-09-12 13:09:00,460:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:09:00,498:advanced-import:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:09:00,499:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:09:00,499:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:09:00,500:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:09:00,500:advanced-import:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:09:00,595:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:09:00,597:advanced-import:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:09:00,597:advanced-import:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~yP9LHGNkqUzOr7FjMrCjLgeeNug_2Cb5kXtevf77RMg&state=1&grant_type=authorization_code
+2024-09-12 13:09:00,597:advanced-import:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:09:00,683:advanced-import:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:09:00,691:advanced-import:DEBUG:advanced-import.py(217)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:09:00,692:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b3847d5e0>
+2024-09-12 13:09:00,692:advanced-import:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f5b3847d5e0>
+2024-09-12 13:09:00,823:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b38330460>
+2024-09-12 13:09:00,921:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b38330460>
+2024-09-12 13:09:00,956:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b38330490>
+2024-09-12 13:09:00,958:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:00,959:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:00,959:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:00,959:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:04,080:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b38330490>
+2024-09-12 13:09:04,098:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b383304c0>
+2024-09-12 13:09:04,099:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:04,099:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:04,099:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:04,099:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:05,596:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b383304c0>
+2024-09-12 13:09:05,679:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b383304f0>
+2024-09-12 13:09:05,681:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:05,681:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:05,681:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:05,681:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:11,953:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b383304f0>
+2024-09-12 13:09:11,956:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b38330520>
+2024-09-12 13:09:11,958:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:09:11,958:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:09:11,958:advanced-import:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:09:11,958:advanced-import:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:09:14,036:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b38330520>
+2024-09-12 13:09:14,048:advanced-import:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f5b38330550>
+2024-09-12 13:09:14,049:advanced-import:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/advanced-import
+2024-09-12 13:09:14,049:advanced-import:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/advanced-import
+2024-09-12 13:09:14,049:advanced-import:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f5b38330550>
+

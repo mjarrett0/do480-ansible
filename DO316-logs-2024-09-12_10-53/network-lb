@@ -1,0 +1,102 @@
+2024-09-12 11:46:20,937:network-lb:INFO:lablog.py(201)                #################### network-lb ####################
+2024-09-12 11:46:21,199:network-lb:DEBUG:network-lb.py(63)                DO316 / __init__
+2024-09-12 11:46:21,201:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:46:21,239:network-lb:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:46:21,241:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:46:21,241:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:46:21,241:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:46:21,242:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:46:21,343:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:46:21,345:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:46:21,345:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~KPFIKmrRGQim5vAWzZf3NniTz0aNRv2FinSy2I5gEeY&state=1&grant_type=authorization_code
+2024-09-12 11:46:21,345:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:46:21,411:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:46:21,419:network-lb:DEBUG:network-lb.py(91)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 11:46:21,421:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc53d790>
+2024-09-12 11:46:21,422:network-lb:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f90cc53d790>
+2024-09-12 11:46:21,555:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f04c0>
+2024-09-12 11:46:21,562:network-lb:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f90cc3f04c0>
+2024-09-12 11:46:21,686:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f04f0>
+2024-09-12 11:46:21,732:network-lb:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f90cc3f04f0>
+2024-09-12 11:46:21,820:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f0520>
+2024-09-12 11:46:21,921:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f0520>
+2024-09-12 11:46:21,953:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f0550>
+2024-09-12 11:46:21,956:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:46:21,957:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:46:21,957:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:46:21,957:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:46:25,306:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f0550>
+2024-09-12 11:46:25,349:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f0580>
+2024-09-12 11:46:25,351:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:46:25,351:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:46:25,351:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:46:25,351:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:46:37,536:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f0580>
+2024-09-12 11:46:37,621:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f05b0>
+2024-09-12 11:46:37,623:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:46:37,623:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:46:37,623:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:46:37,623:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:46:39,292:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f05b0>
+2024-09-12 11:46:39,324:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f05e0>
+2024-09-12 11:46:39,326:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:46:39,327:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:46:39,327:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:46:39,327:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:46:46,291:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f05e0>
+2024-09-12 11:46:46,387:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f0610>
+2024-09-12 11:46:46,389:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:46:46,389:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:46:46,389:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:46:46,390:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:48:05,108:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f0610>
+2024-09-12 11:48:05,244:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90cc3f0640>
+2024-09-12 11:48:05,245:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90cc3f0640>
+
+2024-09-12 11:48:21,032:network-lb:INFO:lablog.py(201)                #################### network-lb ####################
+2024-09-12 11:48:21,302:network-lb:DEBUG:network-lb.py(63)                DO316 / __init__
+2024-09-12 11:48:21,304:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:48:21,345:network-lb:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:48:21,347:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:48:21,347:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:48:21,347:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:48:21,348:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:48:21,466:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:48:21,468:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:48:21,468:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~UIc6PiEIObr1TJFnINNziCt5pmm5o3L7ieHqztdZjtw&state=1&grant_type=authorization_code
+2024-09-12 11:48:21,468:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:48:21,529:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 11:48:52,169:network-lb:INFO:lablog.py(201)                #################### network-lb ####################
+2024-09-12 11:48:52,507:network-lb:DEBUG:network-lb.py(63)                DO316 / __init__
+2024-09-12 11:48:52,510:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:48:52,548:network-lb:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:48:52,551:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:48:52,552:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:48:52,552:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:48:52,553:network-lb:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:48:52,683:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:48:52,685:network-lb:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:48:52,685:network-lb:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~wzqfAUJd8bO2s0lHDJ9xeb0GmVTpz2ii9ibGyjLEH_8&state=1&grant_type=authorization_code
+2024-09-12 11:48:52,685:network-lb:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:48:52,758:network-lb:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:48:52,766:network-lb:DEBUG:network-lb.py(178)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 11:48:52,768:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd29737e5e0>
+2024-09-12 11:48:52,769:network-lb:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fd29737e5e0>
+2024-09-12 11:48:52,900:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd297231460>
+2024-09-12 11:48:52,903:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:48:52,904:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:48:52,904:network-lb:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:48:52,904:network-lb:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:49:15,998:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd297231460>
+2024-09-12 11:49:16,036:network-lb:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd297231490>
+2024-09-12 11:49:16,036:network-lb:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/network-lb
+2024-09-12 11:49:16,037:network-lb:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/network-lb
+2024-09-12 11:49:16,037:network-lb:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd297231490>
+

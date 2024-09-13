@@ -1,0 +1,165 @@
+2024-09-12 12:48:21,126:template-review:INFO:lablog.py(201)                #################### template-review ####################
+2024-09-12 12:48:21,394:template-review:DEBUG:template-review.py(63)                DO316 / __init__
+2024-09-12 12:48:21,395:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:48:21,432:template-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:48:21,434:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:48:21,434:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:48:21,434:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:48:21,435:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:48:21,527:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:48:21,528:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:48:21,528:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~XcNn7pKwZkwZw4ll1plQYjUDcLSNmaof3DKybsKIv4o&state=1&grant_type=authorization_code
+2024-09-12 12:48:21,528:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:48:21,583:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:48:21,590:template-review:DEBUG:template-review.py(91)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 12:48:21,591:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9baea3d790>
+2024-09-12 12:48:21,592:template-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f9baea3d790>
+2024-09-12 12:48:21,723:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f04c0>
+2024-09-12 12:48:21,731:template-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f9bae8f04c0>
+2024-09-12 12:48:21,858:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f04f0>
+2024-09-12 12:48:21,896:template-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f9bae8f04f0>
+2024-09-12 12:48:21,991:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f0520>
+2024-09-12 12:48:22,103:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f0520>
+2024-09-12 12:48:22,123:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f0550>
+2024-09-12 12:48:22,126:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:48:22,127:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:48:22,127:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:48:22,127:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:48:25,334:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f0550>
+2024-09-12 12:48:25,401:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f0580>
+2024-09-12 12:48:25,403:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:48:25,403:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:48:25,404:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:48:25,404:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:48:37,509:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f0580>
+2024-09-12 12:48:37,560:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f05b0>
+2024-09-12 12:48:37,562:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:48:37,562:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:48:37,562:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:48:37,562:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:48:39,220:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f05b0>
+2024-09-12 12:48:39,258:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f05e0>
+2024-09-12 12:48:39,260:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:48:39,260:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:48:39,260:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:48:39,260:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:48:45,844:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f05e0>
+2024-09-12 12:48:45,921:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f0610>
+2024-09-12 12:48:45,923:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:48:45,923:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:48:45,923:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:48:45,923:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:50:35,701:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f0610>
+2024-09-12 12:50:35,709:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9bae8f0640>
+2024-09-12 12:50:35,710:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9bae8f0640>
+
+2024-09-12 12:50:51,557:template-review:INFO:lablog.py(201)                #################### template-review ####################
+2024-09-12 12:50:51,835:template-review:DEBUG:template-review.py(63)                DO316 / __init__
+2024-09-12 12:50:51,837:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:50:51,875:template-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:50:51,877:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:50:51,877:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:50:51,877:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:50:51,878:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:50:51,973:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:50:51,975:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:50:51,975:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~2gzl2O5LcPlNFrp-cSUbkmhottA5mLpMH-iP9FO95kI&state=1&grant_type=authorization_code
+2024-09-12 12:50:51,975:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:50:52,021:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 12:51:07,651:template-review:INFO:lablog.py(201)                #################### template-review ####################
+2024-09-12 12:51:07,909:template-review:DEBUG:template-review.py(63)                DO316 / __init__
+2024-09-12 12:51:07,911:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:51:07,947:template-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:51:07,949:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:51:07,949:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:51:07,949:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:51:07,950:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:51:08,049:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:51:08,050:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:51:08,050:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~WIafLoJOKrFSuDPML1SmgOfXRPMgHJ7adB5AgpCgecE&state=1&grant_type=authorization_code
+2024-09-12 12:51:08,050:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:51:08,097:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:51:08,104:template-review:DEBUG:template-review.py(178)                DO316 / grade
+[1m
+Grading lab.
+[0m
+2024-09-12 12:51:08,104:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe0199bd910>
+2024-09-12 12:51:08,105:template-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fe0199bd910>
+2024-09-12 12:51:08,236:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871430>
+2024-09-12 12:51:08,289:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe019871430>
+        - The 'mariadb-server' VM does not exist in the 'template-review' project.
+2024-09-12 12:51:08,369:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871460>
+2024-09-12 12:51:08,385:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe019871460>
+        - The 'web-server' VM does not exist in the 'template-review' project.
+2024-09-12 12:51:08,502:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871490>
+2024-09-12 12:51:08,509:template-review:INFO:runner.py(22)                [Task completed] Code: True, Item: <labs.core.step.LabStep object at 0x7fe019871490>
+        - The 'mariadb-server' template does not exist in the 'template-review' project. 'NoneType' object has no attribute 'objects'
+        - Requested PVC size is set to ''NoneType' object has no attribute 'objects''. Please work through the lab instructions.
+2024-09-12 12:51:08,635:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe0198714c0>
+2024-09-12 12:51:08,646:template-review:INFO:runner.py(22)                [Task completed] Code: True, Item: <labs.core.step.LabStep object at 0x7fe0198714c0>
+        - The 'web-server' template does not exist in the 'template-review' project. 'NoneType' object has no attribute 'objects'
+        - Requested PVC size is set to ''NoneType' object has no attribute 'objects''. Please work through the lab instructions.
+2024-09-12 12:51:08,768:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe0198714f0>
+2024-09-12 12:51:08,772:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe0198714f0>
+        - The 'mariadb-server-vm' VM does not exist in the 'template-review' project.
+2024-09-12 12:51:08,900:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871520>
+2024-09-12 12:51:08,905:template-review:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/common.py", line 1465, in grade_check_user_cloudinit
+    volumes = resource.spec.template.spec.volumes[::-1]
+AttributeError: 'NoneType' object has no attribute 'spec'
+2024-09-12 12:51:08,906:template-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fe019871520>
+        - An unexpected error ocurred: 'NoneType' object has no attribute 'spec'
+        - Check the log file for more details
+2024-09-12 12:51:09,032:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871550>
+2024-09-12 12:51:09,037:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe019871550>
+        - The 'web-server-vm' VM does not exist in the 'template-review' project.
+2024-09-12 12:51:09,165:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe019871580>
+2024-09-12 12:51:09,171:template-review:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/common.py", line 1465, in grade_check_user_cloudinit
+    volumes = resource.spec.template.spec.volumes[::-1]
+AttributeError: 'NoneType' object has no attribute 'spec'
+2024-09-12 12:51:09,171:template-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fe019871580>
+        - An unexpected error ocurred: 'NoneType' object has no attribute 'spec'
+        - Check the log file for more details
+2024-09-12 12:51:09,298:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe0198715b0>
+2024-09-12 12:51:09,305:template-review:INFO:runner.py(22)                [Task completed] Code: True, Item: <labs.core.step.LabStep object at 0x7fe0198715b0>
+        - Please work through the lab instructions. 'NoneType' object has no attribute 'spec'
+
+Overall lab grade: [31mFAIL[0m
+
+2024-09-12 12:51:25,128:template-review:INFO:lablog.py(201)                #################### template-review ####################
+2024-09-12 12:51:25,449:template-review:DEBUG:template-review.py(63)                DO316 / __init__
+2024-09-12 12:51:25,452:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:51:25,490:template-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:51:25,493:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:51:25,493:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:51:25,493:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:51:25,494:template-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:51:25,595:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:51:25,598:template-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:51:25,598:template-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~pCwJodskOMp-B5hxOZZOVEMFnU-oMscGX0gC_ktpMLo&state=1&grant_type=authorization_code
+2024-09-12 12:51:25,598:template-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:51:25,648:template-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:51:25,657:template-review:DEBUG:template-review.py(293)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 12:51:25,659:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f6ea8e7d5e0>
+2024-09-12 12:51:25,660:template-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f6ea8e7d5e0>
+2024-09-12 12:51:25,793:template-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f6ea8d30460>
+2024-09-12 12:51:25,796:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:51:25,796:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:51:25,796:template-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:51:25,797:template-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:51:48,616:template-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f6ea8d30460>
+

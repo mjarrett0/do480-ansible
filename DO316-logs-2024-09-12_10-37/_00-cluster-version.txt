@@ -1,0 +1,93 @@
+Client Version: 4.16.2
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Server Version: 4.16.2
+Kubernetes Version: v1.29.6+aba1e8d
+NAME       STATUS   ROLES                         AGE    VERSION
+master01   Ready    control-plane,master,worker   23d    v1.29.6+aba1e8d
+master02   Ready    control-plane,master,worker   23d    v1.29.6+aba1e8d
+master03   Ready    control-plane,master,worker   23d    v1.29.6+aba1e8d
+worker01   Ready    worker                        6d2h   v1.29.6+aba1e8d
+worker02   Ready    worker                        6d2h   v1.29.6+aba1e8d
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.16.2    True        False         23d     Cluster version is 4.16.2
+NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
+authentication                             4.16.2    True        False         False      10m     
+baremetal                                  4.16.2    True        False         False      23d     
+cloud-controller-manager                   4.16.2    True        False         False      23d     
+cloud-credential                           4.16.2    True        False         False      23d     
+cluster-autoscaler                         4.16.2    True        False         False      23d     
+config-operator                            4.16.2    True        False         False      23d     
+console                                    4.16.2    True        False         False      23d     
+control-plane-machine-set                  4.16.2    True        False         False      23d     
+csi-snapshot-controller                    4.16.2    True        False         False      23d     
+dns                                        4.16.2    True        False         False      23d     
+etcd                                       4.16.2    True        False         False      23d     
+image-registry                             4.16.2    True        False         False      23d     
+ingress                                    4.16.2    True        False         False      17m     
+insights                                   4.16.2    True        False         False      23d     
+kube-apiserver                             4.16.2    True        False         False      23d     
+kube-controller-manager                    4.16.2    True        False         False      23d     
+kube-scheduler                             4.16.2    True        False         False      23d     
+kube-storage-version-migrator              4.16.2    True        False         False      23d     
+machine-api                                4.16.2    True        False         False      23d     
+machine-approver                           4.16.2    True        False         False      23d     
+machine-config                             4.16.2    True        False         False      23d     
+marketplace                                4.16.2    True        False         False      23d     
+monitoring                                 4.16.2    True        False         False      6d3h    
+network                                    4.16.2    True        False         False      23d     
+node-tuning                                4.16.2    True        False         False      6d2h    
+openshift-apiserver                        4.16.2    True        False         False      23d     
+openshift-controller-manager               4.16.2    True        False         False      23d     
+openshift-samples                          4.16.2    True        False         False      6d1h    
+operator-lifecycle-manager                 4.16.2    True        False         False      23d     
+operator-lifecycle-manager-catalog         4.16.2    True        False         False      23d     
+operator-lifecycle-manager-packageserver   4.16.2    True        False         False      6d3h    
+service-ca                                 4.16.2    True        False         False      23d     
+storage                                    4.16.2    True        False         False      23d     
+NAMESPACE               NAME               DISPLAY                     TYPE   PUBLISHER   AGE
+openshift-marketplace   do316-catalog-cs   do316 Operator Catalog Cs   grpc               6d1h
+NAMESPACE               NAME                            CATALOG                     AGE
+openshift-marketplace   rook-ceph-operator              do316 Operator Catalog Cs   6d1h
+openshift-marketplace   ocs-client-operator             do316 Operator Catalog Cs   6d1h
+openshift-marketplace   node-maintenance-operator       do316 Operator Catalog Cs   6d1h
+openshift-marketplace   sandboxed-containers-operator   do316 Operator Catalog Cs   6d1h
+openshift-marketplace   redhat-oadp-operator            do316 Operator Catalog Cs   6d1h
+openshift-marketplace   ocs-operator                    do316 Operator Catalog Cs   6d1h
+openshift-marketplace   mcg-operator                    do316 Operator Catalog Cs   6d1h
+openshift-marketplace   node-healthcheck-operator       do316 Operator Catalog Cs   6d1h
+openshift-marketplace   kubernetes-nmstate-operator     do316 Operator Catalog Cs   6d1h
+openshift-marketplace   self-node-remediation           do316 Operator Catalog Cs   6d1h
+openshift-marketplace   recipe                          do316 Operator Catalog Cs   6d1h
+openshift-marketplace   mtv-operator                    do316 Operator Catalog Cs   6d1h
+openshift-marketplace   metallb-operator                do316 Operator Catalog Cs   6d1h
+openshift-marketplace   odf-operator                    do316 Operator Catalog Cs   6d1h
+openshift-marketplace   odf-prometheus-operator         do316 Operator Catalog Cs   6d1h
+openshift-marketplace   odf-csi-addons-operator         do316 Operator Catalog Cs   6d1h
+openshift-marketplace   kubevirt-hyperconverged         do316 Operator Catalog Cs   6d1h
+NAME                                        AGE
+mcg-operator.openshift-storage              6d1h
+metallb-operator.metallb-system             6d1h
+ocs-client-operator.openshift-storage       6d1h
+ocs-operator.openshift-storage              6d1h
+odf-csi-addons-operator.openshift-storage   6d1h
+odf-operator.openshift-storage              6d1h
+odf-prometheus-operator.openshift-storage   6d1h
+recipe.openshift-storage                    6d1h
+rook-ceph-operator.openshift-storage        6d1h
+"kubernetes-nmstate-operator": "kubernetes-nmstate-operator.4.16.0-202407251436",	
+"kubevirt-hyperconverged": "kubevirt-hyperconverged-operator.v4.16.1",	
+"mcg-operator": "mcg-operator.v4.16.1-rhodf",	
+"metallb-operator": "metallb-operator.v4.16.0-202408262007",	
+"mtv-operator": "mtv-operator.v2.6.3",	
+"node-healthcheck-operator": "node-healthcheck-operator.v0.8.2",	
+"node-maintenance-operator": "node-maintenance-operator.v5.3.0",	
+"ocs-client-operator": "ocs-client-operator.v4.16.1-rhodf",	
+"ocs-operator": "ocs-operator.v4.16.1-rhodf",	
+"odf-csi-addons-operator": "odf-csi-addons-operator.v4.16.1-rhodf",	
+"odf-operator": "odf-operator.v4.16.0-rhodf",	
+"odf-prometheus-operator": "odf-prometheus-operator.v4.16.1-rhodf",	
+"recipe": "recipe.v4.16.1-rhodf",	
+"redhat-oadp-operator": "oadp-operator.v1.4.0",	
+"rook-ceph-operator": "rook-ceph-operator.v4.16.1-rhodf",	
+"sandboxed-containers-operator": "sandboxed-containers-operator.v1.6.0",	
+"self-node-remediation": "self-node-remediation.v0.9.0",	

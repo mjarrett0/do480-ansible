@@ -1,0 +1,476 @@
+2024-09-12 11:08:10,034:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 11:08:10,300:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 11:08:10,301:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:08:10,338:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:08:10,340:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:08:10,340:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:08:10,340:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:08:10,341:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:08:10,430:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:08:10,431:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:08:10,431:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~ckcLmtX8uTYmW9GoVenpM6sEIDzT4Zd7GEADpdpHnUU&state=1&grant_type=authorization_code
+2024-09-12 11:08:10,431:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:08:10,496:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:08:10,505:multihomed-review:DEBUG:multihomed-review.py(94)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 11:08:10,506:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed4bd790>
+2024-09-12 11:08:10,506:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f81ed4bd790>
+2024-09-12 11:08:10,637:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed3613a0>
+2024-09-12 11:08:10,650:multihomed-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f81ed3613a0>
+2024-09-12 11:08:10,772:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed3613d0>
+2024-09-12 11:08:10,812:multihomed-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f81ed3613d0>
+2024-09-12 11:08:10,906:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361400>
+2024-09-12 11:08:11,008:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361400>
+2024-09-12 11:08:11,038:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361430>
+2024-09-12 11:08:11,041:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:08:11,041:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:08:11,042:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:08:11,042:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:08:14,346:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361430>
+2024-09-12 11:08:14,445:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361460>
+2024-09-12 11:08:14,447:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:08:14,447:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:08:14,447:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:08:14,447:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:08:26,451:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361460>
+2024-09-12 11:08:26,573:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361490>
+2024-09-12 11:08:26,576:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:08:26,576:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:08:26,576:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:08:26,576:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:15:10,125:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361490>
+2024-09-12 11:15:10,192:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed3614c0>
+2024-09-12 11:15:10,194:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:15:10,194:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:15:10,195:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:15:10,195:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:15:11,911:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed3614c0>
+2024-09-12 11:15:12,035:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed3614f0>
+2024-09-12 11:15:12,037:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:15:12,037:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:15:12,037:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:15:12,037:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:15:16,678:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed3614f0>
+2024-09-12 11:15:16,736:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361520>
+2024-09-12 11:15:16,738:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:15:16,738:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:15:16,739:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:15:16,739:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:15:23,217:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361520>
+2024-09-12 11:15:23,256:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361550>
+2024-09-12 11:15:23,258:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:15:23,259:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:15:23,259:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:15:23,259:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:16:33,170:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361550>
+2024-09-12 11:16:33,232:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f81ed361580>
+2024-09-12 11:16:33,234:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f81ed361580>
+
+2024-09-12 11:16:49,106:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 11:16:49,371:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 11:16:49,373:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:16:49,412:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:16:49,415:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:16:49,415:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:16:49,415:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:16:49,416:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:16:49,513:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:16:49,514:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:16:49,514:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~wsmUWHeQT8Qrvs027WPa6p1YHUIfzXBnAQVEokebtjU&state=1&grant_type=authorization_code
+2024-09-12 11:16:49,515:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:16:49,569:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 11:17:05,176:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 11:17:05,428:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 11:17:05,430:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:17:05,466:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:17:05,468:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:17:05,468:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:17:05,468:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:17:05,469:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:17:05,558:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:17:05,559:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:17:05,559:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~pNWZJoTC-FaVJDYXtBDBpbQOtk_V0BdQh59shNPLrDE&state=1&grant_type=authorization_code
+2024-09-12 11:17:05,560:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:17:05,628:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:17:05,636:multihomed-review:DEBUG:multihomed-review.py(194)                DO316 / grade
+[1m
+Grading lab.
+[0m
+2024-09-12 11:17:05,637:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb8fd5e0>
+2024-09-12 11:17:05,637:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f90eb8fd5e0>
+2024-09-12 11:17:05,768:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a1340>
+2024-09-12 11:17:05,841:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a1340>
+        - The 'br0-ens4-policy' policy does not exist in the cluster.
+2024-09-12 11:17:05,901:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a1370>
+2024-09-12 11:17:05,948:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a1370>
+        - The 'worker01.br0-ens4-policy' enactment for 'worker01' was not found in the cluster.
+2024-09-12 11:17:06,033:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a13a0>
+2024-09-12 11:17:06,060:multihomed-review:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/common.py", line 1578, in grade_nad
+    element = "{} {}".format(item["name"], item["type"])
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/step.py", line 110, in __getitem__
+    return self.__dict__[key]
+KeyError: 'name'
+2024-09-12 11:17:06,065:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f90eb7a13a0>
+        - An unexpected error ocurred: 'name'
+        - Check the log file for more details
+2024-09-12 11:17:06,166:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a13d0>
+2024-09-12 11:17:06,180:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a13d0>
+2024-09-12 11:17:06,298:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a1400>
+2024-09-12 11:17:06,305:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a1400>
+        - The 'br0-network' bridge is not attached to the VM.
+2024-09-12 11:17:06,431:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a1430>
+2024-09-12 11:17:06,441:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a1430>
+2024-09-12 11:17:06,562:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f90eb7a1460>
+2024-09-12 11:17:06,566:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:17:06,566:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:17:06,566:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:17:06,567:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:17:09,966:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection community.okd does not support Ansible version 2.14.14[0m
+2024-09-12 11:17:09,966:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 11:17:09,966:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 11:17:09,966:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,966:multihomed-review:ERROR:playbooks.py(93)                
+PLAY [Ping dev-external from external network] *********************************
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+TASK [OpenShift admin login] ***************************************************
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:17:07 -0400 (0:00:00.023)       0:00:00.023 **** 
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility] => (item={'user': 'admin', 'pass': 'redhatocp'})[0m
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Retrieve VMI IP address] *************************************************
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:17:08 -0400 (0:00:01.254)       0:00:01.278 **** 
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                [0;31mfatal: [utility]: FAILED! => {"changed": true, "cmd": "oc get vmi/dev-external -n multihomed-review -o=jsonpath='{.status.interfaces[1].ipAddress}'", "delta": "0:00:00.226108", "end": "2024-09-12 11:17:09.176721", "msg": "non-zero return code", "rc": 1, "start": "2024-09-12 11:17:08.950613", "stderr": "error: error executing jsonpath \"{.status.interfaces[1].ipAddress}\": Error executing template: array index out of bounds: index 1, length 1. Printing more information for debugging the template:\n\ttemplate was:\n\t\t{.status.interfaces[1].ipAddress}\n\tobject given to jsonpath engine was:\n\t\tmap[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"kind\":\"VirtualMachineInstance\", \"metadata\":map[string]interface {}{\"annotations\":map[string]interface {}{\"kubevirt.io/latest-observed-api-version\":\"v1\", \"kubevirt.io/storage-observed-api-version\":\"v1\", \"kubevirt.io/vm-generation\":\"1\"}, \"creationTimestamp\":\"2024-09-12T15:16:24Z\", \"finalizers\":[]interface {}{\"kubevirt.io/virtualMachineControllerFinalize\", \"foregroundDeleteVirtualMachine\"}, \"generation\":13, \"labels\":map[string]interface {}{\"flavor.template.kubevirt.io/small\":\"true\", \"kubevirt.io/domain\":\"dev-external\", \"kubevirt.io/nodeName\":\"worker02\", \"kubevirt.io/size\":\"small\", \"os.template.kubevirt.io/rhel8.4\":\"true\", \"workload.template.kubevirt.io/server\":\"true\"}, \"managedFields\":[]interface {}{map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"fieldsType\":\"FieldsV1\", \"fieldsV1\":map[string]interface {}{\"f:metadata\":map[string]interface {}{\"f:annotations\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:kubevirt.io/latest-observed-api-version\":map[string]interface {}{}, \"f:kubevirt.io/storage-observed-api-version\":map[string]interface {}{}, \"f:kubevirt.io/vm-generation\":map[string]interface {}{}}, \"f:finalizers\":map[string]interface {}{\".\":map[string]interface {}{}, \"v:\\\"kubevirt.io/virtualMachineControllerFinalize\\\"\":map[string]interface {}{}}, \"f:labels\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:flavor.template.kubevirt.io/small\":map[string]interface {}{}, \"f:kubevirt.io/domain\":map[string]interface {}{}, \"f:kubevirt.io/nodeName\":map[string]interface {}{}, \"f:kubevirt.io/size\":map[string]interface {}{}, \"f:os.template.kubevirt.io/rhel8.4\":map[string]interface {}{}, \"f:workload.template.kubevirt.io/server\":map[string]interface {}{}}, \"f:ownerReferences\":map[string]interface {}{\".\":map[string]interface {}{}, \"k:{\\\"uid\\\":\\\"7fcd81ab-d473-4f3d-b7fc-069bd39c3261\\\"}\":map[string]interface {}{}}}, \"f:spec\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:architecture\":map[string]interface {}{}, \"f:domain\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cpu\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cores\":map[string]interface {}{}, \"f:maxSockets\":map[string]interface {}{}, \"f:sockets\":map[string]interface {}{}, \"f:threads\":map[string]interface {}{}}, \"f:devices\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:disks\":map[string]interface {}{}, \"f:interfaces\":map[string]interface {}{}, \"f:networkInterfaceMultiqueue\":map[string]interface {}{}, \"f:rng\":map[string]interface {}{}}, \"f:firmware\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:uuid\":map[string]interface {}{}}, \"f:machine\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:type\":map[string]interface {}{}}, \"f:memory\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:guest\":map[string]interface {}{}, \"f:maxGuest\":map[string]interface {}{}}, \"f:resources\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:requests\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:memory\":map[string]interface {}{}}}}, \"f:evictionStrategy\":map[string]interface {}{}, \"f:hostname\":map[string]interface {}{}, \"f:networks\":map[string]interface {}{}, \"f:terminationGracePeriodSeconds\":map[string]interface {}{}, \"f:volumes\":map[string]interface {}{}}, \"f:status\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:activePods\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:eb2e2921-4eeb-418d-bff6-f83818c4360e\":map[string]interface {}{}}, \"f:currentCPUTopology\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cores\":map[string]interface {}{}, \"f:sockets\":map[string]interface {}{}, \"f:threads\":map[string]interface {}{}}, \"f:guestOSInfo\":map[string]interface {}{}, \"f:launcherContainerImageVersion\":map[string]interface {}{}, \"f:migrationTransport\":map[string]interface {}{}, \"f:nodeName\":map[string]interface {}{}, \"f:qosClass\":map[string]interface {}{}, \"f:runtimeUser\":map[string]interface {}{}, \"f:virtualMachineRevisionName\":map[string]interface {}{}}}, \"manager\":\"virt-controller\", \"operation\":\"Update\", \"time\":\"2024-09-12T15:16:27Z\"}, map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"fieldsType\":\"FieldsV1\", \"fieldsV1\":map[string]interface {}{\"f:status\":map[string]interface {}{\"f:conditions\":map[string]interface {}{}, \"f:guestOSInfo\":map[string]interface {}{\"f:id\":map[string]interface {}{}, \"f:kernelRelease\":map[string]interface {}{}, \"f:kernelVersion\":map[string]interface {}{}, \"f:machine\":map[string]interface {}{}, \"f:name\":map[string]interface {}{}, \"f:prettyName\":map[string]interface {}{}, \"f:version\":map[string]interface {}{}, \"f:versionId\":map[string]interface {}{}}, \"f:interfaces\":map[string]interface {}{}, \"f:machine\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:type\":map[string]interface {}{}}, \"f:migrationMethod\":map[string]interface {}{}, \"f:phase\":map[string]interface {}{}, \"f:phaseTransitionTimestamps\":map[string]interface {}{}, \"f:selinuxContext\":map[string]interface {}{}, \"f:volumeStatus\":map[string]interface {}{}}}, \"manager\":\"virt-handler\", \"operation\":\"Update\", \"time\":\"2024-09-12T15:17:05Z\"}}, \"name\":\"dev-external\", \"namespace\":\"multihomed-review\", \"ownerReferences\":[]interface {}{map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"blockOwnerDeletion\":true, \"controller\":true, \"kind\":\"VirtualMachine\", \"name\":\"dev-external\", \"uid\":\"7fcd81ab-d473-4f3d-b7fc-069bd39c3261\"}}, \"resourceVersion\":\"224946\", \"uid\":\"4794f92d-f99b-47e6-a04f-40b6d6a75702\"}, \"spec\":map[string]interface {}{\"architecture\":\"amd64\", \"domain\":map[string]interface {}{\"cpu\":map[string]interface {}{\"cores\":1, \"maxSockets\":4, \"model\":\"host-model\", \"sockets\":1, \"threads\":1}, \"devices\":map[string]interface {}{\"disks\":[]interface {}{map[string]interface {}{\"bootOrder\":1, \"disk\":map[string]interface {}{\"bus\":\"virtio\"}, \"name\":\"dev-external\"}, map[string]interface {}{\"disk\":map[string]interface {}{\"bus\":\"virtio\"}, \"name\":\"cloudinitdisk\"}}, \"interfaces\":[]interface {}{map[string]interface {}{\"macAddress\":\"02:3c:62:00:00:01\", \"masquerade\":map[string]interface {}{}, \"model\":\"virtio\", \"name\":\"default\"}}, \"networkInterfaceMultiqueue\":true, \"rng\":map[string]interface {}{}}, \"features\":map[string]interface {}{\"acpi\":map[string]interface {}{\"enabled\":true}}, \"firmware\":map[string]interface {}{\"uuid\":\"a5d29460-5663-5f40-be07-b1da0e06e567\"}, \"machine\":map[string]interface {}{\"type\":\"pc-q35-rhel8.4.0\"}, \"memory\":map[string]interface {}{\"guest\":\"2Gi\", \"maxGuest\":\"8Gi\"}, \"resources\":map[string]interface {}{\"requests\":map[string]interface {}{\"memory\":\"2Gi\"}}}, \"evictionStrategy\":\"LiveMigrate\", \"hostname\":\"dev-external\", \"networks\":[]interface {}{map[string]interface {}{\"name\":\"default\", \"pod\":map[string]interface {}{}}}, \"terminationGracePeriodSeconds\":180, \"volumes\":[]interface {}{map[string]interface {}{\"dataVolume\":map[string]interface {}{\"name\":\"dev-external\"}, \"name\":\"dev-external\"}, map[string]interface {}{\"cloudInitNoCloud\":map[string]interface {}{\"userData\":\"#cloud-config\\nuser: developer\\npassword: developer\\nchpasswd: { expire: False }\\nssh_authorized_keys:\\n  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGtUW3ismHyuCW4CDdTVOOOq6aySdtYenXFWWx7HJa4VTepkG00aaLId9ocra10hc+MB0GTJMCyabDv3i8NKdi6GDH/aOLVsp/Ewy8DEzZMBlJDCt4v2i4/wU4liw6KgEFkZs+5hnqU8d4QzldyGJ5onr+AGvFOKG68CS0BBl40Z1twf1HhCyx8k6nzD2ovlkxWRFZKPAFrtPCBVvQDkOfVFZF+lwzaSztgAjbFZ4A9jqQyUYx4kOJ5DtRef36ucdUdVQale0+8lICl7/gb142SPpYfhxe88/BJScLPRjvVNeu1TxRmoHtVazqnAoRxQYAn2MoI6AG+w6QuZf8f7aL LabGradingKey\\nbootcmd:\\n  - \\\"echo dev-external | sudo tee /etc/hostname\\\"\\n  - \\\"restorecon /etc/hostname\\\"\\npower_state:\\n  delay: now\\n  mode: reboot\\n  condition: test \\\"$HOSTNAME\\\" = \\\"dev-dbaccess\\\"\"}, \"name\":\"cloudinitdisk\"}}}, \"status\":map[string]interface {}{\"activePods\":map[string]interface {}{\"eb2e2921-4eeb-418d-bff6-f83818c4360e\":\"worker02\"}, \"conditions\":[]interface {}{map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":\"2024-09-12T15:16:26Z\", \"status\":\"True\", \"type\":\"Ready\"}, map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":interface {}(nil), \"message\":\"All of the VMI's DVs are bound and not running\", \"reason\":\"AllDVsReady\", \"status\":\"True\", \"type\":\"DataVolumesReady\"}, map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":interface {}(nil), \"status\":\"True\", \"type\":\"LiveMigratable\"}, map[string]interface {}{\"lastProbeTime\":\"2024-09-12T15:17:05Z\", \"lastTransitionTime\":interface {}(nil), \"status\":\"True\", \"type\":\"AgentConnected\"}}, \"currentCPUTopology\":map[string]interface {}{\"cores\":1, \"sockets\":1, \"threads\":1}, \"guestOSInfo\":map[string]interface {}{\"id\":\"rhel\", \"kernelRelease\":\"4.18.0-348.el8.x86_64\", \"kernelVersion\":\"#1 SMP Mon Oct 4 12:17:22 EDT 2021\", \"machine\":\"x86_64\", \"name\":\"Red Hat Enterprise Linux\", \"prettyName\":\"Red Hat Enterprise Linux 8.5 (Ootpa)\", \"version\":\"8.5 (Ootpa)\", \"versionId\":\"8.5\"}, \"interfaces\":[]interface {}{map[string]interface {}{\"infoSource\":\"domain, guest-agent\", \"interfaceName\":\"eth0\", \"mac\":\"02:3c:62:00:00:01\", \"name\":\"default\", \"queueCount\":1}}, \"launcherContainerImageVersion\":\"registry.redhat.io/container-native-virtualization/virt-launcher-rhel9@sha256:b5321b42abe252d751b72b3d12583057d4f733e2db52a16cf2f9757bed9117ea\", \"machine\":map[string]interface {}{\"type\":\"pc-q35-rhel8.4.0\"}, \"memory\":map[string]interface {}{\"guestAtBoot\":\"2Gi\", \"guestCurrent\":\"2Gi\", \"guestRequested\":\"2Gi\"}, \"migrationMethod\":\"BlockMigration\", \"migrationTransport\":\"Unix\", \"nodeName\":\"worker02\", \"phase\":\"Running\", \"phaseTransitionTimestamps\":[]interface {}{map[string]interface {}{\"phase\":\"Pending\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:24Z\"}, map[string]interface {}{\"phase\":\"Scheduling\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:24Z\"}, map[string]interface {}{\"phase\":\"Scheduled\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:26Z\"}, map[string]interface {}{\"phase\":\"Running\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:27Z\"}}, \"qosClass\":\"Burstable\", \"runtimeUser\":107, \"selinuxContext\":\"system_u:object_r:container_file_t:s0:c190,c224\", \"virtualMachineRevisionName\":\"revision-start-vm-7fcd81ab-d473-4f3d-b7fc-069bd39c3261-1\", \"volumeStatus\":[]interface {}{map[string]interface {}{\"name\":\"cloudinitdisk\", \"size\":1048576, \"target\":\"vdb\"}, map[string]interface {}{\"name\":\"dev-external\", \"persistentVolumeClaimInfo\":map[string]interface {}{\"accessModes\":[]interface {}{\"ReadWriteMany\"}, \"capacity\":map[string]interface {}{\"storage\":\"10Gi\"}, \"filesystemOverhead\":\"0\", \"requests\":map[string]interface {}{\"storage\":\"10Gi\"}, \"volumeMode\":\"Block\"}, \"target\":\"vda\"}}}}", "stderr_lines": ["error: error executing jsonpath \"{.status.interfaces[1].ipAddress}\": Error executing template: array index out of bounds: index 1, length 1. Printing more information for debugging the template:", "\ttemplate was:", "\t\t{.status.interfaces[1].ipAddress}", "\tobject given to jsonpath engine was:", "\t\tmap[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"kind\":\"VirtualMachineInstance\", \"metadata\":map[string]interface {}{\"annotations\":map[string]interface {}{\"kubevirt.io/latest-observed-api-version\":\"v1\", \"kubevirt.io/storage-observed-api-version\":\"v1\", \"kubevirt.io/vm-generation\":\"1\"}, \"creationTimestamp\":\"2024-09-12T15:16:24Z\", \"finalizers\":[]interface {}{\"kubevirt.io/virtualMachineControllerFinalize\", \"foregroundDeleteVirtualMachine\"}, \"generation\":13, \"labels\":map[string]interface {}{\"flavor.template.kubevirt.io/small\":\"true\", \"kubevirt.io/domain\":\"dev-external\", \"kubevirt.io/nodeName\":\"worker02\", \"kubevirt.io/size\":\"small\", \"os.template.kubevirt.io/rhel8.4\":\"true\", \"workload.template.kubevirt.io/server\":\"true\"}, \"managedFields\":[]interface {}{map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"fieldsType\":\"FieldsV1\", \"fieldsV1\":map[string]interface {}{\"f:metadata\":map[string]interface {}{\"f:annotations\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:kubevirt.io/latest-observed-api-version\":map[string]interface {}{}, \"f:kubevirt.io/storage-observed-api-version\":map[string]interface {}{}, \"f:kubevirt.io/vm-generation\":map[string]interface {}{}}, \"f:finalizers\":map[string]interface {}{\".\":map[string]interface {}{}, \"v:\\\"kubevirt.io/virtualMachineControllerFinalize\\\"\":map[string]interface {}{}}, \"f:labels\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:flavor.template.kubevirt.io/small\":map[string]interface {}{}, \"f:kubevirt.io/domain\":map[string]interface {}{}, \"f:kubevirt.io/nodeName\":map[string]interface {}{}, \"f:kubevirt.io/size\":map[string]interface {}{}, \"f:os.template.kubevirt.io/rhel8.4\":map[string]interface {}{}, \"f:workload.template.kubevirt.io/server\":map[string]interface {}{}}, \"f:ownerReferences\":map[string]interface {}{\".\":map[string]interface {}{}, \"k:{\\\"uid\\\":\\\"7fcd81ab-d473-4f3d-b7fc-069bd39c3261\\\"}\":map[string]interface {}{}}}, \"f:spec\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:architecture\":map[string]interface {}{}, \"f:domain\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cpu\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cores\":map[string]interface {}{}, \"f:maxSockets\":map[string]interface {}{}, \"f:sockets\":map[string]interface {}{}, \"f:threads\":map[string]interface {}{}}, \"f:devices\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:disks\":map[string]interface {}{}, \"f:interfaces\":map[string]interface {}{}, \"f:networkInterfaceMultiqueue\":map[string]interface {}{}, \"f:rng\":map[string]interface {}{}}, \"f:firmware\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:uuid\":map[string]interface {}{}}, \"f:machine\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:type\":map[string]interface {}{}}, \"f:memory\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:guest\":map[string]interface {}{}, \"f:maxGuest\":map[string]interface {}{}}, \"f:resources\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:requests\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:memory\":map[string]interface {}{}}}}, \"f:evictionStrategy\":map[string]interface {}{}, \"f:hostname\":map[string]interface {}{}, \"f:networks\":map[string]interface {}{}, \"f:terminationGracePeriodSeconds\":map[string]interface {}{}, \"f:volumes\":map[string]interface {}{}}, \"f:status\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:activePods\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:eb2e2921-4eeb-418d-bff6-f83818c4360e\":map[string]interface {}{}}, \"f:currentCPUTopology\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:cores\":map[string]interface {}{}, \"f:sockets\":map[string]interface {}{}, \"f:threads\":map[string]interface {}{}}, \"f:guestOSInfo\":map[string]interface {}{}, \"f:launcherContainerImageVersion\":map[string]interface {}{}, \"f:migrationTransport\":map[string]interface {}{}, \"f:nodeName\":map[string]interface {}{}, \"f:qosClass\":map[string]interface {}{}, \"f:runtimeUser\":map[string]interface {}{}, \"f:virtualMachineRevisionName\":map[string]interface {}{}}}, \"manager\":\"virt-controller\", \"operation\":\"Update\", \"time\":\"2024-09-12T15:16:27Z\"}, map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"fieldsType\":\"FieldsV1\", \"fieldsV1\":map[string]interface {}{\"f:status\":map[string]interface {}{\"f:conditions\":map[string]interface {}{}, \"f:guestOSInfo\":map[string]interface {}{\"f:id\":map[string]interface {}{}, \"f:kernelRelease\":map[string]interface {}{}, \"f:kernelVersion\":map[string]interface {}{}, \"f:machine\":map[string]interface {}{}, \"f:name\":map[string]interface {}{}, \"f:prettyName\":map[string]interface {}{}, \"f:version\":map[string]interface {}{}, \"f:versionId\":map[string]interface {}{}}, \"f:interfaces\":map[string]interface {}{}, \"f:machine\":map[string]interface {}{\".\":map[string]interface {}{}, \"f:type\":map[string]interface {}{}}, \"f:migrationMethod\":map[string]interface {}{}, \"f:phase\":map[string]interface {}{}, \"f:phaseTransitionTimestamps\":map[string]interface {}{}, \"f:selinuxContext\":map[string]interface {}{}, \"f:volumeStatus\":map[string]interface {}{}}}, \"manager\":\"virt-handler\", \"operation\":\"Update\", \"time\":\"2024-09-12T15:17:05Z\"}}, \"name\":\"dev-external\", \"namespace\":\"multihomed-review\", \"ownerReferences\":[]interface {}{map[string]interface {}{\"apiVersion\":\"kubevirt.io/v1\", \"blockOwnerDeletion\":true, \"controller\":true, \"kind\":\"VirtualMachine\", \"name\":\"dev-external\", \"uid\":\"7fcd81ab-d473-4f3d-b7fc-069bd39c3261\"}}, \"resourceVersion\":\"224946\", \"uid\":\"4794f92d-f99b-47e6-a04f-40b6d6a75702\"}, \"spec\":map[string]interface {}{\"architecture\":\"amd64\", \"domain\":map[string]interface {}{\"cpu\":map[string]interface {}{\"cores\":1, \"maxSockets\":4, \"model\":\"host-model\", \"sockets\":1, \"threads\":1}, \"devices\":map[string]interface {}{\"disks\":[]interface {}{map[string]interface {}{\"bootOrder\":1, \"disk\":map[string]interface {}{\"bus\":\"virtio\"}, \"name\":\"dev-external\"}, map[string]interface {}{\"disk\":map[string]interface {}{\"bus\":\"virtio\"}, \"name\":\"cloudinitdisk\"}}, \"interfaces\":[]interface {}{map[string]interface {}{\"macAddress\":\"02:3c:62:00:00:01\", \"masquerade\":map[string]interface {}{}, \"model\":\"virtio\", \"name\":\"default\"}}, \"networkInterfaceMultiqueue\":true, \"rng\":map[string]interface {}{}}, \"features\":map[string]interface {}{\"acpi\":map[string]interface {}{\"enabled\":true}}, \"firmware\":map[string]interface {}{\"uuid\":\"a5d29460-5663-5f40-be07-b1da0e06e567\"}, \"machine\":map[string]interface {}{\"type\":\"pc-q35-rhel8.4.0\"}, \"memory\":map[string]interface {}{\"guest\":\"2Gi\", \"maxGuest\":\"8Gi\"}, \"resources\":map[string]interface {}{\"requests\":map[string]interface {}{\"memory\":\"2Gi\"}}}, \"evictionStrategy\":\"LiveMigrate\", \"hostname\":\"dev-external\", \"networks\":[]interface {}{map[string]interface {}{\"name\":\"default\", \"pod\":map[string]interface {}{}}}, \"terminationGracePeriodSeconds\":180, \"volumes\":[]interface {}{map[string]interface {}{\"dataVolume\":map[string]interface {}{\"name\":\"dev-external\"}, \"name\":\"dev-external\"}, map[string]interface {}{\"cloudInitNoCloud\":map[string]interface {}{\"userData\":\"#cloud-config\\nuser: developer\\npassword: developer\\nchpasswd: { expire: False }\\nssh_authorized_keys:\\n  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGtUW3ismHyuCW4CDdTVOOOq6aySdtYenXFWWx7HJa4VTepkG00aaLId9ocra10hc+MB0GTJMCyabDv3i8NKdi6GDH/aOLVsp/Ewy8DEzZMBlJDCt4v2i4/wU4liw6KgEFkZs+5hnqU8d4QzldyGJ5onr+AGvFOKG68CS0BBl40Z1twf1HhCyx8k6nzD2ovlkxWRFZKPAFrtPCBVvQDkOfVFZF+lwzaSztgAjbFZ4A9jqQyUYx4kOJ5DtRef36ucdUdVQale0+8lICl7/gb142SPpYfhxe88/BJScLPRjvVNeu1TxRmoHtVazqnAoRxQYAn2MoI6AG+w6QuZf8f7aL LabGradingKey\\nbootcmd:\\n  - \\\"echo dev-external | sudo tee /etc/hostname\\\"\\n  - \\\"restorecon /etc/hostname\\\"\\npower_state:\\n  delay: now\\n  mode: reboot\\n  condition: test \\\"$HOSTNAME\\\" = \\\"dev-dbaccess\\\"\"}, \"name\":\"cloudinitdisk\"}}}, \"status\":map[string]interface {}{\"activePods\":map[string]interface {}{\"eb2e2921-4eeb-418d-bff6-f83818c4360e\":\"worker02\"}, \"conditions\":[]interface {}{map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":\"2024-09-12T15:16:26Z\", \"status\":\"True\", \"type\":\"Ready\"}, map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":interface {}(nil), \"message\":\"All of the VMI's DVs are bound and not running\", \"reason\":\"AllDVsReady\", \"status\":\"True\", \"type\":\"DataVolumesReady\"}, map[string]interface {}{\"lastProbeTime\":interface {}(nil), \"lastTransitionTime\":interface {}(nil), \"status\":\"True\", \"type\":\"LiveMigratable\"}, map[string]interface {}{\"lastProbeTime\":\"2024-09-12T15:17:05Z\", \"lastTransitionTime\":interface {}(nil), \"status\":\"True\", \"type\":\"AgentConnected\"}}, \"currentCPUTopology\":map[string]interface {}{\"cores\":1, \"sockets\":1, \"threads\":1}, \"guestOSInfo\":map[string]interface {}{\"id\":\"rhel\", \"kernelRelease\":\"4.18.0-348.el8.x86_64\", \"kernelVersion\":\"#1 SMP Mon Oct 4 12:17:22 EDT 2021\", \"machine\":\"x86_64\", \"name\":\"Red Hat Enterprise Linux\", \"prettyName\":\"Red Hat Enterprise Linux 8.5 (Ootpa)\", \"version\":\"8.5 (Ootpa)\", \"versionId\":\"8.5\"}, \"interfaces\":[]interface {}{map[string]interface {}{\"infoSource\":\"domain, guest-agent\", \"interfaceName\":\"eth0\", \"mac\":\"02:3c:62:00:00:01\", \"name\":\"default\", \"queueCount\":1}}, \"launcherContainerImageVersion\":\"registry.redhat.io/container-native-virtualization/virt-launcher-rhel9@sha256:b5321b42abe252d751b72b3d12583057d4f733e2db52a16cf2f9757bed9117ea\", \"machine\":map[string]interface {}{\"type\":\"pc-q35-rhel8.4.0\"}, \"memory\":map[string]interface {}{\"guestAtBoot\":\"2Gi\", \"guestCurrent\":\"2Gi\", \"guestRequested\":\"2Gi\"}, \"migrationMethod\":\"BlockMigration\", \"migrationTransport\":\"Unix\", \"nodeName\":\"worker02\", \"phase\":\"Running\", \"phaseTransitionTimestamps\":[]interface {}{map[string]interface {}{\"phase\":\"Pending\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:24Z\"}, map[string]interface {}{\"phase\":\"Scheduling\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:24Z\"}, map[string]interface {}{\"phase\":\"Scheduled\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:26Z\"}, map[string]interface {}{\"phase\":\"Running\", \"phaseTransitionTimestamp\":\"2024-09-12T15:16:27Z\"}}, \"qosClass\":\"Burstable\", \"runtimeUser\":107, \"selinuxContext\":\"system_u:object_r:container_file_t:s0:c190,c224\", \"virtualMachineRevisionName\":\"revision-start-vm-7fcd81ab-d473-4f3d-b7fc-069bd39c3261-1\", \"volumeStatus\":[]interface {}{map[string]interface {}{\"name\":\"cloudinitdisk\", \"size\":1048576, \"target\":\"vdb\"}, map[string]interface {}{\"name\":\"dev-external\", \"persistentVolumeClaimInfo\":map[string]interface {}{\"accessModes\":[]interface {}{\"ReadWriteMany\"}, \"capacity\":map[string]interface {}{\"storage\":\"10Gi\"}, \"filesystemOverhead\":\"0\", \"requests\":map[string]interface {}{\"storage\":\"10Gi\"}, \"volumeMode\":\"Block\"}, \"target\":\"vda\"}}}}"], "stdout": "", "stdout_lines": []}[0m
+[0;36m...ignoring[0m
+2024-09-12 11:17:09,967:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Print IP] ****************************************************************
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:17:09 -0400 (0:00:00.832)       0:00:02.111 **** 
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility] => {[0m
+[0;32m    "vmi_ip.stdout": ""[0m
+[0;32m}[0m
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Test connection] *********************************************************
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:17:09 -0400 (0:00:00.026)       0:00:02.138 **** 
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                [0;31mfatal: [utility]: FAILED! => {"changed": true, "cmd": ["ping", "-c4"], "delta": "0:00:00.010442", "end": "2024-09-12 11:17:09.714501", "msg": "non-zero return code", "rc": 1, "start": "2024-09-12 11:17:09.704059", "stderr": "ping: usage error: Destination address required", "stderr_lines": ["ping: usage error: Destination address required"], "stdout": "", "stdout_lines": []}[0m
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                
+PLAY RECAP *********************************************************************
+[0;31mutility[0m                    : [0;32mok=3   [0m [0;33mchanged=1   [0m unreachable=0    [0;31mfailed=1   [0m skipped=0    rescued=0    [1;35mignored=1   [0m
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:17:09 -0400 (0:00:00.506)       0:00:02.644 **** 
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                =============================================================================== 
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                OpenShift admin login --------------------------------------------------- 1.25s
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Retrieve VMI IP address ------------------------------------------------- 0.83s
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Test connection --------------------------------------------------------- 0.51s
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Print IP ---------------------------------------------------------------- 0.03s
+2024-09-12 11:17:09,968:multihomed-review:ERROR:playbooks.py(93)                Playbook run took 0 days, 0 hours, 0 minutes, 2 seconds
+2024-09-12 11:17:09,970:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f90eb7a1460>
+        - Playbook failed: ping_test.yml
+        - utility: Retrieve VMI IP address: non-zero return code
+        - utility: Test connection: non-zero return code
+
+Overall lab grade: [31mFAIL[0m
+
+2024-09-12 11:17:25,600:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 11:17:25,855:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 11:17:25,857:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:17:25,893:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:17:25,895:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:17:25,895:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:17:25,895:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:17:25,896:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:17:25,985:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:17:25,987:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:17:25,987:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~KgSqiryjFvXwLWaRtUBUIjcBZ7U4iNaptf14s8CLaus&state=1&grant_type=authorization_code
+2024-09-12 11:17:25,987:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:17:26,052:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:17:26,056:multihomed-review:DEBUG:multihomed-review.py(296)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 11:17:26,058:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2b7e5e0>
+2024-09-12 11:17:26,059:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fa7c2b7e5e0>
+2024-09-12 11:17:26,193:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2ae0550>
+2024-09-12 11:17:26,488:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa7c2ae0550>
+2024-09-12 11:17:26,590:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2ae0580>
+2024-09-12 11:17:26,593:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:17:26,594:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:17:26,594:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:17:26,595:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:17:30,101:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa7c2ae0580>
+2024-09-12 11:17:30,129:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2ae05b0>
+2024-09-12 11:17:30,131:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:17:30,131:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:17:30,131:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:17:30,131:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:17:53,262:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa7c2ae05b0>
+2024-09-12 11:17:53,302:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2ae05e0>
+2024-09-12 11:17:53,304:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:17:53,304:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:17:53,304:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:17:53,304:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:17:58,679:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa7c2ae05e0>
+2024-09-12 11:17:58,795:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa7c2ae0610>
+2024-09-12 11:17:58,795:multihomed-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/multihomed-review
+2024-09-12 11:17:58,795:multihomed-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/multihomed-review
+2024-09-12 11:17:58,795:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa7c2ae0610>
+
+2024-09-12 11:59:14,937:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 11:59:15,212:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 11:59:15,214:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:59:15,250:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:59:15,252:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:59:15,252:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:59:15,252:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:59:15,253:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:59:15,372:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:59:15,373:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:59:15,373:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~pvJqeTlUoDHiA-WyIK3FgNy8UbDYY5r_F2uY-YK4wJM&state=1&grant_type=authorization_code
+2024-09-12 11:59:15,373:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:59:15,427:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:59:15,435:multihomed-review:DEBUG:multihomed-review.py(94)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 11:59:15,436:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa03a13d790>
+2024-09-12 11:59:15,436:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fa03a13d790>
+2024-09-12 11:59:15,567:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff04c0>
+2024-09-12 11:59:15,575:multihomed-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fa039ff04c0>
+2024-09-12 11:59:15,703:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff04f0>
+2024-09-12 11:59:15,745:multihomed-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fa039ff04f0>
+2024-09-12 11:59:15,837:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff0520>
+2024-09-12 11:59:15,965:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa039ff0520>
+2024-09-12 11:59:15,970:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff0550>
+2024-09-12 11:59:15,973:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:59:15,973:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:59:15,973:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:59:15,973:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:59:19,261:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa039ff0550>
+2024-09-12 11:59:19,386:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff0580>
+2024-09-12 11:59:19,388:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:59:19,388:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:59:19,388:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:59:19,388:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:59:30,512:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fa039ff0580>
+2024-09-12 11:59:30,622:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fa039ff05b0>
+2024-09-12 11:59:30,623:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:59:30,623:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:59:30,623:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:59:30,623:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:21:09,662:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 12:21:09,662:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                
+PLAY [Install the 'NMState' operator] ******************************************
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create project: openshift-nmstate] ****************
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:59:31 -0400 (0:00:00.041)       0:00:00.041 **** 
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: kubernetes<24.2.0 is not supported or tested. Some features may not[0m
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                [1;35mwork.[0m
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Create namespace: openshift-nmstate] **************
+2024-09-12 12:21:09,663:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:59:32 -0400 (0:00:01.350)       0:00:01.391 **** 
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Wait for namespace creation] **********************
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:59:33 -0400 (0:00:01.137)       0:00:02.528 **** 
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility][0m
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                
+TASK [ocp-operator-install : Identify if an operator group exists for openshift-nmstate] ***
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  11:59:34 -0400 (0:00:01.146)       0:00:03.674 **** 
+2024-09-12 12:21:09,664:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:09,666:multihomed-review:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 73, in run_playbook
+    messages = runner.run(**kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/playbooks.py", line 83, in run
+    msg = event["event_data"]["res"]["msg"]
+KeyError: 'msg'
+2024-09-12 12:21:09,671:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fa039ff05b0>
+        - An unexpected error ocurred: 'msg'
+        - Check the log file for more details
+[31m        - Cannot continue starting lab[0m
+2024-09-12 12:21:09,799:multihomed-review:ERROR:userinterface.py(119)                The 'Install the 'NMstate' operator' fatal step has failed
+2024-09-12 12:21:09,799:multihomed-review:ERROR:lab.py(54)                Lab script has failed due to an error: The 'Install the 'NMstate' operator' fatal step has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 287, in start
+    grading.start()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/multihomed-review.py", line 188, in start
+    userinterface.Console(items).run_items(action="Starting")
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/userinterface.py", line 120, in run_items
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Install the 'NMstate' operator' fatal step has failed
+[31m
+An error has occurred.[0m
+
+For more details, run: lab logs multihomed-review[0m
+2024-09-12 12:21:25,464:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 12:21:25,742:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 12:21:25,744:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:21:25,783:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:21:25,785:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:21:25,785:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:21:25,785:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:21:25,786:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:21:25,888:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:21:25,890:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:21:25,890:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~RGSyJJ66XyLjJy2T9703cx4_-JajYknxYfq-nD-Wn4o&state=1&grant_type=authorization_code
+2024-09-12 12:21:25,890:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:21:25,958:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 12:21:41,575:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 12:21:41,833:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 12:21:41,835:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:21:41,870:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:21:41,872:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:21:41,872:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:21:41,872:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:21:41,873:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:21:41,964:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:21:41,966:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:21:41,966:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~6XNDTIepQoS6tys-MtuJxCklt_gTs0kvnAvirGmeoig&state=1&grant_type=authorization_code
+2024-09-12 12:21:41,966:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:21:42,023:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:21:42,033:multihomed-review:DEBUG:multihomed-review.py(194)                DO316 / grade
+[1m
+Grading lab.
+[0m
+2024-09-12 12:21:42,036:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb53d5e0>
+2024-09-12 12:21:42,037:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f80fb53d5e0>
+2024-09-12 12:21:42,169:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f0460>
+2024-09-12 12:21:42,243:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f0460>
+        - The 'br0-ens4-policy' policy does not exist in the cluster.
+2024-09-12 12:21:42,301:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f0490>
+2024-09-12 12:21:42,305:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f0490>
+        - The 'worker01.br0-ens4-policy' enactment for 'worker01' was not found in the cluster.
+2024-09-12 12:21:42,434:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f04c0>
+2024-09-12 12:21:42,442:multihomed-review:ERROR:runner.py(17)                Unexpected error
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/task/runner.py", line 15, in run_task
+    ret_code = step.task(step)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do316/common.py", line 1578, in grade_nad
+    element = "{} {}".format(item["name"], item["type"])
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/core/step.py", line 110, in __getitem__
+    return self.__dict__[key]
+KeyError: 'name'
+2024-09-12 12:21:42,443:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f80fb3f04c0>
+        - An unexpected error ocurred: 'name'
+        - Check the log file for more details
+2024-09-12 12:21:42,567:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f04f0>
+2024-09-12 12:21:42,571:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f04f0>
+        - The 'dev-external' VM is not running.
+2024-09-12 12:21:42,700:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f0520>
+2024-09-12 12:21:42,705:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f0520>
+        - The 'dev-external' VM is not connected to a network.
+2024-09-12 12:21:42,832:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f0550>
+2024-09-12 12:21:42,836:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f0550>
+2024-09-12 12:21:42,966:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f80fb3f0580>
+2024-09-12 12:21:42,969:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:21:42,969:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:21:42,970:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:21:42,970:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection community.okd does not support Ansible version 2.14.14[0m
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.14[0m
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                [1;35m[WARNING]: Collection ansible.posix does not support Ansible version 2.14.14[0m
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                
+PLAY [Ping dev-external from external network] *********************************
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                
+TASK [OpenShift admin login] ***************************************************
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:21:43 -0400 (0:00:00.022)       0:00:00.022 **** 
+2024-09-12 12:21:46,260:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility] => (item={'user': 'admin', 'pass': 'redhatocp'})[0m
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Retrieve VMI IP address] *************************************************
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:21:44 -0400 (0:00:01.244)       0:00:01.267 **** 
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                [0;31mfatal: [utility]: FAILED! => {"changed": true, "cmd": "oc get vmi/dev-external -n multihomed-review -o=jsonpath='{.status.interfaces[1].ipAddress}'", "delta": "0:00:00.217322", "end": "2024-09-12 12:21:45.535163", "msg": "non-zero return code", "rc": 1, "start": "2024-09-12 12:21:45.317841", "stderr": "Error from server (NotFound): namespaces \"multihomed-review\" not found", "stderr_lines": ["Error from server (NotFound): namespaces \"multihomed-review\" not found"], "stdout": "", "stdout_lines": []}[0m
+[0;36m...ignoring[0m
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Print IP] ****************************************************************
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:21:45 -0400 (0:00:00.824)       0:00:02.091 **** 
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                [0;32mok: [utility] => {[0m
+[0;32m    "vmi_ip.stdout": ""[0m
+[0;32m}[0m
+2024-09-12 12:21:46,261:multihomed-review:ERROR:playbooks.py(93)                
+TASK [Test connection] *********************************************************
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:21:45 -0400 (0:00:00.032)       0:00:02.124 **** 
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                [0;31mfatal: [utility]: FAILED! => {"changed": true, "cmd": ["ping", "-c4"], "delta": "0:00:00.005996", "end": "2024-09-12 12:21:46.014612", "msg": "non-zero return code", "rc": 1, "start": "2024-09-12 12:21:46.008616", "stderr": "ping: usage error: Destination address required", "stderr_lines": ["ping: usage error: Destination address required"], "stdout": "", "stdout_lines": []}[0m
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                
+PLAY RECAP *********************************************************************
+[0;31mutility[0m                    : [0;32mok=3   [0m [0;33mchanged=1   [0m unreachable=0    [0;31mfailed=1   [0m skipped=0    rescued=0    [1;35mignored=1   [0m
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Thursday 12 September 2024  12:21:46 -0400 (0:00:00.441)       0:00:02.566 **** 
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                =============================================================================== 
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                OpenShift admin login --------------------------------------------------- 1.24s
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Retrieve VMI IP address ------------------------------------------------- 0.82s
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Test connection --------------------------------------------------------- 0.44s
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Print IP ---------------------------------------------------------------- 0.03s
+2024-09-12 12:21:46,262:multihomed-review:ERROR:playbooks.py(93)                Playbook run took 0 days, 0 hours, 0 minutes, 2 seconds
+2024-09-12 12:21:46,264:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f80fb3f0580>
+        - Playbook failed: ping_test.yml
+        - utility: Retrieve VMI IP address: non-zero return code
+        - utility: Test connection: non-zero return code
+
+Overall lab grade: [31mFAIL[0m
+
+2024-09-12 12:22:02,071:multihomed-review:INFO:lablog.py(201)                #################### multihomed-review ####################
+2024-09-12 12:22:02,327:multihomed-review:DEBUG:multihomed-review.py(66)                DO316 / __init__
+2024-09-12 12:22:02,329:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:22:02,365:multihomed-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:22:02,367:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:22:02,367:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:22:02,367:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:22:02,368:multihomed-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:22:02,510:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:22:02,512:multihomed-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:22:02,512:multihomed-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~Vvi2YLgfA1RJ33DeJgUg026qMOCRn28VZUqyMgm1g-w&state=1&grant_type=authorization_code
+2024-09-12 12:22:02,512:multihomed-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:22:02,588:multihomed-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:22:02,596:multihomed-review:DEBUG:multihomed-review.py(296)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 12:22:02,597:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b9bd910>
+2024-09-12 12:22:02,597:multihomed-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f649b9bd910>
+2024-09-12 12:22:02,728:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b870430>
+2024-09-12 12:22:02,842:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f649b870430>
+2024-09-12 12:22:02,860:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b870460>
+2024-09-12 12:22:02,863:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:22:02,863:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:22:02,864:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:22:02,864:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:22:06,122:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f649b870460>
+2024-09-12 12:22:06,136:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b870490>
+2024-09-12 12:22:06,138:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:22:06,138:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:22:06,138:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:22:06,138:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:22:12,916:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f649b870490>
+2024-09-12 12:22:12,924:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b8704c0>
+2024-09-12 12:22:12,927:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:22:12,927:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:22:12,927:multihomed-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:22:12,927:multihomed-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:22:17,229:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f649b8704c0>
+2024-09-12 12:22:17,238:multihomed-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f649b8704f0>
+2024-09-12 12:22:17,238:multihomed-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/multihomed-review
+2024-09-12 12:22:17,238:multihomed-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/multihomed-review
+2024-09-12 12:22:17,238:multihomed-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f649b8704f0>
+

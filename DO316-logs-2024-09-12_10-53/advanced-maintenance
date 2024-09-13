@@ -1,0 +1,122 @@
+2024-09-12 13:19:20,479:advanced-maintenance:INFO:lablog.py(201)                #################### advanced-maintenance ####################
+2024-09-12 13:19:20,735:advanced-maintenance:DEBUG:advanced-maintenance.py(62)                DO316 / __init__
+2024-09-12 13:19:20,737:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:19:20,773:advanced-maintenance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:19:20,775:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:19:20,775:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:19:20,775:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:19:20,776:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:19:20,864:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:19:20,865:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:19:20,865:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~48eTrNL4BH5yM3-5Vr7P8Ncn8nazw7d9SOO9tT1ITwE&state=1&grant_type=authorization_code
+2024-09-12 13:19:20,865:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:19:20,919:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:19:20,926:advanced-maintenance:DEBUG:advanced-maintenance.py(90)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:19:20,927:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedc7d790>
+2024-09-12 13:19:20,927:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fdfedc7d790>
+2024-09-12 13:19:21,059:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb304c0>
+2024-09-12 13:19:21,067:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fdfedb304c0>
+2024-09-12 13:19:21,191:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb304f0>
+2024-09-12 13:19:21,231:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fdfedb304f0>
+2024-09-12 13:19:21,325:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30520>
+2024-09-12 13:19:21,426:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30520>
+2024-09-12 13:19:21,458:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30550>
+2024-09-12 13:19:21,461:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:19:21,462:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:19:21,462:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:19:21,462:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:19:24,535:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30550>
+2024-09-12 13:19:24,607:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30580>
+2024-09-12 13:19:24,608:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:19:24,608:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:19:24,609:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:19:24,609:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:19:36,204:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30580>
+2024-09-12 13:19:36,241:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb305b0>
+2024-09-12 13:19:36,242:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:19:36,243:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:19:36,243:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:19:36,243:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:25:45,202:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb305b0>
+2024-09-12 13:25:45,258:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb305e0>
+2024-09-12 13:25:45,262:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:25:45,262:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:25:45,262:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:25:45,262:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:25:46,924:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb305e0>
+2024-09-12 13:25:46,954:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30610>
+2024-09-12 13:25:46,955:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:25:46,956:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:25:46,956:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:25:46,956:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:25:53,574:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30610>
+2024-09-12 13:25:53,629:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30640>
+2024-09-12 13:25:53,631:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:25:53,631:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:25:53,631:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:25:53,631:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:26:42,108:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30640>
+2024-09-12 13:26:42,164:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdfedb30670>
+2024-09-12 13:26:42,165:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdfedb30670>
+
+2024-09-12 13:26:57,943:advanced-maintenance:INFO:lablog.py(201)                #################### advanced-maintenance ####################
+2024-09-12 13:26:58,206:advanced-maintenance:DEBUG:advanced-maintenance.py(62)                DO316 / __init__
+2024-09-12 13:26:58,208:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:26:58,244:advanced-maintenance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:26:58,246:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:26:58,246:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:26:58,246:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:26:58,247:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:26:58,333:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:26:58,335:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:26:58,335:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~7NjbFUv5umSSqLDxuf2QHkR52tfTxN3tTxmvRiCEa2E&state=1&grant_type=authorization_code
+2024-09-12 13:26:58,335:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:26:58,395:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:27:29,000:advanced-maintenance:INFO:lablog.py(201)                #################### advanced-maintenance ####################
+2024-09-12 13:27:29,257:advanced-maintenance:DEBUG:advanced-maintenance.py(62)                DO316 / __init__
+2024-09-12 13:27:29,258:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:27:29,296:advanced-maintenance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:27:29,298:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:27:29,298:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:27:29,298:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:27:29,299:advanced-maintenance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:27:29,380:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:27:29,382:advanced-maintenance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:27:29,382:advanced-maintenance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~lVEjpOMOFWjUgoQMfQ2A73umOpNG2TR4gzfZ1aH84mk&state=1&grant_type=authorization_code
+2024-09-12 13:27:29,382:advanced-maintenance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:27:29,440:advanced-maintenance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:27:29,450:advanced-maintenance:DEBUG:advanced-maintenance.py(185)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:27:29,451:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cacbc5e0>
+2024-09-12 13:27:29,452:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f96cacbc5e0>
+2024-09-12 13:27:29,582:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cab70460>
+2024-09-12 13:27:29,676:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f96cab70460>
+2024-09-12 13:27:29,715:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cab70490>
+2024-09-12 13:27:29,718:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:27:29,718:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:27:29,718:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:27:29,719:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:27:32,977:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f96cab70490>
+2024-09-12 13:27:32,992:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cab704c0>
+2024-09-12 13:27:32,994:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:27:32,994:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:27:32,994:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:27:32,994:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:27:35,091:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f96cab704c0>
+2024-09-12 13:27:35,213:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cab704f0>
+2024-09-12 13:27:35,215:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:27:35,215:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:27:35,215:advanced-maintenance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:27:35,215:advanced-maintenance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:27:58,336:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f96cab704f0>
+2024-09-12 13:27:58,353:advanced-maintenance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f96cab70520>
+2024-09-12 13:27:58,353:advanced-maintenance:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/advanced-maintenance
+2024-09-12 13:27:58,353:advanced-maintenance:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/advanced-maintenance
+2024-09-12 13:27:58,353:advanced-maintenance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f96cab70520>
+

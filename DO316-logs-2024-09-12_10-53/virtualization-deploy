@@ -1,0 +1,156 @@
+2024-09-12 10:42:15,076:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 10:42:16,297:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 10:42:16,299:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 10:42:16,345:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 10:42:16,347:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 10:42:16,348:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 10:42:16,348:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 10:42:16,348:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 10:42:16,436:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 10:42:16,438:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 10:42:16,438:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~XFMiXenEndAD3xzKikcIqYLTD6W6eGwGbNOsfU0e1EY&state=1&grant_type=authorization_code
+2024-09-12 10:42:16,438:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 10:42:16,523:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 10:42:16,603:virtualization-deploy:DEBUG:virtualization-deploy.py(91)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 10:42:16,606:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a4147f0>
+2024-09-12 10:42:16,607:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f851a4147f0>
+2024-09-12 10:42:16,740:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a4149d0>
+2024-09-12 10:42:16,769:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f851a4149d0>
+2024-09-12 10:42:16,879:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a4145e0>
+2024-09-12 10:42:16,917:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f851a4145e0>
+2024-09-12 10:42:17,012:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a414a30>
+2024-09-12 10:42:17,223:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f851a414a30>
+2024-09-12 10:42:17,275:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a414190>
+2024-09-12 10:42:17,278:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:42:17,279:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:42:17,279:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:42:17,280:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:42:22,343:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f851a414190>
+2024-09-12 10:42:22,381:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f851a414070>
+2024-09-12 10:42:22,383:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:42:22,383:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:42:22,383:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:42:22,383:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:42:29,085:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f851a414070>
+
+2024-09-12 10:42:44,805:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 10:42:45,064:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 10:42:45,065:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 10:42:45,101:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 10:42:45,103:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 10:42:45,103:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 10:42:45,103:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 10:42:45,104:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 10:42:45,206:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 10:42:45,208:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 10:42:45,208:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~hv2BNgQq2fRaI1ZRGsDGZe_mS17w_esJHy0jiIQRBkk&state=1&grant_type=authorization_code
+2024-09-12 10:42:45,208:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 10:42:45,272:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 10:43:15,861:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 10:43:16,136:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 10:43:16,138:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 10:43:16,174:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 10:43:16,176:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 10:43:16,176:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 10:43:16,176:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 10:43:16,177:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 10:43:16,333:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 10:43:16,335:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 10:43:16,335:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~04jAer3luzC39RCKzOpiGQrKp6302lsBkTexMHlztfo&state=1&grant_type=authorization_code
+2024-09-12 10:43:16,335:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 10:43:16,431:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 10:43:16,439:virtualization-deploy:DEBUG:virtualization-deploy.py(146)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 10:43:16,440:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f03ac0bd760>
+2024-09-12 10:43:16,441:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f03ac0bd760>
+2024-09-12 10:43:16,572:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f03abf60340>
+2024-09-12 10:43:16,574:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:43:16,575:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:43:16,575:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:43:16,575:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:43:23,201:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f03abf60340>
+
+2024-09-12 11:18:14,612:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 11:18:14,886:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 11:18:14,887:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:18:14,924:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:18:14,925:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:18:14,926:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:18:14,926:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:18:14,926:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:18:15,022:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:18:15,024:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:18:15,024:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~1pDWXwQteW0r3fAJQoHHer4w_xR2TRxQu1vuvgyEjcM&state=1&grant_type=authorization_code
+2024-09-12 11:18:15,024:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:18:15,088:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:18:15,097:virtualization-deploy:DEBUG:virtualization-deploy.py(91)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 11:18:15,098:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dd3d790>
+2024-09-12 11:18:15,099:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fb94dd3d790>
+2024-09-12 11:18:15,230:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dbf04c0>
+2024-09-12 11:18:15,238:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fb94dbf04c0>
+2024-09-12 11:18:15,365:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dbf04f0>
+2024-09-12 11:18:15,403:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fb94dbf04f0>
+2024-09-12 11:18:15,499:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dbf0520>
+2024-09-12 11:18:15,609:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fb94dbf0520>
+2024-09-12 11:18:15,631:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dbf0550>
+2024-09-12 11:18:15,634:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:18:15,635:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:18:15,635:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:18:15,635:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:18:18,779:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fb94dbf0550>
+2024-09-12 11:18:18,780:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fb94dbf0580>
+2024-09-12 11:18:18,782:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:18:18,782:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:18:18,782:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:18:18,782:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:18:25,795:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fb94dbf0580>
+
+2024-09-12 11:18:41,555:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 11:18:41,807:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 11:18:41,808:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:18:41,848:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:18:41,850:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:18:41,851:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:18:41,851:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:18:41,851:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:18:41,947:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:18:41,950:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:18:41,950:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~iv_Wa75NgIjLze2QhdqKOFzQDwv7S4nwK7CN_UrybL0&state=1&grant_type=authorization_code
+2024-09-12 11:18:41,950:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:18:42,007:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 11:19:12,620:virtualization-deploy:INFO:lablog.py(201)                #################### virtualization-deploy ####################
+2024-09-12 11:19:12,885:virtualization-deploy:DEBUG:virtualization-deploy.py(63)                DO316 / __init__
+2024-09-12 11:19:12,887:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:19:12,924:virtualization-deploy:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:19:12,926:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:19:12,926:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:19:12,926:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:19:12,927:virtualization-deploy:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:19:13,019:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:19:13,021:virtualization-deploy:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:19:13,021:virtualization-deploy:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~JLukKOudzO1aypq-6ygf5V6UCIijLSIvzTV9xoSpQBI&state=1&grant_type=authorization_code
+2024-09-12 11:19:13,021:virtualization-deploy:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:19:13,078:virtualization-deploy:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:19:13,086:virtualization-deploy:DEBUG:virtualization-deploy.py(146)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 11:19:13,087:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd985a7d5e0>
+2024-09-12 11:19:13,088:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fd985a7d5e0>
+2024-09-12 11:19:13,219:virtualization-deploy:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd985930460>
+2024-09-12 11:19:13,222:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:19:13,222:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:19:13,222:virtualization-deploy:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:19:13,223:virtualization-deploy:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:19:20,301:virtualization-deploy:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd985930460>
+

@@ -1,0 +1,102 @@
+2024-09-12 13:44:51,781:ha-loadbalance:INFO:lablog.py(201)                #################### ha-loadbalance ####################
+2024-09-12 13:44:52,042:ha-loadbalance:DEBUG:ha-loadbalance.py(62)                DO316 / __init__
+2024-09-12 13:44:52,044:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:44:52,080:ha-loadbalance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:44:52,082:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:44:52,082:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:44:52,082:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:44:52,083:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:44:52,191:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:44:52,192:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:44:52,193:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~18DcQB_1ExmOk7Ao8qh8Ou_6wXf-IT-TC0jU6D8_8zQ&state=1&grant_type=authorization_code
+2024-09-12 13:44:52,193:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:44:52,246:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:44:52,253:ha-loadbalance:DEBUG:ha-loadbalance.py(90)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 13:44:52,255:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb77e790>
+2024-09-12 13:44:52,255:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f9feb77e790>
+2024-09-12 13:44:52,387:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f190>
+2024-09-12 13:44:52,395:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f9feb62f190>
+2024-09-12 13:44:52,521:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f1c0>
+2024-09-12 13:44:52,560:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f9feb62f1c0>
+2024-09-12 13:44:52,655:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f1f0>
+2024-09-12 13:44:52,748:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f1f0>
+2024-09-12 13:44:52,787:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f220>
+2024-09-12 13:44:52,790:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:44:52,791:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:44:52,791:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:44:52,791:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:44:55,816:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f220>
+2024-09-12 13:44:55,945:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f250>
+2024-09-12 13:44:55,947:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:44:55,947:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:44:55,947:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:44:55,947:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:45:07,108:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f250>
+2024-09-12 13:45:07,230:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f280>
+2024-09-12 13:45:07,232:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:45:07,232:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:45:07,232:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:45:07,232:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:45:08,917:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f280>
+2024-09-12 13:45:08,938:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f2b0>
+2024-09-12 13:45:08,940:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:45:08,940:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:45:08,940:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:45:08,940:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:45:15,768:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f2b0>
+2024-09-12 13:45:15,885:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f2e0>
+2024-09-12 13:45:15,887:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:45:15,887:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:45:15,887:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:45:15,887:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:47:55,747:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f2e0>
+2024-09-12 13:47:55,856:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f9feb62f310>
+2024-09-12 13:47:55,858:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f9feb62f310>
+
+2024-09-12 13:48:11,659:ha-loadbalance:INFO:lablog.py(201)                #################### ha-loadbalance ####################
+2024-09-12 13:48:11,957:ha-loadbalance:DEBUG:ha-loadbalance.py(62)                DO316 / __init__
+2024-09-12 13:48:11,959:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:48:12,007:ha-loadbalance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:48:12,009:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:48:12,009:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:48:12,010:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:48:12,010:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:48:12,101:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:48:12,103:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:48:12,103:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~oA0PwvB2ieMR4gKX9ip5885aZpLx2s_YwWTfemPClUA&state=1&grant_type=authorization_code
+2024-09-12 13:48:12,103:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:48:12,160:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 13:48:42,773:ha-loadbalance:INFO:lablog.py(201)                #################### ha-loadbalance ####################
+2024-09-12 13:48:43,028:ha-loadbalance:DEBUG:ha-loadbalance.py(62)                DO316 / __init__
+2024-09-12 13:48:43,029:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 13:48:43,066:ha-loadbalance:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 13:48:43,068:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 13:48:43,068:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 13:48:43,068:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 13:48:43,069:ha-loadbalance:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 13:48:43,163:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 13:48:43,164:ha-loadbalance:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 13:48:43,164:ha-loadbalance:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~_0Ivtquy9002JVuyY9lvbYVB3qzEU5BdIvg9uJeRorU&state=1&grant_type=authorization_code
+2024-09-12 13:48:43,164:ha-loadbalance:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 13:48:43,212:ha-loadbalance:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 13:48:43,220:ha-loadbalance:DEBUG:ha-loadbalance.py(177)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 13:48:43,221:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe19a2bd5e0>
+2024-09-12 13:48:43,222:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fe19a2bd5e0>
+2024-09-12 13:48:43,354:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe19a16e130>
+2024-09-12 13:48:43,358:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 13:48:43,358:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 13:48:43,359:ha-loadbalance:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 13:48:43,359:ha-loadbalance:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 13:49:06,573:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe19a16e130>
+2024-09-12 13:49:06,613:ha-loadbalance:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fe19a16e160>
+2024-09-12 13:49:06,614:ha-loadbalance:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/ha-loadbalance
+2024-09-12 13:49:06,614:ha-loadbalance:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/ha-loadbalance
+2024-09-12 13:49:06,614:ha-loadbalance:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fe19a16e160>
+

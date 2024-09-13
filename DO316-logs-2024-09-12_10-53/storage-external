@@ -1,0 +1,114 @@
+2024-09-12 12:30:46,820:storage-external:INFO:lablog.py(201)                #################### storage-external ####################
+2024-09-12 12:30:47,083:storage-external:DEBUG:storage-external.py(66)                DO316 / __init__
+2024-09-12 12:30:47,085:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:30:47,124:storage-external:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:30:47,126:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:30:47,126:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:30:47,126:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:30:47,127:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:30:47,322:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:30:47,323:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:30:47,323:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~4eEo1dKk0dwJR0NsCOVlZJEe9xwXu4ORCW7VFJd151M&state=1&grant_type=authorization_code
+2024-09-12 12:30:47,323:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:30:47,480:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:30:47,487:storage-external:DEBUG:storage-external.py(94)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 12:30:47,489:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b93d790>
+2024-09-12 12:30:47,490:storage-external:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fee7b93d790>
+2024-09-12 12:30:47,622:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f04c0>
+2024-09-12 12:30:47,634:storage-external:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fee7b7f04c0>
+2024-09-12 12:30:47,755:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f04f0>
+2024-09-12 12:30:47,797:storage-external:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fee7b7f04f0>
+2024-09-12 12:30:47,889:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0520>
+2024-09-12 12:30:47,998:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0520>
+2024-09-12 12:30:48,022:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0550>
+2024-09-12 12:30:48,025:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:30:48,025:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:30:48,025:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:30:48,026:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:30:51,174:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0550>
+2024-09-12 12:30:51,295:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0580>
+2024-09-12 12:30:51,297:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:30:51,297:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:30:51,297:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:30:51,297:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:31:02,592:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0580>
+2024-09-12 12:31:02,677:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f05b0>
+2024-09-12 12:31:02,679:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:31:02,680:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:31:02,680:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:31:02,680:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:31:04,334:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f05b0>
+2024-09-12 12:31:04,380:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f05e0>
+2024-09-12 12:31:04,382:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:31:04,382:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:31:04,382:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:31:04,383:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:31:11,103:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f05e0>
+2024-09-12 12:31:11,161:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0610>
+2024-09-12 12:31:11,162:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:31:11,162:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:31:11,162:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:31:11,162:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:32:39,921:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0610>
+2024-09-12 12:32:40,033:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0640>
+2024-09-12 12:32:40,035:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0640>
+2024-09-12 12:32:40,167:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fee7b7f0670>
+2024-09-12 12:32:40,170:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:32:40,170:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:32:40,170:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:32:40,170:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:33:03,788:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fee7b7f0670>
+
+2024-09-12 12:33:19,525:storage-external:INFO:lablog.py(201)                #################### storage-external ####################
+2024-09-12 12:33:19,803:storage-external:DEBUG:storage-external.py(66)                DO316 / __init__
+2024-09-12 12:33:19,805:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:33:19,844:storage-external:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:33:19,846:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:33:19,846:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:33:19,846:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:33:19,847:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:33:19,944:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:33:19,946:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:33:19,946:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~yrOF5bYadmTxQ1KjsOF-rIfZ1Fy-Q8KEBquW6XEJy0U&state=1&grant_type=authorization_code
+2024-09-12 12:33:19,946:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:33:20,016:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 12:33:50,589:storage-external:INFO:lablog.py(201)                #################### storage-external ####################
+2024-09-12 12:33:50,834:storage-external:DEBUG:storage-external.py(66)                DO316 / __init__
+2024-09-12 12:33:50,836:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:33:50,872:storage-external:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:33:50,873:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:33:50,873:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:33:50,873:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:33:50,874:storage-external:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:33:50,973:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:33:50,975:storage-external:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:33:50,975:storage-external:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~YrmRoCc-gnNSQJo4Q9nANBPygCW-TvOQ-sW_t3Q1rRw&state=1&grant_type=authorization_code
+2024-09-12 12:33:50,975:storage-external:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:33:51,033:storage-external:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:33:51,040:storage-external:DEBUG:storage-external.py(189)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 12:33:51,043:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fab1d2fd5e0>
+2024-09-12 12:33:51,044:storage-external:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fab1d2fd5e0>
+2024-09-12 12:33:51,178:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fab1d1b0460>
+2024-09-12 12:33:51,181:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:33:51,181:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:33:51,182:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:33:51,182:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:36:19,884:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fab1d1b0460>
+2024-09-12 12:36:19,893:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fab1d1b0490>
+2024-09-12 12:36:19,895:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:36:19,895:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:36:19,895:storage-external:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:36:19,895:storage-external:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:36:23,559:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fab1d1b0490>
+2024-09-12 12:36:23,675:storage-external:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fab1d1b04c0>
+2024-09-12 12:36:23,675:storage-external:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/storage-external
+2024-09-12 12:36:23,675:storage-external:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/storage-external
+2024-09-12 12:36:23,675:storage-external:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fab1d1b04c0>
+

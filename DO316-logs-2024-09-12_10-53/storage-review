@@ -1,0 +1,167 @@
+2024-09-12 12:36:39,491:storage-review:INFO:lablog.py(201)                #################### storage-review ####################
+2024-09-12 12:36:39,784:storage-review:DEBUG:storage-review.py(67)                DO316 / __init__
+2024-09-12 12:36:39,785:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:36:39,823:storage-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:36:39,825:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:36:39,825:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:36:39,825:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:36:39,826:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:36:39,956:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:36:39,957:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:36:39,957:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~OA7nUJdjPRMeAxS9s8MxB7Xt4kKytwhXC0YWscN4wuM&state=1&grant_type=authorization_code
+2024-09-12 12:36:39,957:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:36:40,089:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:36:40,097:storage-review:DEBUG:storage-review.py(95)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 12:36:40,098:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c220bd790>
+2024-09-12 12:36:40,099:storage-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f0c220bd790>
+2024-09-12 12:36:40,232:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f704c0>
+2024-09-12 12:36:40,239:storage-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f0c21f704c0>
+2024-09-12 12:36:40,365:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f704f0>
+2024-09-12 12:36:40,403:storage-review:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f0c21f704f0>
+2024-09-12 12:36:40,499:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70520>
+2024-09-12 12:36:40,594:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70520>
+2024-09-12 12:36:40,634:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70550>
+2024-09-12 12:36:40,637:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:36:40,638:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:36:40,638:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:36:40,638:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:36:44,046:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70550>
+2024-09-12 12:36:44,167:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70580>
+2024-09-12 12:36:44,169:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:36:44,169:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:36:44,169:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:36:44,169:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:36:55,676:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70580>
+2024-09-12 12:36:55,683:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f705b0>
+2024-09-12 12:36:55,685:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:36:55,686:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:36:55,686:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:36:55,686:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:36:57,367:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f705b0>
+2024-09-12 12:36:57,385:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f705e0>
+2024-09-12 12:36:57,386:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:36:57,386:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:36:57,386:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:36:57,386:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:37:03,737:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f705e0>
+2024-09-12 12:37:03,779:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70610>
+2024-09-12 12:37:03,782:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:37:03,782:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:37:03,782:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:37:03,782:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:37:06,501:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70610>
+2024-09-12 12:37:06,522:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70640>
+2024-09-12 12:37:06,523:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:37:06,523:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:37:06,523:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:37:06,523:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:38:49,988:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70640>
+2024-09-12 12:38:50,083:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f70670>
+2024-09-12 12:38:50,085:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:38:50,085:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:38:50,085:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:38:50,085:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:39:58,736:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f70670>
+2024-09-12 12:39:58,836:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f0c21f706a0>
+2024-09-12 12:39:58,838:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f0c21f706a0>
+
+2024-09-12 12:40:14,645:storage-review:INFO:lablog.py(201)                #################### storage-review ####################
+2024-09-12 12:40:14,913:storage-review:DEBUG:storage-review.py(67)                DO316 / __init__
+2024-09-12 12:40:14,915:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:40:14,952:storage-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:40:14,954:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:40:14,954:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:40:14,954:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:40:14,955:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:40:15,053:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:40:15,054:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:40:15,054:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~Mm47Ad6QE01vROIvwNdZbtpTITOAgVz_-sH_L_8NC7Y&state=1&grant_type=authorization_code
+2024-09-12 12:40:15,055:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:40:15,119:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 12:40:30,749:storage-review:INFO:lablog.py(201)                #################### storage-review ####################
+2024-09-12 12:40:31,010:storage-review:DEBUG:storage-review.py(67)                DO316 / __init__
+2024-09-12 12:40:31,011:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:40:31,047:storage-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:40:31,049:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:40:31,049:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:40:31,049:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:40:31,049:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:40:31,161:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:40:31,163:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:40:31,163:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~zn8BgnK4Wp10wQUT1FEOVYe6_upLuT3xLOcfsaVk2hg&state=1&grant_type=authorization_code
+2024-09-12 12:40:31,163:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:40:31,218:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:40:31,225:storage-review:DEBUG:storage-review.py(198)                DO316 / grade
+[1m
+Grading lab.
+[0m
+2024-09-12 12:40:31,226:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a8183d5e0>
+2024-09-12 12:40:31,227:storage-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f2a8183d5e0>
+2024-09-12 12:40:31,358:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f1460>
+2024-09-12 12:40:31,414:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f1460>
+2024-09-12 12:40:31,491:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f1490>
+2024-09-12 12:40:31,498:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f1490>
+2024-09-12 12:40:31,624:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f14c0>
+2024-09-12 12:40:31,631:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f14c0>
+        - The 'webroot' disk is still attached to the VM.
+2024-09-12 12:40:31,756:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f14f0>
+2024-09-12 12:40:31,760:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f14f0>
+        - The 'nfs-pv' PV does not exist.
+2024-09-12 12:40:31,888:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f1520>
+2024-09-12 12:40:31,896:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f1520>
+        - The 'weblog' PVC does not exist in the 'storage-review' project.
+2024-09-12 12:40:32,021:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f1550>
+2024-09-12 12:40:32,031:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f1550>
+        - The 'webroot' PVC is not attached to the VM.
+2024-09-12 12:40:32,154:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f2a816f1580>
+2024-09-12 12:40:32,168:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f2a816f1580>
+        - The 'weblog' PVC is not attached to the VM.
+
+Overall lab grade: [31mFAIL[0m
+
+2024-09-12 12:40:47,857:storage-review:INFO:lablog.py(201)                #################### storage-review ####################
+2024-09-12 12:40:48,108:storage-review:DEBUG:storage-review.py(67)                DO316 / __init__
+2024-09-12 12:40:48,110:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 12:40:48,145:storage-review:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 12:40:48,147:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 12:40:48,147:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 12:40:48,147:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 12:40:48,148:storage-review:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 12:40:48,226:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 12:40:48,227:storage-review:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 12:40:48,228:storage-review:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~hDVQQErvyn6YDbgxKKt723OhIjR1rvuwO9HCl0wc_v4&state=1&grant_type=authorization_code
+2024-09-12 12:40:48,228:storage-review:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 12:40:48,274:storage-review:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 12:40:48,281:storage-review:DEBUG:storage-review.py(281)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 12:40:48,282:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdf7e87d5e0>
+2024-09-12 12:40:48,282:storage-review:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fdf7e87d5e0>
+2024-09-12 12:40:48,413:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdf7e730460>
+2024-09-12 12:40:48,416:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:40:48,416:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:40:48,416:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:40:48,416:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:41:11,540:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdf7e730460>
+2024-09-12 12:41:11,644:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdf7e730490>
+2024-09-12 12:41:11,647:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:41:11,647:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:41:11,647:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:41:11,647:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:41:15,296:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdf7e730490>
+2024-09-12 12:41:15,302:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdf7e7304c0>
+2024-09-12 12:41:15,304:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 12:41:15,304:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 12:41:15,304:storage-review:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 12:41:15,304:storage-review:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 12:41:17,346:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdf7e7304c0>
+2024-09-12 12:41:17,392:storage-review:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fdf7e7304f0>
+2024-09-12 12:41:17,392:storage-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/storage-review
+2024-09-12 12:41:17,392:storage-review:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/storage-review
+2024-09-12 12:41:17,392:storage-review:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fdf7e7304f0>
+

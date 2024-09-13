@@ -1,0 +1,268 @@
+2024-09-12 10:58:26,797:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 10:58:27,061:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 10:58:27,063:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 10:58:27,098:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 10:58:27,100:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 10:58:27,100:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 10:58:27,100:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 10:58:27,101:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 10:58:27,186:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 10:58:27,188:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 10:58:27,188:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~JzRO9KF2dNYJIWHW4qOlwWSl8fJ1dxDlSxIG4O9AyPI&state=1&grant_type=authorization_code
+2024-09-12 10:58:27,188:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 10:58:27,241:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 10:58:27,249:multihomed-nmstate:DEBUG:multihomed-nmstate.py(93)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 10:58:27,250:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd35147c940>
+2024-09-12 10:58:27,251:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7fd35147c940>
+2024-09-12 10:58:27,382:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd3513203d0>
+2024-09-12 10:58:27,390:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fd3513203d0>
+2024-09-12 10:58:27,517:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320400>
+2024-09-12 10:58:27,553:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7fd351320400>
+2024-09-12 10:58:27,650:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320430>
+2024-09-12 10:58:27,753:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320430>
+2024-09-12 10:58:27,782:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320460>
+2024-09-12 10:58:27,785:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:27,786:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:27,786:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:27,786:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:31,215:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320460>
+2024-09-12 10:58:31,325:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320490>
+2024-09-12 10:58:31,327:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:31,327:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:31,327:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:31,327:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:42,680:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320490>
+2024-09-12 10:58:42,800:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd3513204c0>
+2024-09-12 10:58:42,802:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:42,802:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:42,802:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:42,802:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:47,168:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd3513204c0>
+2024-09-12 10:58:47,245:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd3513204f0>
+2024-09-12 10:58:47,247:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:47,247:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:47,247:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:47,247:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:51,540:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd3513204f0>
+2024-09-12 10:58:51,568:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320520>
+2024-09-12 10:58:51,569:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:51,570:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:51,570:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:51,570:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:53,336:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320520>
+2024-09-12 10:58:53,403:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320550>
+2024-09-12 10:58:53,405:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:58:53,405:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:58:53,405:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:58:53,405:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 10:58:59,949:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320550>
+2024-09-12 10:59:00,063:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd351320580>
+2024-09-12 10:59:00,065:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 10:59:00,065:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 10:59:00,065:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 10:59:00,065:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:00:03,812:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd351320580>
+2024-09-12 11:00:03,905:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7fd3513205b0>
+2024-09-12 11:00:03,906:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7fd3513205b0>
+
+2024-09-12 11:00:29,326:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 11:00:29,587:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 11:00:29,588:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:00:29,625:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:00:29,626:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:00:29,627:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:00:29,627:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:00:29,627:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:00:29,736:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:00:29,737:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:00:29,737:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~MV5Rv4QSEeYyUbxPAcBd_8ONfAmZdMhwZoSghOvn8Qw&state=1&grant_type=authorization_code
+2024-09-12 11:00:29,737:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:00:29,792:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 11:01:00,429:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 11:01:00,682:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 11:01:00,684:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:01:00,731:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:01:00,733:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:01:00,734:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:01:00,734:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:01:00,735:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:01:00,838:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:01:00,841:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:01:00,841:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~LBi8h6ypnapMK2YMMIA49jM5n8wZclYeA_EHowHNf_k&state=1&grant_type=authorization_code
+2024-09-12 11:01:00,841:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:01:00,897:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:01:00,904:multihomed-nmstate:DEBUG:multihomed-nmstate.py(196)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 11:01:00,906:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727b7e760>
+2024-09-12 11:01:00,906:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f4727b7e760>
+2024-09-12 11:01:01,040:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a21370>
+2024-09-12 11:01:01,162:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a21370>
+2024-09-12 11:01:01,171:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a213a0>
+2024-09-12 11:01:01,173:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:01:01,174:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:01:01,174:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:01:01,174:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:01:05,149:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a213a0>
+2024-09-12 11:01:05,235:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a213d0>
+2024-09-12 11:01:05,237:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:01:05,237:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:01:05,237:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:01:05,237:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:01:09,782:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a213d0>
+2024-09-12 11:01:09,813:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a21400>
+2024-09-12 11:01:09,815:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:01:09,815:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:01:09,815:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:01:09,815:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:01:38,110:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a21400>
+2024-09-12 11:01:38,212:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a21430>
+2024-09-12 11:01:38,213:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:01:38,213:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:01:38,214:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:01:38,214:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:07:54,139:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a21430>
+2024-09-12 11:07:54,196:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f4727a21460>
+2024-09-12 11:07:54,196:multihomed-nmstate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/multihomed-nmstate
+2024-09-12 11:07:54,197:multihomed-nmstate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/multihomed-nmstate
+2024-09-12 11:07:54,197:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f4727a21460>
+
+2024-09-12 11:55:06,706:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 11:55:06,959:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 11:55:06,961:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:55:06,997:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:55:06,999:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:55:06,999:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:55:06,999:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:55:07,000:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:55:07,097:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:55:07,099:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:55:07,099:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~6aN57absQXXiCBOlmy7PlpGUxR0QRuj-nXsNfPcwRaM&state=1&grant_type=authorization_code
+2024-09-12 11:55:07,099:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:55:07,176:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:55:07,183:multihomed-nmstate:DEBUG:multihomed-nmstate.py(93)                DO316 / start
+[1m
+Starting lab.
+[0m
+2024-09-12 11:55:07,184:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f521bd790>
+2024-09-12 11:55:07,185:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f8f521bd790>
+2024-09-12 11:55:07,316:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f520704c0>
+2024-09-12 11:55:07,324:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f8f520704c0>
+2024-09-12 11:55:07,451:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f520704f0>
+2024-09-12 11:55:07,490:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: False, Item: <labs.core.step.LabStep object at 0x7f8f520704f0>
+2024-09-12 11:55:07,585:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070520>
+2024-09-12 11:55:07,680:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070520>
+2024-09-12 11:55:07,719:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070550>
+2024-09-12 11:55:07,723:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:07,723:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:07,723:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:07,723:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:10,899:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070550>
+2024-09-12 11:55:10,993:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070580>
+2024-09-12 11:55:10,996:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:10,996:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:10,996:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:10,996:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:22,976:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070580>
+2024-09-12 11:55:23,022:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f520705b0>
+2024-09-12 11:55:23,024:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:23,025:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:23,025:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:23,025:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:24,714:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f520705b0>
+2024-09-12 11:55:24,723:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f520705e0>
+2024-09-12 11:55:24,724:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:24,725:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:24,725:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:24,725:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:30,068:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f520705e0>
+2024-09-12 11:55:30,080:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070610>
+2024-09-12 11:55:30,082:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:30,082:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:30,082:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:30,082:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:46,883:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070610>
+2024-09-12 11:55:46,936:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070640>
+2024-09-12 11:55:46,938:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:46,938:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:46,938:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:46,938:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:55:53,902:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070640>
+2024-09-12 11:55:53,976:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f52070670>
+2024-09-12 11:55:53,978:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:55:53,978:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:55:53,978:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:55:53,978:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:57:22,696:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f52070670>
+2024-09-12 11:57:22,712:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f8f520706a0>
+2024-09-12 11:57:22,714:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f8f520706a0>
+
+2024-09-12 11:57:38,493:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 11:57:38,755:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 11:57:38,757:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:57:38,794:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:57:38,795:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:57:38,796:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:57:38,796:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:57:38,796:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:57:38,948:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:57:38,950:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:57:38,950:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~YijNM4ewFXXoxV4uhRitKS00epv0lKpcTtZGi3C5ygw&state=1&grant_type=authorization_code
+2024-09-12 11:57:38,950:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:57:39,048:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+The fix command is not supported for this lab.
+2024-09-12 11:58:09,804:multihomed-nmstate:INFO:lablog.py(201)                #################### multihomed-nmstate ####################
+2024-09-12 11:58:10,076:multihomed-nmstate:DEBUG:multihomed-nmstate.py(65)                DO316 / __init__
+2024-09-12 11:58:10,078:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): api.ocp4.example.com:6443
+2024-09-12 11:58:10,115:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://api.ocp4.example.com:6443 "GET /.well-known/oauth-authorization-server HTTP/1.1" 200 588
+2024-09-12 11:58:10,117:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 using method GET.
+2024-09-12 11:58:10,117:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'X-Csrf-Token': '1', 'authorization': 'Basic YWRtaW46cmVkaGF0b2Nw'} and data None
+2024-09-12 11:58:10,117:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'verify': False, 'allow_redirects': False}.
+2024-09-12 11:58:10,118:multihomed-nmstate:DEBUG:connectionpool.py(939)                Starting new HTTPS connection (1): oauth-openshift.apps.ocp4.example.com:443
+2024-09-12 11:58:10,229:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "GET /oauth/authorize?response_type=code&client_id=openshift-challenging-client&state=1 HTTP/1.1" 302 0
+2024-09-12 11:58:10,230:multihomed-nmstate:DEBUG:oauth2_session.py(563)                Requesting url https://oauth-openshift.apps.ocp4.example.com/oauth/token using method POST.
+2024-09-12 11:58:10,230:multihomed-nmstate:DEBUG:oauth2_session.py(564)                Supplying headers {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic b3BlbnNoaWZ0LWNoYWxsZW5naW5nLWNsaWVudDo='} and data code=sha256~S7g7nP_E89SRlKd4thuMaO_UyX_IETVMqRKoFArPUFk&state=1&grant_type=authorization_code
+2024-09-12 11:58:10,230:multihomed-nmstate:DEBUG:oauth2_session.py(565)                Passing through key word arguments {'json': None, 'verify': False}.
+2024-09-12 11:58:10,294:multihomed-nmstate:DEBUG:connectionpool.py(433)                https://oauth-openshift.apps.ocp4.example.com:443 "POST /oauth/token HTTP/1.1" 200 131
+2024-09-12 11:58:10,302:multihomed-nmstate:DEBUG:multihomed-nmstate.py(196)                DO316 / finish
+[1m
+Finishing lab.
+[0m
+2024-09-12 11:58:10,304:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fbbd5e0>
+2024-09-12 11:58:10,304:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: 0, Item: <labs.core.step.LabStep object at 0x7f006fbbd5e0>
+2024-09-12 11:58:10,437:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa70460>
+2024-09-12 11:58:10,546:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa70460>
+2024-09-12 11:58:10,569:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa70490>
+2024-09-12 11:58:10,572:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:58:10,573:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:58:10,573:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:58:10,573:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:58:13,676:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa70490>
+2024-09-12 11:58:13,712:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa704c0>
+2024-09-12 11:58:13,714:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:58:13,714:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:58:13,714:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:58:13,714:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:58:19,344:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa704c0>
+2024-09-12 11:58:19,468:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa704f0>
+2024-09-12 11:58:19,470:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:58:19,470:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:58:19,470:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:58:19,470:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:58:42,222:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa704f0>
+2024-09-12 11:58:42,344:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa70520>
+2024-09-12 11:58:42,346:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-core to find Ansible roles
+2024-09-12 11:58:42,347:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-ocp to find Ansible roles
+2024-09-12 11:58:42,347:multihomed-nmstate:DEBUG:playbooks.py(110)                Processing package rht-labs-dle to find Ansible roles
+2024-09-12 11:58:42,347:multihomed-nmstate:DEBUG:playbooks.py(117)                Ansible roles path is ['/home/student/.venv/labs/lib/python3.9/site-packages/do316/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/ocp/ansible/roles', '/home/student/.venv/labs/lib/python3.9/site-packages/dle/ansible/roles']
+2024-09-12 11:58:58,953:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa70520>
+2024-09-12 11:58:59,081:multihomed-nmstate:INFO:runner.py(12)                [Task running] Item: <labs.core.step.LabStep object at 0x7f006fa70550>
+2024-09-12 11:58:59,081:multihomed-nmstate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/labs/multihomed-nmstate
+2024-09-12 11:58:59,081:multihomed-nmstate:INFO:labtools.py(301)                Delete directory: /home/student/DO316/solutions/multihomed-nmstate
+2024-09-12 11:58:59,081:multihomed-nmstate:INFO:runner.py(22)                [Task completed] Code: None, Item: <labs.core.step.LabStep object at 0x7f006fa70550>
+
