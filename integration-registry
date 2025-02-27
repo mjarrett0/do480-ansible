@@ -1,0 +1,776 @@
+2025-02-26 14:31:13,306:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-26T19:31:13.056515',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 1.498459,
+                'end': '2025-02-26T19:31:13.056066',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-d981-70ba-000000000008',
+                'playbook': 'integration-registry/grabby-token.yml',
+                'playbook_uuid': '754ec8eb-74a0-413e-91c0-0d7eb9d20ecc',
+                'remote_addr': 'localhost',
+                'res': {'censored': 'the output has been hidden due to the '
+                                    "fact that 'no_log: true' was specified "
+                                    'for this result',
+                        'changed': False},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-26T19:31:11.557607',
+                'task': 'Authenticate and retrieve API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/grabby-token.yml:12',
+                'task_uuid': '52540000-fa09-d981-70ba-00000000000a',
+                'uuid': 'f8bb17de-dfc1-4254-8d81-2b8849e05bb1'},
+ 'parent_uuid': '52540000-fa09-d981-70ba-00000000000a',
+ 'pid': 4506,
+ 'runner_ident': 'a5169123-c2c5-4b89-87af-0bc9696a255c',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"censored": "the output '
+           "has been hidden due to the fact that 'no_log: true' was specified "
+           'for this result", "changed": false}\x1b[0m',
+ 'uuid': 'f8bb17de-dfc1-4254-8d81-2b8849e05bb1'}
+2025-02-26 14:31:13,427:integration-registry:ERROR:step.py(54)                Step 'Retrieving API token' has failed. 
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 95, in run_playbook_step
+    expected_messages, unexpected_messages = _extract_messages(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 114, in _extract_messages
+    initial_message = event["event_data"]["res"]["msg"]
+KeyError: 'msg'
+2025-02-26 14:31:13,551:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Retrieving API token' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 95, in run_playbook_step
+    expected_messages, unexpected_messages = _extract_messages(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 114, in _extract_messages
+    initial_message = event["event_data"]["res"]["msg"]
+KeyError: 'msg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Retrieving API token' has failed
+2025-02-26 18:33:50,613:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-26T23:33:50.378220',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 1.052854,
+                'end': '2025-02-26T23:33:50.377940',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-a596-70c3-000000000008',
+                'playbook': 'integration-registry/grabby-token.yml',
+                'playbook_uuid': 'ca77e34a-65e3-47f6-9bfd-7f98fa2dd47a',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'changed': False,
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central.stackrox.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': True}},
+                        'msg': 'Status code was -1 and not [200]: Request '
+                               'failed: <urlopen error [Errno -2] Name or '
+                               'service not known>',
+                        'redirected': False,
+                        'status': -1,
+                        'url': 'https://central.stackrox.example.com/v1/apitokens/generate'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-26T23:33:49.325086',
+                'task': 'Authenticate and retrieve API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/grabby-token.yml:12',
+                'task_uuid': '52540000-fa09-a596-70c3-00000000000a',
+                'uuid': '07f27fba-4a41-4f0a-909a-7da53338742e'},
+ 'parent_uuid': '52540000-fa09-a596-70c3-00000000000a',
+ 'pid': 4779,
+ 'runner_ident': 'a1747bdf-0c29-408c-88cb-ee0a1389c0a6',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, "changed": '
+           'false, "elapsed": 0, "msg": "Status code was -1 and not [200]: '
+           'Request failed: <urlopen error [Errno -2] Name or service not '
+           'known>", "redirected": false, "status": -1, "url": '
+           '"https://central.stackrox.example.com/v1/apitokens/generate"}\x1b[0m',
+ 'uuid': '07f27fba-4a41-4f0a-909a-7da53338742e'}
+2025-02-26 18:33:50,775:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Retrieving API token' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Retrieving API token' has failed
+2025-02-27 09:54:05,982:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-27T14:54:05.787578',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 1.109989,
+                'end': '2025-02-27T14:54:05.787391',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-81ba-c570-000000000008',
+                'playbook': 'integration-registry/grabby-token.yml',
+                'playbook_uuid': '8fda1e27-9a78-4fe1-807b-921e816f0b7b',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'changed': False,
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': True}},
+                        'msg': 'Status code was -1 and not [200]: Request '
+                               'failed: <urlopen error [SSL: '
+                               'CERTIFICATE_VERIFY_FAILED] certificate verify '
+                               'failed: unable to get local issuer certificate '
+                               '(_ssl.c:1129)>',
+                        'redirected': False,
+                        'status': -1,
+                        'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-27T14:54:04.677402',
+                'task': 'Authenticate and retrieve API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/grabby-token.yml:12',
+                'task_uuid': '52540000-fa09-81ba-c570-00000000000a',
+                'uuid': '83f52847-0f55-4a76-a4b2-8b919f9bb788'},
+ 'parent_uuid': '52540000-fa09-81ba-c570-00000000000a',
+ 'pid': 3063,
+ 'runner_ident': 'e6abc8b0-b30d-4640-902b-e92019f83cc9',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, "changed": '
+           'false, "elapsed": 0, "msg": "Status code was -1 and not [200]: '
+           'Request failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] '
+           'certificate verify failed: unable to get local issuer certificate '
+           '(_ssl.c:1129)>", "redirected": false, "status": -1, "url": '
+           '"https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate"}\x1b[0m',
+ 'uuid': '83f52847-0f55-4a76-a4b2-8b919f9bb788'}
+2025-02-27 09:54:06,177:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Retrieving API token' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Retrieving API token' has failed
+2025-02-27 10:13:56,688:integration-registry:ERROR:step.py(54)                Step 'Verifying cluster state' has failed. 
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 81, in wait_cluster_step
+    wait_cluster(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 130, in wait_cluster
+    _wait_for_api(max_api_up_minutes, sleep_seconds, step, verbose)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 228, in _wait_for_api
+    if not utils.wait_until(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/utils.py", line 61, in wait_until
+    value = condition(*args, **kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 243, in is_api_online
+    api_server_json = requests.get(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/api.py", line 60, in request
+    with sessions.Session() as session:
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/sessions.py", line 417, in __init__
+    self.cookies = cookiejar_from_dict({})
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/cookies.py", line 518, in cookiejar_from_dict
+    cookiejar = RequestsCookieJar()
+  File "/usr/lib64/python3.9/http/cookiejar.py", line 1260, in __init__
+    policy = DefaultCookiePolicy()
+  File "/usr/lib64/python3.9/http/cookiejar.py", line 895, in __init__
+    self.strict_domain = strict_domain
+KeyboardInterrupt
+2025-02-27 10:13:56,844:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Verifying cluster state' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 81, in wait_cluster_step
+    wait_cluster(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 130, in wait_cluster
+    _wait_for_api(max_api_up_minutes, sleep_seconds, step, verbose)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 228, in _wait_for_api
+    if not utils.wait_until(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/common/utils.py", line 61, in wait_until
+    value = condition(*args, **kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 243, in is_api_online
+    api_server_json = requests.get(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/api.py", line 60, in request
+    with sessions.Session() as session:
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/sessions.py", line 417, in __init__
+    self.cookies = cookiejar_from_dict({})
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/requests/cookies.py", line 518, in cookiejar_from_dict
+    cookiejar = RequestsCookieJar()
+  File "/usr/lib64/python3.9/http/cookiejar.py", line 1260, in __init__
+    policy = DefaultCookiePolicy()
+  File "/usr/lib64/python3.9/http/cookiejar.py", line 895, in __init__
+    self.strict_domain = strict_domain
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 352, in start
+    grading.prestart()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 25, in prestart
+    self.start()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 57, in start
+    wait_cluster_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/rht_labs_ocpcli/health.py", line 81, in wait_cluster_step
+    wait_cluster(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Verifying cluster state' has failed
+2025-02-27 10:14:43,693:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-27T15:14:43.488481',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 0.949722,
+                'end': '2025-02-27T15:14:43.488191',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token and Remove Quay Integration',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-c31c-c6c8-000000000008',
+                'playbook': 'integration-registry/remove-integration.yml',
+                'playbook_uuid': 'f9243302-6e11-4ba2-976f-e9ff8f5ca0fa',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'changed': False,
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central.stackrox.apps.ocp4.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': True}},
+                        'msg': 'Status code was -1 and not [200]: Request '
+                               'failed: <urlopen error [SSL: '
+                               'CERTIFICATE_VERIFY_FAILED] certificate verify '
+                               'failed: Hostname mismatch, certificate is not '
+                               'valid for '
+                               "'central.stackrox.apps.ocp4.example.com'. "
+                               '(_ssl.c:1129)>',
+                        'redirected': False,
+                        'status': -1,
+                        'url': 'https://central.stackrox.apps.ocp4.example.com/v1/apitokens/generate'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-27T15:14:42.538469',
+                'task': 'Authenticate and retrieve RHACS API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/remove-integration.yml:12',
+                'task_uuid': '52540000-fa09-c31c-c6c8-00000000000a',
+                'uuid': '7bdc1c9e-6e39-47b5-8f42-783aa9004944'},
+ 'parent_uuid': '52540000-fa09-c31c-c6c8-00000000000a',
+ 'pid': 3345,
+ 'runner_ident': 'dbc661f5-cf61-4013-bd43-b43ecf640636',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, "changed": '
+           'false, "elapsed": 0, "msg": "Status code was -1 and not [200]: '
+           'Request failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] '
+           'certificate verify failed: Hostname mismatch, certificate is not '
+           "valid for 'central.stackrox.apps.ocp4.example.com'. "
+           '(_ssl.c:1129)>", "redirected": false, "status": -1, "url": '
+           '"https://central.stackrox.apps.ocp4.example.com/v1/apitokens/generate"}\x1b[0m',
+ 'uuid': '7bdc1c9e-6e39-47b5-8f42-783aa9004944'}
+2025-02-27 10:14:43,894:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Removing Quay.io integration' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Removing Quay.io integration' has failed
+2025-02-27 10:23:48,485:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-27T15:23:48.282453',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 0.875125,
+                'end': '2025-02-27T15:23:48.282252',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token and Remove Quay Integration',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-c29d-6e4c-000000000008',
+                'playbook': 'integration-registry/remove-integration.yml',
+                'playbook_uuid': '6cee4b03-69ab-401d-8f84-a71fa3d16869',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'changed': False,
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central.stackrox.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': True}},
+                        'msg': 'Status code was -1 and not [200]: Request '
+                               'failed: <urlopen error [Errno -2] Name or '
+                               'service not known>',
+                        'redirected': False,
+                        'status': -1,
+                        'url': 'https://central.stackrox.example.com/v1/apitokens/generate'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-27T15:23:47.407127',
+                'task': 'Authenticate and retrieve RHACS API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/remove-integration.yml:12',
+                'task_uuid': '52540000-fa09-c29d-6e4c-00000000000a',
+                'uuid': '4b053541-d4d3-4752-a62d-b82673546787'},
+ 'parent_uuid': '52540000-fa09-c29d-6e4c-00000000000a',
+ 'pid': 3503,
+ 'runner_ident': '19eb6d2e-9aae-4299-829f-6608e024f500',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, "changed": '
+           'false, "elapsed": 0, "msg": "Status code was -1 and not [200]: '
+           'Request failed: <urlopen error [Errno -2] Name or service not '
+           'known>", "redirected": false, "status": -1, "url": '
+           '"https://central.stackrox.example.com/v1/apitokens/generate"}\x1b[0m',
+ 'uuid': '4b053541-d4d3-4752-a62d-b82673546787'}
+2025-02-27 10:23:48,581:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Removing Quay.io integration' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Removing Quay.io integration' has failed
+2025-02-27 10:32:35,278:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-27T15:32:35.065174',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 1.003993,
+                'end': '2025-02-27T15:32:35.064897',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token and Remove Quay Integration',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-5ade-4a81-000000000008',
+                'playbook': 'integration-registry/remove-integration.yml',
+                'playbook_uuid': '1747efb4-e1a3-49c7-a32f-bff5411f6105',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'changed': False,
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': True}},
+                        'msg': 'Status code was -1 and not [200]: Request '
+                               'failed: <urlopen error [SSL: '
+                               'CERTIFICATE_VERIFY_FAILED] certificate verify '
+                               'failed: unable to get local issuer certificate '
+                               '(_ssl.c:1129)>',
+                        'redirected': False,
+                        'status': -1,
+                        'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-27T15:32:34.060904',
+                'task': 'Authenticate and retrieve RHACS API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/remove-integration.yml:12',
+                'task_uuid': '52540000-fa09-5ade-4a81-00000000000a',
+                'uuid': 'b8f8f8bd-d778-4d73-afa4-0282f799d0f0'},
+ 'parent_uuid': '52540000-fa09-5ade-4a81-00000000000a',
+ 'pid': 3640,
+ 'runner_ident': '4af0d253-f1d8-4bb0-98f3-1efe8a80b3fe',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, "changed": '
+           'false, "elapsed": 0, "msg": "Status code was -1 and not [200]: '
+           'Request failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] '
+           'certificate verify failed: unable to get local issuer certificate '
+           '(_ssl.c:1129)>", "redirected": false, "status": -1, "url": '
+           '"https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate"}\x1b[0m',
+ 'uuid': 'b8f8f8bd-d778-4d73-afa4-0282f799d0f0'}
+2025-02-27 10:32:35,484:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Removing Quay.io integration' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Removing Quay.io integration' has failed
+2025-02-27 10:55:08,810:integration-registry:ERROR:ansible.py(113)                Failed event {'counter': 5,
+ 'created': '2025-02-27T15:55:08.626390',
+ 'end_line': 5,
+ 'event': 'runner_on_failed',
+ 'event_data': {'duration': 0.763697,
+                'end': '2025-02-27T15:55:08.626183',
+                'event_loop': None,
+                'host': 'localhost',
+                'ignore_errors': None,
+                'play': 'Generate RHACS API Token and Remove Quay Integration',
+                'play_pattern': 'localhost',
+                'play_uuid': '52540000-fa09-13ec-d2fc-000000000008',
+                'playbook': 'integration-registry/remove-integration.yml',
+                'playbook_uuid': '41e69512-2497-4e75-b9aa-213c7a674805',
+                'remote_addr': 'localhost',
+                'res': {'_ansible_no_log': False,
+                        'ansible_facts': {'discovered_interpreter_python': '/usr/bin/python3'},
+                        'cache_control': 'no-store, no-cache',
+                        'changed': False,
+                        'connection': 'close',
+                        'content_length': '225',
+                        'content_type': 'application/json',
+                        'date': 'Thu, 27 Feb 2025 15:55:08 GMT',
+                        'elapsed': 0,
+                        'invocation': {'module_args': {'attributes': None,
+                                                       'body': {'name': 'ansible_generated_token',
+                                                                'role': 'Admin'},
+                                                       'body_format': 'json',
+                                                       'ca_path': None,
+                                                       'ciphers': None,
+                                                       'client_cert': None,
+                                                       'client_key': None,
+                                                       'creates': None,
+                                                       'decompress': True,
+                                                       'dest': None,
+                                                       'follow_redirects': 'safe',
+                                                       'force': False,
+                                                       'force_basic_auth': False,
+                                                       'group': None,
+                                                       'headers': {'Authorization': 'Basic '
+                                                                                    'YWRtaW4=:ajA5QVIyNm04QUJhQUY4ZjczOUNyTmRLOQ==',
+                                                                   'Content-Type': 'application/json'},
+                                                       'http_agent': 'ansible-httpget',
+                                                       'method': 'POST',
+                                                       'mode': None,
+                                                       'owner': None,
+                                                       'remote_src': False,
+                                                       'removes': None,
+                                                       'return_content': False,
+                                                       'selevel': None,
+                                                       'serole': None,
+                                                       'setype': None,
+                                                       'seuser': None,
+                                                       'src': None,
+                                                       'status_code': [200],
+                                                       'timeout': 30,
+                                                       'unix_socket': None,
+                                                       'unredirected_headers': [],
+                                                       'unsafe_writes': False,
+                                                       'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate',
+                                                       'url_password': None,
+                                                       'url_username': None,
+                                                       'use_gssapi': False,
+                                                       'use_netrc': True,
+                                                       'use_proxy': True,
+                                                       'validate_certs': False}},
+                        'json': {'code': 16,
+                                 'details': [],
+                                 'error': 'credentials not found: basic: '
+                                          'cannot extract identity: failed to '
+                                          'parse basic auth token',
+                                 'message': 'credentials not found: basic: '
+                                            'cannot extract identity: failed '
+                                            'to parse basic auth token'},
+                        'msg': 'Status code was 401 and not [200]: HTTP Error '
+                               '401: Unauthorized',
+                        'redirected': False,
+                        'status': 401,
+                        'url': 'https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate',
+                        'vary': 'Accept-Encoding',
+                        'www_authenticate': 'credentials not found: basic: '
+                                            'cannot extract identity: failed '
+                                            'to parse basic auth token'},
+                'resolved_action': 'ansible.builtin.uri',
+                'start': '2025-02-27T15:55:07.862486',
+                'task': 'Authenticate and retrieve RHACS API token',
+                'task_action': 'uri',
+                'task_args': '',
+                'task_path': '/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/ansible/integration-registry/remove-integration.yml:12',
+                'task_uuid': '52540000-fa09-13ec-d2fc-00000000000a',
+                'uuid': 'aee15dc4-3bf8-43e1-885e-ad4c8e144e7f'},
+ 'parent_uuid': '52540000-fa09-13ec-d2fc-00000000000a',
+ 'pid': 3778,
+ 'runner_ident': 'e4dc6cf6-db2e-4f2d-8427-e5cd32da2723',
+ 'start_line': 4,
+ 'stdout': '\x1b[0;31mfatal: [localhost]: FAILED! => {"ansible_facts": '
+           '{"discovered_interpreter_python": "/usr/bin/python3"}, '
+           '"cache_control": "no-store, no-cache", "changed": false, '
+           '"connection": "close", "content_length": "225", "content_type": '
+           '"application/json", "date": "Thu, 27 Feb 2025 15:55:08 GMT", '
+           '"elapsed": 0, "json": {"code": 16, "details": [], "error": '
+           '"credentials not found: basic: cannot extract identity: failed to '
+           'parse basic auth token", "message": "credentials not found: basic: '
+           'cannot extract identity: failed to parse basic auth token"}, '
+           '"msg": "Status code was 401 and not [200]: HTTP Error 401: '
+           'Unauthorized", "redirected": false, "status": 401, "url": '
+           '"https://central-stackrox.apps.ocp4.example.com/v1/apitokens/generate", '
+           '"vary": "Accept-Encoding", "www_authenticate": "credentials not '
+           'found: basic: cannot extract identity: failed to parse basic auth '
+           'token"}\x1b[0m',
+ 'uuid': 'aee15dc4-3bf8-43e1-885e-ad4c8e144e7f'}
+2025-02-27 10:55:08,977:integration-registry:ERROR:lab.py(64)                Lab script has failed due to an error: Step 'Removing Quay.io integration' has failed
+Traceback (most recent call last):
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/lab.py", line 382, in finish
+    grading.prefinish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/grading.py", line 42, in prefinish
+    self.finish()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/do0006l/integration-registry.py", line 83, in finish
+    ansible.run_playbook_step(
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/steps/ansible.py", line 103, in run_playbook_step
+    step.add_error(_generate_troubleshooting_error(path, playbook, cmdline))
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.venv/labs/lib/python3.9/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Removing Quay.io integration' has failed
