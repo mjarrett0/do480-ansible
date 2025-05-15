@@ -1,0 +1,24 @@
+update_certificate.sh output: 
+Traceback (most recent call last):
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/bin/lab", line 12, in <module>
+    sys.exit(main())
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/core.py", line 1128, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/core.py", line 1053, in main
+    rv = self.invoke(ctx)
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/core.py", line 1659, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/core.py", line 1395, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/core.py", line 754, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/click/decorators.py", line 26, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/labs/lab.py", line 351, in start
+    grading.prestart()
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/labs/grading.py", line 25, in prestart
+    self.start()
+  File "/home/student/.cache/uv/archive-v0/f_6A29QHO5jgTuIyG08Kl/lib64/python3.9/site-packages/do0013l/policies-deploy.py", line 85, in start
+    raise Exception(f"CA certificate {ca_cert_path} was not created")
+Exception: CA certificate /etc/pki/tls/certs/classroom-ca.pem was not created
+
