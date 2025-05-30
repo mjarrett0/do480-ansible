@@ -1,0 +1,52 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: certificate-policy-expiry-check
+  namespace: policies
+  annotations:
+    policy.open-cluster-management.io/standards: NIST
+    policy.open-cluster-management.io/categories: Security
+    policy.open-cluster-management.io/controls: Certificate-Management
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: CertificatePolicy
+        metadata:
+          name: certificate-policy-expiry-check
+        spec:
+          namespaceSelector:
+            include: ["openshift-gatekeeper-system"]
+            exclude: []
+          remediationAction: inform
+          severity: high
+          minimumDuration: 720h
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-cert-policy
+  namespace: policies-deploy
+placementRef:
+  name: placement-cert-policy
+  kind: Placement
+  apiGroup: cluster.open-cluster-management.io
+subjects:
+  - name: certificate-policy-expiry-check
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-cert-policy
+  namespace: policies-deploy
+spec:
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchLabels:
+            cloud: other
+----
