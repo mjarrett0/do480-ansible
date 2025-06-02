@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: certificate-policy-expiry-check
-  namespace: policies
+  namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST
     policy.open-cluster-management.io/categories: Security
@@ -18,8 +18,15 @@ spec:
           name: certificate-policy-expiry-check
         spec:
           namespaceSelector:
-            include: ["openshift-gatekeeper-system"]
-            exclude: []
+            include:
+              - default
+              - kube-system
+              - openshift-apiserver
+              - openshift-controller-manager
+            exclude:
+              - kube-public
+            exclude: 
+              - kube-public
           remediationAction: inform
           severity: high
           minimumDuration: 720h
@@ -28,7 +35,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-cert-policy
-  namespace: policies-deploy
+  namespace: default
 placementRef:
   name: placement-cert-policy
   kind: Placement
@@ -42,11 +49,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: placement-cert-policy
-  namespace: policies-deploy
+  namespace: default
 spec:
-  predicates:
-    - requiredClusterSelector:
-        labelSelector:
-          matchLabels:
-            cloud: other
-----
+  clusterSets:
+    - default
