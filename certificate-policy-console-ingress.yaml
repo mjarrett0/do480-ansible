@@ -1,0 +1,48 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: CertificatePolicy
+        metadata:
+          name: certificate-policy-console-ingress
+        spec:
+          remediationAction: inform
+          severity: high
+          minimumDuration: 720h
+          namespaceSelector:
+            include: ["openshift-console", "openshift-ingress"]
+          evaluationInterval:
+            compliant: 10m
+            noncompliant: 30s
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  policyRef:
+    name: certificate-policy-console-ingress
+    kind: Policy
+  placementRef:
+    name: placement-certificate-policy-console-ingress
+    kind: PlacementRule
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  clusterConditions:
+    - type: ManagedClusterConditionAvailable
+      status: "True"
+  clusterSelector:
+    matchExpressions: []
