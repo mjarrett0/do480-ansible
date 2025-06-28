@@ -1,0 +1,58 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: certificate-policy-console-ingress
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            include: ["openshift-console", "openshift-ingress"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Secret
+                type: kubernetes.io/tls
+                metadata:
+                  namespace: "{{ fromClusterClaim `name` }}"
+                data:
+                  tls.crt: "{{ lookup `secret` `*.tls` `tls.crt` | b64enc }}"
+          evaluationInterval:
+            compliant: 10m
+            noncompliant: 30s
+          pruneObjectBehavior: DeleteIfCreated
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  policyRef:
+    name: certificate-policy-console-ingress
+    kind: Policy
+  placementRef:
+    name: placement-certificate-policy-console-ingress
+    kind: PlacementRule
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  clusterConditions:
+    - type: ManagedClusterConditionAvailable
+      status: "True"
+  clusterSelector:
+    matchExpressions: []
