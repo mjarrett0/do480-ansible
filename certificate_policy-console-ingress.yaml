@@ -28,6 +28,9 @@ metadata:
   name: binding-certificate-policy-console-ingress
   namespace: policies-deploy
 spec:
+  # Note: If "placementRef: Required value, subjects: Required value" error persists,
+  # delete existing PlacementBinding with:
+  # oc delete placementbinding binding-certificate-policy-console-ingress -n policies-deploy
   subjects:
     - name: certificate-policy-console-ingress
       kind: Policy
