@@ -1,0 +1,6 @@
+oc apply -f certificate_policy-console-ingress.yaml 
+policy.policy.open-cluster-management.io/certificate-policy-console-ingress created
+[resource mapping not found for name: "certificate-policy-console-ingress-set" namespace: "policies-deploy" from "certificate_policy-console-ingress.yaml": no matches for kind "PolicySet" in version "policy.open-cluster-management.io/v1"
+ensure CRDs are installed first, resource mapping not found for name: "placement-certificate-policy-console-ingress" namespace: "policies-deploy" from "certificate_policy-console-ingress.yaml": no matches for kind "Placement" in version "cluster.open-cluster-management.io/v1"
+ensure CRDs are installed first]
+Error from server (Invalid): error when creating "certificate_policy-console-ingress.yaml": PlacementBinding.policy.open-cluster-management.io "binding-certificate-policy-console-ingress" is invalid: [placementRef: Required value, subjects: Required value]
