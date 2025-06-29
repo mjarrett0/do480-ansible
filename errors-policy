@@ -1,10 +1,7 @@
 oc apply -f certificate_policy-console-ingress.yaml 
-policy.policy.open-cluster-management.io/certificate-policy-console-ingress unchanged
-placementrule.apps.open-cluster-management.io/placement-certificate-policy-console-ingress unchanged
+policy.policy.open-cluster-management.io/certificate-policy-console-ingress created
+placementrule.apps.open-cluster-management.io/placement-certificate-policy-console-ingress created
 The PlacementBinding "binding-certificate-policy-console-ingress" is invalid: 
 * placementRef: Required value
 * subjects: Required value
-[student@workstation do480-ansible]$ vim certificate_policy-console-ingress.yaml 
-[student@workstation do480-ansible]$ oc delete placementbinding binding-certificate-policy-console-ingress -n policies-deploy
-Error from server (NotFound): placementbindings.policy.open-cluster-management.io "binding-certificate-policy-console-ingress" not found
 
