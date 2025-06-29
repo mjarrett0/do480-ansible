@@ -27,6 +27,7 @@ spec:
                   namespace: "{{ fromClusterClaim `name` }}"
                 data:
                   # Placeholder base64-encoded value for tls.crt (decodes to "tls-crt-placeholder")
+                  # Note: This monitors Secret existence, not certificate expiration. Use CertificatePolicy for expiration checks.
                   tls.crt: dGxzLWNydC1wbGFjZWhvbGRlcg==
           evaluationInterval:
             compliant: 10m
@@ -39,12 +40,14 @@ metadata:
   name: binding-certificate-policy-console-ingress
   namespace: policies-deploy
 spec:
-  policyRef:
-    name: certificate-policy-console-ingress
-    kind: Policy
+  subjects:
+    - name: certificate-policy-console-ingress
+      kind: Policy
+      apiGroup: policy.open-cluster-management.io
   placementRef:
     name: placement-certificate-policy-console-ingress
     kind: PlacementRule
+    apiGroup: apps.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
