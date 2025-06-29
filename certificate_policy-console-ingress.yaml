@@ -28,10 +28,11 @@ metadata:
   name: binding-certificate-policy-console-ingress
   namespace: policies-deploy
 spec:
-  # Note: If "placementRef: Required value, subjects: Required value" error persists,
-  # clean up resources and verify CRDs:
+  # Note: If "placementRef: Required value, subjects: Required value" errors persist,
+  # clean up resources, verify RHACM version, and check CRD:
   # oc delete policy certificate-policy-console-ingress -n policies-deploy
   # oc delete placementrule placement-certificate-policy-console-ingress -n policies-deploy
+  # oc get multiclusterhub -A -o jsonpath='{.items[*].spec.version}'
   # oc get crd placementbindings.policy.open-cluster-management.io -o yaml
   subjects:
     - name: certificate-policy-console-ingress
