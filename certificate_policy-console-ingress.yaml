@@ -1,8 +1,12 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: certificate-policy-console-ingress
+  name: certificate-policy-expiry-check
   namespace: policies-deploy
+  annotations:
+    policy.open-cluster-management.io/standards: NIST
+    policy.open-cluster-management.io/categories: Security
+    policy.open-cluster-management.io/controls: Certificate-Management
 spec:
   remediationAction: inform
   disabled: false
@@ -11,46 +15,45 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: CertificatePolicy
         metadata:
-          name: certificate-policy-console-ingress
+          name: certificate-policy-expiry-check
         spec:
+          namespaceSelector:
+            include:
+              - openshift-ingress
+              - openshift-console
+            exclude: []
           remediationAction: inform
           severity: high
           minimumDuration: 720h
-          namespaceSelector:
-            include: ["openshift-console", "openshift-ingress"]
           evaluationInterval:
-            compliant: 10m
-            noncompliant: 30s
+            compliant: 5m
+            noncompliant: 15s
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-certificate-policy-console-ingress
+  name: binding-cert-policy
   namespace: policies-deploy
 spec:
-  # Note: If "placementRef: Required value, subjects: Required value" errors persist,
-  # clean up resources, verify RHACM version, and check CRD:
-  # oc delete policy certificate-policy-console-ingress -n policies-deploy
-  # oc delete placementrule placement-certificate-policy-console-ingress -n policies-deploy
-  # oc get multiclusterhub -A -o jsonpath='{.items[*].spec.version}'
+  # Note: If errors occur, clean up resources and verify CRDs:
+  # oc delete policy certificate-policy-expiry-check -n policies-deploy
+  # oc delete placementbinding binding-cert-policy -n policies-deploy
+  # oc delete placement placement-cert-policy -n policies-deploy
   # oc get crd placementbindings.policy.open-cluster-management.io -o yaml
   subjects:
-    - name: certificate-policy-console-ingress
+    - name: certificate-policy-expiry-check
       kind: Policy
       apiGroup: policy.open-cluster-management.io
   placementRef:
-    name: placement-certificate-policy-console-ingress
-    kind: PlacementRule
-    apiGroup: apps.open-cluster-management.io
+    name: placement-cert-policy
+    kind: Placement
+    apiGroup: cluster.open-cluster-management.io
 ---
-apiVersion: apps.open-cluster-management.io/v1
-kind: PlacementRule
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
 metadata:
-  name: placement-certificate-policy-console-ingress
+  name: placement-cert-policy
   namespace: policies-deploy
 spec:
-  clusterConditions:
-    - type: ManagedClusterConditionAvailable
-      status: "True"
-  clusterSelector:
-    matchExpressions: []
+  clusterSets:
+    - default
