@@ -26,7 +26,8 @@ spec:
                 metadata:
                   namespace: "{{ fromClusterClaim `name` }}"
                 data:
-                  tls.crt: "{{ lookup `secret` `*.tls` `tls.crt` | b64enc }}"
+                  # Placeholder base64-encoded value for tls.crt (decodes to "tls-crt-placeholder")
+                  tls.crt: dGxzLWNydC1wbGFjZWhvbGRlcg==
           evaluationInterval:
             compliant: 10m
             noncompliant: 30s
