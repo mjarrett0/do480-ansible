@@ -34,20 +34,22 @@ kind: PlacementBinding
 metadata:
   name: binding-cert-policy
   namespace: policies-deploy
-spec:
-  # Note: If errors occur, clean up resources and verify CRDs:
-  # oc delete policy certificate-policy-expiry-check -n policies-deploy
-  # oc delete placementbinding binding-cert-policy -n policies-deploy
-  # oc delete placement placement-cert-policy -n policies-deploy
-  # oc get crd placementbindings.policy.open-cluster-management.io -o yaml
-  subjects:
-    - name: certificate-policy-expiry-check
-      kind: Policy
-      apiGroup: policy.open-cluster-management.io
-  placementRef:
-    name: placement-cert-policy
-    kind: Placement
-    apiGroup: cluster.open-cluster-management.io
+# Note: Non-standard PlacementBinding structure (placementRef and subjects at root level)
+# matches environment-specific behavior to avoid validation errors.
+# Standard schema requires nesting under spec: {subjects, placementRef}.
+# If errors occur, clean up and verify CRDs:
+# oc delete policy certificate-policy-expiry-check -n policies-deploy
+# oc delete placementbinding binding-cert-policy -n policies-deploy
+# oc delete placement placement-cert-policy -n policies-deploy
+# oc get crd placementbindings.policy.open-cluster-management.io -o yaml
+placementRef:
+  name: placement-cert-policy
+  kind: Placement
+  apiGroup: cluster.open-cluster-management.io
+subjects:
+  - name: certificate-policy-expiry-check
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
