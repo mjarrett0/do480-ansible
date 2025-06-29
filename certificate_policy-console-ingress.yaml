@@ -9,30 +9,18 @@ spec:
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
+        kind: CertificatePolicy
         metadata:
           name: certificate-policy-console-ingress
         spec:
           remediationAction: inform
           severity: high
+          minimumDuration: 720h
           namespaceSelector:
             include: ["openshift-console", "openshift-ingress"]
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Secret
-                type: kubernetes.io/tls
-                metadata:
-                  namespace: "{{ fromClusterClaim `name` }}"
-                data:
-                  # Placeholder base64-encoded value for tls.crt (decodes to "tls-crt-placeholder")
-                  # Note: This monitors Secret existence, not certificate expiration. Use CertificatePolicy for expiration checks.
-                  tls.crt: dGxzLWNydC1wbGFjZWhvbGRlcg==
           evaluationInterval:
             compliant: 10m
             noncompliant: 30s
-          pruneObjectBehavior: DeleteIfCreated
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
