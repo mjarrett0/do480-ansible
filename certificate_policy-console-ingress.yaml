@@ -29,8 +29,10 @@ metadata:
   namespace: policies-deploy
 spec:
   # Note: If "placementRef: Required value, subjects: Required value" error persists,
-  # delete existing PlacementBinding with:
-  # oc delete placementbinding binding-certificate-policy-console-ingress -n policies-deploy
+  # clean up resources and verify CRDs:
+  # oc delete policy certificate-policy-console-ingress -n policies-deploy
+  # oc delete placementrule placement-certificate-policy-console-ingress -n policies-deploy
+  # oc get crd placementbindings.policy.open-cluster-management.io -o yaml
   subjects:
     - name: certificate-policy-console-ingress
       kind: Policy
