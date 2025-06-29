@@ -23,39 +23,28 @@ spec:
             noncompliant: 30s
 ---
 apiVersion: policy.open-cluster-management.io/v1
-kind: PolicySet
-metadata:
-  name: certificate-policy-console-ingress-set
-  namespace: policies-deploy
-spec:
-  description: PolicySet for certificate expiration monitoring
-  policies:
-    - certificate-policy-console-ingress
----
-apiVersion: cluster.open-cluster-management.io/v1
-kind: Placement
-metadata:
-  name: placement-certificate-policy-console-ingress
-  namespace: policies-deploy
-spec:
-  clusterSets:
-    - default
-  predicates:
-    - requiredClusterSelector:
-        labelSelector:
-          matchExpressions: []
----
-apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-certificate-policy-console-ingress
   namespace: policies-deploy
 spec:
   subjects:
-    - name: certificate-policy-console-ingress-set
-      kind: PolicySet
+    - name: certificate-policy-console-ingress
+      kind: Policy
       apiGroup: policy.open-cluster-management.io
   placementRef:
     name: placement-certificate-policy-console-ingress
-    kind: Placement
-    apiGroup: cluster.open-cluster-management.io
+    kind: PlacementRule
+    apiGroup: apps.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-certificate-policy-console-ingress
+  namespace: policies-deploy
+spec:
+  clusterConditions:
+    - type: ManagedClusterConditionAvailable
+      status: "True"
+  clusterSelector:
+    matchExpressions: []
