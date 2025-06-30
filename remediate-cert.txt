@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Script to generate a compliant self-signed certificate that expires in 365 days
+# and update the existing TLS secret in the openshift-ingress namespace.
+
+set -e
+
+# Generate a self-signed certificate expiring in 365 days
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=test-cert"
+
+# Update the existing TLS secret in the openshift-ingress namespace
+oc create secret tls test-cert --cert=tls.crt --key=tls.key -n openshift-ingress --kubeconfig=/home/student/.kube/config --dry-run=client -o yaml | oc apply -f -
+
+# Clean up temporary files
+rm -f tls.key tls.crt
+
+echo "Compliant certificate updated in openshift-ingress namespace."
