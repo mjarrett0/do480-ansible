@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: test-cert
+  name: router-cert
   namespace: openshift-ingress
 type: kubernetes.io/tls
 data:
