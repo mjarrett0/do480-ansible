@@ -1,0 +1,35 @@
+2025-06-30 19:20:26,581:policies-deploy:ERROR:legacy.py(51)                The 'Create test certificate for RHACM policy violation' fatal step has failed
+2025-06-30 19:20:26,582:policies-deploy:ERROR:step.py(54)                Step 'Create test certificate for RHACM policy violation' has failed.
+Traceback (most recent call last):
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/legacy.py", line 52, in run_step
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Create test certificate for RHACM policy violation' fatal step has failed
+2025-06-30 19:20:26,712:policies-deploy:ERROR:lab.py(63)                Lab script has failed due to an error: Step 'Create test certificate for RHACM policy violation' has failed
+Traceback (most recent call last):
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/legacy.py", line 52, in run_step
+    raise LabError(msg)
+labs.laberrors.LabError: The 'Create test certificate for RHACM policy violation' fatal step has failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/lab.py", line 351, in start
+    grading.prestart()
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/grading.py", line 25, in prestart
+    self.start()
+                                                                                              1,1           Top
+line 25, in prestart
+    self.start()
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/do0013l/policies-deploy.py", line 78, in start
+    run_steps(
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/legacy.py", line 21, in run_steps
+    run_step(item)
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/legacy.py", line 35, in run_step
+    with Step(item.label, fatal=item.fatal, grading=item.grading) as ctx:
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/step.py", line 62, in __exit__
+    self.end()
+  File "/home/student/.cache/uv/archive-v0/twPepUIdh_MsLcUYp-JYs/lib/python3.11/site-packages/labs/ui/step.py", line 143, in end
+    raise StepFatalError(self)
+labs.ui.step.StepFatalError: Step 'Create test certificate for RHACM policy violation' has failed
+                                        
+
