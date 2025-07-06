@@ -1,0 +1,10 @@
+Certificate generated successfully.
+Creating/updating the 'router-cert' secret in the default namespace...
+secret/router-cert created
+Secret 'router-cert' created/updated successfully.
+Cleaned up temporary certificate files.
+
+
+secret/router-cert configured
+Compliant certificate updated in openshift-ingress namespace.
+
