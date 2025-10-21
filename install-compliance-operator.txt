@@ -1,0 +1,155 @@
+#!/bin/bash
+
+# Script to perform the Compliance Operator installation exercise as the student user.
+# This script automates CLI-based steps and pauses for web UI interactions where required.
+# Includes waits for resource readiness and logging of key steps.
+
+set -e  # Exit on error
+
+echo "Starting the Compliance Operator installation exercise."
+echo "Running lab start command..."
+
+# Step 0: Run lab start command (replace gls_chapter_keyword-gls_topic_keyword with operators-review for example).
+lab start operators-review
+
+echo "Lab preparation complete."
+
+# Step 1: Log in to the OpenShift cluster as the developer user.
+echo "Logging in to OpenShift cluster as admin user."
+oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 || { echo "Login failed; check credentials or cluster availability."; exit 1; }
+echo "Login successful."
+
+# Step 2: Examine the package manifest for the Compliance operator.
+echo "Listing package manifests to find Compliance operator details."
+oc get packagemanifest | grep compliance-operator
+echo "Examining compliance-operator package manifest."
+oc get packagemanifest compliance-operator -o yaml > compliance-operator-manifest.yaml
+echo "Package manifest saved to compliance-operator-manifest.yaml."
+echo "Key details: catalog=gls-catalog-cs, catalog-namespace=openshift-marketplace, suggested-namespace=openshift-compliance, defaultChannel=stable, packageName=compliance-operator."
+
+# Step 3: Create the openshift-compliance namespace.
+echo "Creating namespace 'openshift-compliance'."
+oc create namespace openshift-compliance || echo "Namespace already exists, continuing."
+
+# Step 4: Create the operator group.
+echo "Creating operator group 'compliance-operator' in openshift-compliance namespace."
+cat <<EOF > operator-group.yaml
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: compliance-operator
+  namespace: openshift-compliance
+spec:
+  targetNamespaces:
+  - openshift-compliance
+EOF
+oc create -f operator-group.yaml
+echo "Verifying operator group creation."
+oc get operatorgroup -n openshift-compliance
+echo "Operator group created."
+
+# Step 5: Create the subscription.
+echo "Creating subscription for compliance-operator."
+cat <<EOF > subscription.yaml
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: compliance-operator
+  namespace: openshift-compliance
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: compliance-operator
+  source: gls-catalog-cs
+  sourceNamespace: openshift-marketplace
+EOF
+oc create -f subscription.yaml
+echo "Verifying subscription creation."
+oc get subscription -n openshift-compliance
+echo "Subscription created."
+
+# Step 6: Verify operator installation.
+echo "Switching to openshift-compliance project."
+oc project openshift-compliance
+
+echo "Waiting for Compliance operator CSV to reach 'Succeeded' phase (up to 5m)."
+for i in {1..30}; do
+  CSV_STATUS=$(oc get csv -n openshift-compliance -o jsonpath='{.items[0].status.phase}' 2>/dev/null || echo "Pending")
+  if [ "$CSV_STATUS" == "Succeeded" ]; then
+    echo "CSV is in Succeeded phase."
+    break
+  fi
+  echo "CSV status: $CSV_STATUS, waiting 10s..."
+  sleep 10
+done
+if [ "$CSV_STATUS" != "Succeeded" ]; then
+  echo "Timeout waiting for CSV to reach Succeeded phase; check manually."
+  exit 1
+fi
+
+CSV_VERSION=$(oc get csv -n openshift-compliance -o jsonpath='{.items[0].metadata.name}')
+echo "CSV version: $CSV_VERSION"
+echo "Inspecting CSV for operator deployment details."
+oc get csv $CSV_VERSION -o jsonpath='{.spec.install.spec.deployments}' | jq > csv-deployments.json
+echo "Deployment details saved to csv-deployments.json."
+
+echo "Waiting for all deployments to be ready (up to 5m)."
+for i in {1..30}; do
+  READY=$(oc get deployments -n openshift-compliance -o jsonpath='{.items[*].status.readyReplicas}' | tr ' ' '\n' | grep -v '^$' | sort -u)
+  if [ "$READY" == "1" ] && [ $(oc get deployments -n openshift-compliance | grep -c .) -eq 3 ]; then
+    echo "All deployments (compliance-operator, ocp4-openshift-compliance-pp, rhcos4-openshift-compliance-pp) are ready."
+    break
+  fi
+  echo "Waiting for deployments to be ready, checking again in 10s..."
+  sleep 10
+done
+if [ "$READY" != "1" ]; then
+  echo "Timeout waiting for deployments; check manually with 'oc get all -n openshift-compliance'."
+  exit 1
+fi
+oc get all -n openshift-compliance
+
+# Step 7: Verify Compliance operator functionality with scan setting binding.
+echo "Creating scan setting binding from template."
+cat <<EOF > scan-setting-binding.yaml
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSettingBinding
+metadata:
+  name: nist-moderate
+  namespace: openshift-compliance
+profiles:
+  - apiGroup: compliance.openshift.io/v1alpha1
+    kind: Profile
+    name: rhcos4-moderate
+settingsRef:
+  apiGroup: compliance.openshift.io/v1alpha1
+  kind: ScanSetting
+  name: default
+EOF
+oc create -f scan-setting-binding.yaml
+echo "ScanSettingBinding 'nist-moderate' created."
+
+echo "Optionally, you can create the ScanSettingBinding via the web UI:"
+echo "1. Log in to https://api.ocp4.example.com:6443 as admin/redhatocp."
+echo "2. Go to Operators > Installed Operators > Compliance Operator > ScanSettingBinding tab."
+echo "3. Click Create ScanSettingBinding and use the YAML editor to apply the same configuration."
+echo "Press Enter to continue after deciding (CLI creation already done)."
+read -r
+
+echo "Waiting for ComplianceSuite to reach 'DONE' phase (up to 10m)."
+for i in {1..60}; do
+  SUITE_STATUS=$(oc get compliancesuite -n openshift-compliance -o jsonpath='{.items[0].status.phase}' 2>/dev/null || echo "Pending")
+  if [ "$SUITE_STATUS" == "DONE" ]; then
+    echo "ComplianceSuite is in DONE phase."
+    break
+  fi
+  echo "ComplianceSuite status: $SUITE_STATUS, waiting 10s..."
+  sleep 10
+done
+if [ "$SUITE_STATUS" != "DONE" ]; then
+  echo "Timeout waiting for ComplianceSuite to reach DONE phase; check manually with 'oc get compliancesuite'."
+  exit 1
+fi
+oc get compliancesuite,pod -n openshift-compliance
+
+echo "Exercise complete. Clean up if needed with 'lab finish operators-review'."
