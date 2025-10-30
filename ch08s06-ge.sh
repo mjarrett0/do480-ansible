@@ -46,10 +46,11 @@ echo "d. Deleting the deployments in the prune-apps namespace to allow subsequen
 oc delete deployment nginx-ubi7 nginx-ubi8 nginx-ubi9 -n prune-apps
 echo "---"
 
-# Step 3: Create a cron job to automate the image pruning process (Expected to Fail)
+# Step 3: Create a cron job to automate the image pruning process (Initial Run - Expected to Fail)
 echo "Step 3: Create a cron job to automate the image pruning process (Initial Run - Expected to Fail)."
 
 echo "a. Creating configmap-prune.yaml inline for maintenance script."
+# FIX: Escape backticks (\`) to prevent shell substitution during YAML creation.
 cat <<EOF > configmap-prune.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -67,8 +68,8 @@ data:
       echo \${NODE}
       oc debug \${NODE} -- \
         chroot /host \
-          /bin/bash -euxc 'crictl images ;
-crictl rmi --prune'
+          \`\`/bin/bash -euxc 'crictl images ;
+crictl rmi --prune'\`\`
     done
 EOF
 
@@ -114,6 +115,7 @@ oc apply -f cronjob-prune.yaml
 echo "e. Waiting for the cron job to be scheduled and fail (STATUS: Error, COMPLETIONS: 0/1)..."
 # Wait up to 3 minutes (18 * 10s) for the job to appear and fail
 TIMEOUT=18
+POD_NAME=""
 for i in $(seq 1 $TIMEOUT); do
     JOB_NAME=$(oc get jobs -l job-name=image-pruner -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || echo "")
     if [ -n "$JOB_NAME" ]; then
@@ -126,15 +128,24 @@ for i in $(seq 1 $TIMEOUT); do
     if [ $i -eq $TIMEOUT ]; then
         echo "Timeout waiting for job/pod to be created and fail. Checking current status:"
         oc get cronjobs,jobs,pods -l ge=appsec-prune
-        echo "Please check the job/pod status manually. Press Enter to continue."
-        read -r
-        break
+        # Interactive fallback for expected failure timeout
+        while true; do
+            echo "1) Retry waiting for job/pod to fail"
+            echo "2) Resume script (Continue to logs/delete)"
+            read -p "Enter option (1 or 2): " choice
+            case "$choice" in
+                1) i=0; continue 2;; # Reset loop counter and retry outer loop
+                2) break 2;;        # Break out of both loops
+                *) echo "Invalid option. Please enter 1 or 2.";;
+            esac
+        done
     fi
     echo "Waiting for job/pod to enter Error state (Attempt $i/$TIMEOUT)..."
     sleep 10
 done
 
 # Extracting the pod name for logs
+POD_NAME_LOGS=""
 if [ -z "$POD_NAME" ]; then
     POD_NAME_LOGS=$(oc get pods -l job-name=image-pruner -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || echo "")
 else
@@ -206,6 +217,7 @@ oc apply -f cronjob-prune.yaml
 echo "f. Waiting until the new job and the pod are created and completed (STATUS: Completed, COMPLETIONS: 1/1)..."
 # Wait up to 3 minutes (18 * 10s) for the job to complete
 SUCCESS_TIMEOUT=18
+COMPLETED_POD_NAME=""
 for i in $(seq 1 $SUCCESS_TIMEOUT); do
     JOB_STATUS=$(oc get jobs -l job-name=image-pruner -o jsonpath='{.items[0].status.conditions[?(@.type=="Complete")].status}' 2>/dev/null || echo "")
     if [ "$JOB_STATUS" == "True" ]; then
@@ -217,8 +229,7 @@ for i in $(seq 1 $SUCCESS_TIMEOUT); do
     if [ $i -eq $SUCCESS_TIMEOUT ]; then
         echo "Timeout waiting for job to complete. Current status:"
         oc get cronjobs,jobs,pods -l ge=appsec-prune
-        echo "The job may take longer. Please check the status manually."
-        # Use a retry/resume loop for interactive fallback on success timeout
+        # Interactive fallback for success timeout
         while true; do
             echo "1) Retry waiting for completion"
             echo "2) Resume script (check logs now)"
