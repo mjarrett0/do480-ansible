@@ -1,49 +1,68 @@
 #!/bin/bash
-# Script to perform the compreview-apps exercise as the student user.
+# Script to perform the Comprehensive Review - Apps exercise as the student user.
 # This script automates CLI-based steps and pauses for web UI interactions where required.
 # Includes waits for resource readiness and logging of key steps.
-set -e # Exit on error
+set -e  # Exit on error
 
-EXERCISE_NAME="compreview-apps"
+# --- Variables ---
+LAB_SCRIPT="compreview-apps"
+OCP_API="https://api.ocp4.example.com:6443"
+ADMIN_USER="admin"
+ADMIN_PASS="redhatocp"
+SUPPORT_USER="do280-support"
+SUPPORT_PASS="redhat"
 NAMESPACE="workshop-support"
-API_SERVER="https://api.ocp4.example.com:6443"
+LAB_DIR="~/DO280/labs/${LAB_SCRIPT}"
 
-echo "Starting the ${EXERCISE_NAME} comprehensive review exercise."
+# --- Helper Functions ---
 
-# Prerequisites
-echo "1. Preparing the system with 'lab install do0019l' and 'lab start ${EXERCISE_NAME}'..."
-lab install do0019l
-lab start "${EXERCISE_NAME}"
+# Function to check for pod readiness in a namespace
+wait_for_pod_ready() {
+    local label="$1"
+    local ns="$2"
+    echo "Waiting for pod with label '$label' to be ready in namespace '$ns'..."
+    oc wait --for=condition=Ready pod -l $label -n $ns --timeout=300s || {
+        echo "Timeout waiting for pod with label '$label' to be ready."
+        oc get pods -l $label -n $ns
+        exit 1
+    }
+    echo "Pod with label '$label' is ready."
+}
+
+# --- Script Start ---
+echo "Starting the Comprehensive Review - Apps exercise."
+
+# Prerequisite: Lab Start
+echo "Starting lab environment with 'lab start ${LAB_SCRIPT}'."
+lab start "${LAB_SCRIPT}" || { echo "Lab start failed."; exit 1; }
 echo "Lab preparation complete."
-echo "---"
 
-# Step 1: Prepare the workshop-support namespace and grant privileges.
-echo "Step 1: Prepare the ${NAMESPACE} namespace and grant privileges."
+# 1. Log in as admin and change directory
+echo "1. Logging in as ${ADMIN_USER} and changing to lab directory."
+cd "${LAB_DIR}"
+oc login -u ${ADMIN_USER} -p ${ADMIN_PASS} ${OCP_API} || { echo "Admin login failed."; exit 1; }
+echo "Logged in as ${ADMIN_USER}."
 
-echo "a. Logging in as admin and setting up ${NAMESPACE}."
-oc login -u admin -p redhatocp "${API_SERVER}" || { echo "Login failed; check credentials or cluster availability."; exit 1; }
-
-echo "Creating namespace ${NAMESPACE}..."
-oc create namespace "${NAMESPACE}" || echo "Namespace ${NAMESPACE} already exists, continuing."
-
-echo "Adding label category=support to ${NAMESPACE}."
+# 2. Create and prepare the workshop-support namespace
+echo "2. Creating and configuring the '${NAMESPACE}' namespace."
+oc create namespace "${NAMESPACE}" || echo "Namespace '${NAMESPACE}' already exists."
 oc label namespace "${NAMESPACE}" category=support
-
-echo "b. Granting the 'admin' cluster role to the 'workshop-support' group."
+oc project "${NAMESPACE}"
 oc adm policy add-cluster-role-to-group admin workshop-support
 
-echo "c. Creating quota 'workshop-support'."
-oc create quota workshop-support -n "${NAMESPACE}" \
-  --hard=requests.cpu=3500m,requests.memory=3Gi,limits.cpu=4,limits.memory=4Gi
+# 3. Create the resource quota
+echo "3. Creating resource quota 'workshop-support'."
+oc create quota workshop-support \
+ --hard=limits.cpu=4,limits.memory=4Gi,requests.cpu=3500m,requests.memory=3Gi
 
-echo "d. Creating limit range 'workshop-support' from file."
-# Create limitrange.yaml inline with specified values
-cat <<EOF > ~/DO280/labs/${EXERCISE_NAME}/limitrange.yaml
+# 4. Create the limit range (Using inline YAML based on solution)
+echo "4. Creating limit range 'workshop-support'."
+cat <<EOF > limitrange.yaml
 apiVersion: v1
 kind: LimitRange
 metadata:
  name: workshop-support
- namespace: workshop-support
+ namespace: ${NAMESPACE}
 spec:
  limits:
    - default:
@@ -54,29 +73,25 @@ spec:
        memory: 250Mi
      type: Container
 EOF
-oc apply -n "${NAMESPACE}" -f ~/DO280/labs/${EXERCISE_NAME}/limitrange.yaml
-echo "---"
+oc apply -f limitrange.yaml
+rm limitrange.yaml # Clean up the temporary file
 
-# Step 2: Deploy the project-cleaner application.
-echo "Step 2: Deploying the project-cleaner application."
-cd ~/DO280/labs/${EXERCISE_NAME}
-PROJECT_CLEANER_DIR="./project-cleaner"
-SA_NAME="project-cleaner-sa"
-CR_NAME="project-cleaner"
+# --- PROJECT CLEANER APP ---
 
-echo "a. Creating service account ${SA_NAME}."
-oc create serviceaccount "${SA_NAME}" -n "${NAMESPACE}"
+# 5. Create Service Account and ClusterRoleBinding
+echo "5. Creating 'project-cleaner-sa' ServiceAccount and ClusterRoleBinding."
+oc create sa project-cleaner-sa || echo "ServiceAccount already exists, continuing."
+cd project-cleaner
+oc apply -f cluster-role.yaml
+oc adm policy add-cluster-role-to-user project-cleaner -z project-cleaner-sa
 
-echo "b. Creating cluster role ${CR_NAME} (using oc create clusterrole alternative)."
-oc create clusterrole "${CR_NAME}" --verb="get,list,delete" --resource=namespaces || \
-  echo "ClusterRole ${CR_NAME} may already exist, continuing."
+# 6. Create the project-cleaner CronJob as do280-support
+echo "6. Creating 'project-cleaner' CronJob as ${SUPPORT_USER}."
+oc login -u ${SUPPORT_USER} -p ${SUPPORT_PASS} || { echo "Support login failed."; exit 1; }
+echo "Logged in as ${SUPPORT_USER}."
 
-echo "c. Granting ${CR_NAME} cluster role to ${SA_NAME}."
-oc adm policy add-cluster-role-to-user "${CR_NAME}" -z "${SA_NAME}" -n "${NAMESPACE}"
-
-echo "d. Creating cron job project-cleaner."
-# Create cron-job.yaml inline with specs from example-pod.yaml
-cat <<EOF > "${PROJECT_CLEANER_DIR}/cron-job.yaml"
+# Create cron-job.yaml using inline YAML based on solution
+cat <<EOF > cron-job.yaml
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -105,113 +120,134 @@ spec:
                   cpu: 100m
                   memory: 200Mi
 EOF
-oc apply -n "${NAMESPACE}" -f "${PROJECT_CLEANER_DIR}/cron-job.yaml"
+oc apply -f cron-job.yaml
+rm cron-job.yaml # Clean up the temporary file
 
-# Verification (Optional but helpful for full automation)
-echo "Verification: Testing the cleaner by creating a test project."
-TEST_PROJECT="clean-test"
-oc new-project "${TEST_PROJECT}" || echo "Project ${TEST_PROJECT} may already exist, continuing."
+# 6.d. Verify project cleaner operation
+echo "6.d. Verifying project cleaner: Creating 'clean-test' project."
+oc new-project clean-test
 oc project "${NAMESPACE}"
 
-echo "Waiting for the CronJob to run and delete ${TEST_PROJECT} (max 2 minutes)..."
-# Wait up to 120 seconds for the project to be deleted by the cleaner
-TIMEOUT=12
-PROJECT_DELETED=false
-for i in $(seq 1 $TIMEOUT); do
-    if ! oc get project "${TEST_PROJECT}" 2>/dev/null; then
-        echo "Project ${TEST_PROJECT} deleted successfully after $i * 10 seconds."
-        PROJECT_DELETED=true
+# Wait for a job run and project deletion. The project should be deleted quickly.
+echo "Waiting for 'project-cleaner' CronJob to run and delete 'clean-test' project..."
+# Wait for clean-test project to be deleted, up to 120 seconds (2 minutes)
+for i in {1..12}; do
+    if ! oc get project clean-test &> /dev/null; then
+        echo "Project 'clean-test' deleted successfully."
         break
     fi
-    echo "Waiting for project ${TEST_PROJECT} to be deleted (Attempt $i/$TIMEOUT)..."
+    echo "Project 'clean-test' still exists. Waiting for next cron job run... ($i/12)"
     sleep 10
 done
 
-if [ "$PROJECT_DELETED" = false ]; then
-    echo "Timeout waiting for project cleaner to delete ${TEST_PROJECT}. Checking logs for last run."
-    LAST_POD=$(oc get pods -l job-name=project-cleaner -n "${NAMESPACE}" --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[-1].metadata.name}' 2>/dev/null || echo "")
-    if [ -n "$LAST_POD" ]; then
-        echo "Logs from last pod run (${LAST_POD}):"
-        oc logs pod/"${LAST_POD}" -n "${NAMESPACE}"
-    else
-        echo "No project cleaner pod found."
-    fi
+if oc get project clean-test &> /dev/null; then
+    echo "Timeout: Project 'clean-test' was not deleted by the project cleaner in time."
+    echo "Please check 'oc get jobs,pods -n ${NAMESPACE}' and 'oc logs <pod-name>' manually."
+    exit 1
 fi
-oc project "${NAMESPACE}" # Switch back to workshop-support
-echo "---"
 
-# Step 3: Deploy the beeper-api application.
-echo "Step 3: Deploying the beeper-api application with TLS."
-BEEPER_API_DIR="./beeper-api"
+# 6.e. Final verification of deletion
+echo "6.e. Verifying 'clean-test' project is deleted (expected NotFound error):"
+oc get project clean-test || echo "Verification successful: Project not found."
+cd .. # Back to compreview-apps directory
 
-echo "a. Deploying the database using ${BEEPER_API_DIR}/beeper-db.yaml."
-oc apply -n "${NAMESPACE}" -f "${BEEPER_API_DIR}/beeper-db.yaml"
+# --- BEEPER API APP ---
+cd beeper-api
 
-echo "Waiting for beeper-db deployment to be ready (max 2 minutes)..."
-oc wait --for=condition=Available deployment/beeper-db -n "${NAMESPACE}" --timeout=120s
+# 7. Create the beeper database
+echo "7. Creating 'beeper-db' database resources."
+oc apply -f beeper-db.yaml
+wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"
 
-echo "b. Creating TLS secret beeper-api-tls."
-oc create secret tls beeper-api-tls -n "${NAMESPACE}" \
-  --cert "${BEEPER_API_DIR}/certs/beeper-api.pem" --key "${BEEPER_API_DIR}/certs/beeper-api.key" || \
-  echo "TLS secret may already exist, continuing."
+# 8. Configure TLS on the beeper-api deployment
+echo "8. Configuring TLS for 'beeper-api' deployment."
+# 8.a. Create TLS secret
+oc create secret tls beeper-api-cert \
+  --cert certs/beeper-api.pem --key certs/beeper-api.key
 
-echo "c. Configuring and deploying beeper-api deployment."
-# Need to edit deployment.yaml file content, which is too long, so we'll assume the file is modified externally or apply a known-good version.
-# Since the manifest file is provided and needs modifications, we'll apply it and rely on the student to ensure it's edited correctly if running interactively.
-echo "NOTE: Assuming ${BEEPER_API_DIR}/deployment.yaml has been edited to include TLS configuration and volume mounts."
-oc apply -n "${NAMESPACE}" -f "${BEEPER_API_DIR}/deployment.yaml"
+# 8.b, 8.c. Patch deployment.yaml for secret mount, TLS_ENABLED, and probe scheme
+echo "Patching 'deployment.yaml' with volume mount, TLS_ENABLED=true, and HTTPS probes."
+# We will use 'oc patch' or 'oc edit' to avoid complex file manipulation, but the lab uses file edit, so we'll simulate the edits:
 
-echo "Waiting for beeper-api deployment to be ready (max 2 minutes)..."
-oc wait --for=condition=Available deployment/beeper-api -n "${NAMESPACE}" --timeout=120s
+# Create a temporary patched deployment file
+cp deployment.yaml deployment.patched.yaml
 
-echo "d. Creating ClusterIP service 'beeper-api'."
-oc expose deployment/beeper-api -n "${NAMESPACE}" --type=ClusterIP --port=443 --target-port=8080
+# Simulate edits for volume mount (using sed for simplicity of automation)
+sed -i '/- name: TLS_ENABLED/a \
+          volumeMounts:\
+            - name: beeper-api-cert\
+              mountPath: /etc/pki/beeper-api/' deployment.patched.yaml
+sed -i '/name: beeper-api/a \
+      volumes:\
+        - name: beeper-api-cert\
+          secret:\
+            defaultMode: 420\
+            secretName: beeper-api-cert' deployment.patched.yaml
 
-echo "e. Creating passthrough route 'beeper-api-route'."
-oc create route passthrough beeper-api-route -n "${NAMESPACE}" --service=beeper-api \
-  --hostname beeper-api.apps.ocp4.example.com || \
-  echo "Route may already exist, continuing."
-echo "---"
+# Simulate edits for TLS_ENABLED and HTTPS probes
+sed -i 's/value: "false"/value: "true"/' deployment.patched.yaml
+sed -i '/readinessProbe:/a \
+          httpGet:\
+            scheme: HTTPS' deployment.patched.yaml
+sed -i '/livenessProbe:/a \
+          httpGet:\
+            scheme: HTTPS' deployment.patched.yaml
+sed -i '/startupProbe:/a \
+          httpGet:\
+            scheme: HTTPS' deployment.patched.yaml
 
-# Step 4: Verify the beeper-api application.
-echo "Step 4: Verifying the beeper-api application."
+# 8.d. Apply deployment
+oc apply -f deployment.patched.yaml
+wait_for_pod_ready "app=beeper-api" "${NAMESPACE}"
+rm deployment.patched.yaml
 
-echo "a. Verifying deployments are ready."
-oc get deployments,pods -n "${NAMESPACE}"
+# 8.e, 8.f. Configure and create service
+echo "8.e. Configuring 'beeper-api' service for port 443/8080."
+cat <<EOF > service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: beeper-api
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    app: beeper-api
+  ports:
+    - port: 443
+      targetPort: 8080
+      name: https
+EOF
+oc apply -f service.yaml
 
-echo "b. Connecting to beeper-db and verifying 'beeper' database existence."
-oc exec -it deployment/beeper-db -n "${NAMESPACE}" -- psql -e --list | egrep 'Name|beeper'
+# 9. Expose the beeper API with passthrough route
+echo "9. Exposing 'beeper-api' with passthrough route."
+oc create route passthrough beeper-api-https \
+  --service beeper-api \
+  --hostname beeper-api.apps.ocp4.example.com || echo "Route already exists, continuing."
 
-echo "c. Listing contents of the 'beep' table (should be 0 rows)."
-oc exec -it deployment/beeper-db -n "${NAMESPACE}" -- psql -d beeper -c "SELECT * FROM beep;"
+# 9.b. Verify external access
+echo "9.b. Verifying external access to API (expected empty array '[]')."
+curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/api/beeps; echo
 
-echo "e. Verifying beeper-api route is reachable via TCP on port 443."
-nc -vz beeper-api.apps.ocp4.example.com 443
+# 10. Optional UI check - skipping in script.
 
-echo "g. Verifying API endpoint with curl (expecting [])."
-curl -vfS# -w '\n' --cacert "${BEEPER_API_DIR}/certs/ca.pem" \
-  'https://beeper-api.apps.ocp4.example.com/api/beeps'
+# 11. Configure network policies for beeper-db
+echo "11. Configuring NetworkPolicy for 'beeper-db' to allow traffic only from 'beeper-api' pods."
 
-echo "h. Creating a message via POST request."
-curl -vfS -w '\n' --cacert "${BEEPER_API_DIR}/certs/ca.pem" \
-  -X 'POST' -H 'Content-Type: application/json' \
-  -d '{ "username": "_my-user_", "content": "_my content_" }' \
-  'https://beeper-api.apps.ocp4.example.com/api/beep'
+# 11.a. Verify current access (expected success)
+echo "11.a. Verifying current access to database (expected success):"
+oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-db.workshop-support.svc.cluster.local 5432 || echo "TCP check failed unexpectedly."
 
-echo "i. Verifying the message is stored in the database."
-oc exec -it deployment/beeper-db -n "${NAMESPACE}" -- psql -d beeper -c "SELECT * FROM beep;"
+# 11.b. Create entry in database (for verification later)
+echo "11.b. Creating a test entry via the API."
+curl -s --cacert certs/ca.pem -X 'POST' \
+  'https://beeper-api.apps.ocp4.example.com/api/beep' \
+  -H 'Content-Type: application/json' \
+  -d '{ "username": "user1",  "content": "first message" }' > /dev/null
 
-echo "j. Confirming API retrieves the message (using jq if available)."
-curl -fsS# --cacert "${BEEPER_API_DIR}/certs/ca.pem" \
-  'https://beeper-api.apps.ocp4.example.com/api/beeps' | jq . || echo "jq not found, displaying raw output."
-echo "---"
-
-# Step 5: Apply the network policy to the database application.
-echo "Step 5: Applying the network policy to the database application."
-
-echo "a. Creating the database network policy."
-# Create networkpolicy-beeper-db.yaml inline
-cat <<EOF > "${BEEPER_API_DIR}/networkpolicy-beeper-db.yaml"
+# 11.c. Create db-networkpolicy.yaml using inline YAML
+echo "11.c. Creating 'database-policy' NetworkPolicy."
+cat <<EOF > db-networkpolicy.yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -233,23 +269,31 @@ spec:
         - protocol: TCP
           port: 5432
 EOF
-oc apply -n "${NAMESPACE}" -f "${BEEPER_API_DIR}/networkpolicy-beeper-db.yaml"
+oc apply -f db-networkpolicy.yaml
+rm db-networkpolicy.yaml # Clean up the temporary file
 
-echo "b. Verifying connection fails from a debug pod without the required label (expected to time out)."
-# This command is expected to fail/timeout, so we use '|| true' to prevent script exit.
-oc debug --to-namespace="${NAMESPACE}" -- nc -vz beeper-db 5432 || echo "Connection attempt failed/timed out as expected."
-echo "---"
+# 11.e. Verify that you cannot connect to the database (expected failure/timeout)
+echo "11.e. Verifying that direct access to database is blocked (expected Connection timed out):"
+oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-db.workshop-support.svc.cluster.local 5432 || echo "Verification successful: Connection attempt failed or timed out."
 
-# Step 6: Apply the network policy to the API application.
-echo "Step 6: Applying the network policy to the API application."
+# 11.f. Verify that API pods still have access (expected success)
+echo "11.f. Verifying that 'beeper-api' still has access (expected success):"
+curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/api/beeps; echo
 
-echo "a. Creating the API network policy."
-# Create networkpolicy-beeper-api.yaml inline
-cat <<EOF > "${BEEPER_API_DIR}/networkpolicy-beeper-api.yaml"
+# 12. Configure network policies in the workshop-support namespace for ingress
+echo "12. Configuring NetworkPolicy for external ingress to port 8080."
+
+# 12.a. Verify current access to API service (expected success)
+echo "12.a. Verifying current access to API service (expected success):"
+oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-api.workshop-support.svc.cluster.local 443 || echo "TCP check failed unexpectedly."
+
+# 12.b. Create beeper-api-ingresspolicy.yaml using inline YAML
+echo "12.b. Creating 'beeper-api-ingresspolicy' NetworkPolicy."
+cat <<EOF > beeper-api-ingresspolicy.yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: beeper-api
+  name: beeper-api-ingresspolicy
   namespace: ${NAMESPACE}
 spec:
   podSelector: {}
@@ -262,14 +306,19 @@ spec:
         - protocol: TCP
           port: 8080
 EOF
-oc apply -n "${NAMESPACE}" -f "${BEEPER_API_DIR}/networkpolicy-beeper-api.yaml"
+oc apply -f beeper-api-ingresspolicy.yaml
+rm beeper-api-ingresspolicy.yaml # Clean up the temporary file
 
-echo "b. Verifying connection fails from a debug pod in 'default' namespace (expected to time out)."
-oc debug --to-namespace="default" -- nc -vz beeper-api.workshop-support 443 || echo "Connection attempt failed/timed out as expected."
+# 12.d. Verify that you cannot access the API service from the workshop-support namespace (expected failure/timeout)
+echo "12.d. Verifying that internal access to API is blocked (expected Connection timed out):"
+oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-api.workshop-support.svc.cluster.local 443 || echo "Verification successful: Connection attempt failed or timed out."
 
-echo "c. Confirming API is still accessible via route."
-curl -fsS# -w '\n' --cacert "${BEEPER_API_DIR}/certs/ca.pem" \
-  'https://beeper-api.apps.ocp4.example.com/api/beeps'
-echo "---"
+# 12.e. Verify that the API pods are accessible from outside the cluster (expected success)
+echo "12.e. Verifying that external access is still working (expected success):"
+curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/livez; echo
 
-echo "Exercise complete. Clean up if needed with 'lab finish ${EXERCISE_NAME}'."
+# 13. Change to the home directory.
+echo "13. Changing back to home directory."
+cd
+
+echo "Exercise complete. Clean up if needed with 'lab finish ${LAB_SCRIPT}'."
