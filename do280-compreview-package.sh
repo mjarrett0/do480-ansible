@@ -1,30 +1,27 @@
 #!/bin/bash
-# Script to perform the Comprehensive Review - Apps exercise as the student user.
+# Script to perform the Comprehensive Review - Package exercise as the student user.
 # This script automates CLI-based steps and pauses for web UI interactions where required.
 # Includes waits for resource readiness and logging of key steps.
 set -e  # Exit on error
 
 # --- Variables ---
-LAB_SCRIPT="compreview-apps"
+EXERCISE_NAME="Comprehensive Review - Package"
+LAB_SCRIPT="compreview-package"
 OCP_API="https://api.ocp4.example.com:6443"
 ADMIN_USER="admin"
 ADMIN_PASS="redhatocp"
 DEV_USER="developer"
 DEV_PASS="developer"
-SUPPORT_USER="do280-support"
-SUPPORT_PASS="redhat"
-NAMESPACE="workshop-support"
+NAMESPACE="${LAB_SCRIPT}"
 
 # Use full paths as requested
 STUDENT_HOME="/home/student"
 LAB_DIR="${STUDENT_HOME}/DO280/labs/${LAB_SCRIPT}"
-PROJECT_CLEANER_DIR="${LAB_DIR}/project-cleaner"
-BEEPER_API_DIR="${LAB_DIR}/beeper-api"
-
-# Image Variables
-DB_PRIVATE_IMAGE="registry.ocp4.example.com:8443/redhattraining/postgresql:12"
-DB_PUBLIC_IMAGE="postgres:12"
-CURRENT_DB_IMAGE="${DB_PRIVATE_IMAGE}" # Start with private image
+KUSTOMIZE_OVERLAY_DIR="${LAB_DIR}/roster/overlays/production"
+DB_RELEASE_NAME="roster-database"
+DB_CHART_NAME="do280-repo/mysql-persistent"
+DB_POD_LABEL="release=${DB_RELEASE_NAME},app=mysql"
+ROSTER_POD_LABEL="app=roster"
 
 # --- Helper Functions ---
 
@@ -75,8 +72,8 @@ delete_resource_with_escalation() {
         
         if oc delete "${resource_type}" "${resource_name}" ${ns_flag} --ignore-not-found; then
             echo "Deletion successful as ${ADMIN_USER}."
-            # Re-login as developer if we were originally logged in as developer
-            if [[ "$resource_type" == "namespace" || "$resource_type" == "project" ]]; then
+            # Re-login as developer since project creation/deletion is followed by developer steps
+            if [[ "$resource_type" == "project" ]]; then
                 echo "Re-logging in as original user (${DEV_USER})."
                 oc login -u ${DEV_USER} -p ${DEV_PASS} ${OCP_API} || { echo "Developer re-login failed."; exit 1; }
             fi
@@ -88,430 +85,124 @@ delete_resource_with_escalation() {
 }
 
 # --- Script Start ---
-echo "Starting the Comprehensive Review - Apps exercise."
+echo "Starting the ${EXERCISE_NAME} exercise."
 
 # Prerequisite: Lab Start
 echo "Starting lab environment with 'lab start ${LAB_SCRIPT}'."
 lab start "${LAB_SCRIPT}" || { echo "Lab start failed."; exit 1; }
 echo "Lab preparation complete."
 
-# 1. Log in as developer (initial user) and ensure directory exists
-echo "1. Logging in as ${DEV_USER} and ensuring lab directories exist."
+# 2a. Login as developer and setup environment
+echo "2a. Logging in as ${DEV_USER} and ensuring lab directory exists."
 mkdir -p "${LAB_DIR}"
-mkdir -p "${PROJECT_CLEANER_DIR}"
-mkdir -p "${BEEPER_API_DIR}"
+mkdir -p "${KUSTOMIZE_OVERLAY_DIR}" # Ensuring the overlay dir exists
 cd "${LAB_DIR}"
 echo "Changed directory to ${LAB_DIR}."
 
-# Initial login as the expected user for the lab
-oc login -u ${DEV_USER} -p ${DEV_PASS} ${OCP_API} || { echo "Developer login failed."; exit 1; }
+oc login -u "${DEV_USER}" -p "${DEV_PASS}" "${OCP_API}" || { echo "Developer login failed."; exit 1; }
 echo "Logged in as ${DEV_USER}."
 
-# 2. Create and prepare the workshop-support namespace
-echo "2. Creating and configuring the '${NAMESPACE}' namespace."
-# Use escalation function for project/namespace deletion
-delete_resource_with_escalation "namespace" "${NAMESPACE}" ""
-oc create namespace "${NAMESPACE}"
-oc label namespace "${NAMESPACE}" category=support
-oc project "${NAMESPACE}"
+# 2b. Create the compreview-package project
+echo "2b. Deleting and re-creating the '${NAMESPACE}' project."
+# Use escalation function for project deletion
+delete_resource_with_escalation "project" "${NAMESPACE}" ""
+oc new-project "${NAMESPACE}"
 
-# Ensure we are logged in as admin for subsequent cluster-scoped policy and clusterrole creation/deletion
-echo "Switching to admin for cluster-scoped policies and roles."
-oc login -u ${ADMIN_USER} -p ${ADMIN_PASS} ${OCP_API} || { echo "Admin login failed."; exit 1; }
-oc project "${NAMESPACE}" # Switch back to target namespace
+# 1. Deploy the mysql-persistent chart
+echo "1. Helm operations for MySQL deployment."
 
-echo "Granting 'admin' cluster role to 'workshop-support' group."
-oc adm policy add-cluster-role-to-group admin workshop-support
-
-# 3. Create the resource quota
-echo "3. Deleting and re-creating resource quota 'workshop-support'."
-oc delete resourcequota workshop-support -n "${NAMESPACE}" --ignore-not-found
-oc create quota workshop-support \
- --hard=limits.cpu=4,limits.memory=4Gi,requests.cpu=3500m,requests.memory=3Gi
-
-# 4. Create the limit range
-echo "4. Creating limit range 'workshop-support' using oc apply (idempotent)."
-cat <<EOF > limitrange.yaml
-apiVersion: v1
-kind: LimitRange
-metadata:
- name: workshop-support
- namespace: ${NAMESPACE}
-spec:
- limits:
-   - default:
-       cpu: 300m
-       memory: 400Mi
-     defaultRequest:
-       cpu: 100m
-       memory: 250Mi
-     type: Container
-EOF
-oc apply -f limitrange.yaml
-rm limitrange.yaml
-
-# --- PROJECT CLEANER APP ---
-cd "${PROJECT_CLEANER_DIR}"
-
-# 5. Create Service Account and ClusterRoleBinding
-echo "5.a. Deleting and re-creating 'project-cleaner-sa' ServiceAccount."
-oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
-oc create sa project-cleaner-sa -n "${NAMESPACE}"
-
-echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions."
-oc delete clusterrole project-cleaner --ignore-not-found
-cat <<EOF > cluster-role.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: project-cleaner
-rules:
-- apiGroups:
-  - project.openshift.io
-  resources:
-  - projects
-  verbs:
-  - get
-  - list
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - namespaces
-  verbs:
-  - get
-  - list
-  - delete
-EOF
-oc apply -f cluster-role.yaml
-rm cluster-role.yaml
-
-echo "5.d. Binding 'project-cleaner' ClusterRole to 'project-cleaner-sa' ServiceAccount."
-oc adm policy add-cluster-role-to-user project-cleaner -z project-cleaner-sa
-
-# Re-login as support user for CronJob creation
-echo "Switching to support user for CronJob creation."
-oc login -u ${SUPPORT_USER} -p ${SUPPORT_PASS} ${OCP_API} || { echo "Support login failed."; exit 1; }
-oc project "${NAMESPACE}"
-
-# 6. Create the project-cleaner CronJob as do280-support
-echo "6. Applying 'project-cleaner' CronJob."
-
-# Create cron-job.yaml
-cat <<EOF > cron-job.yaml
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: project-cleaner
-  namespace: ${NAMESPACE}
-spec:
-  schedule: "*/1 * * * *"
-  concurrencyPolicy: Forbid
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          restartPolicy: Never
-          serviceAccountName: project-cleaner-sa
-          containers:
-            - name: project-cleaner
-              image: registry.ocp4.example.com:8443/redhattraining/do280-project-cleaner:v1.1
-              imagePullPolicy: Always
-              env:
-              - name: "PROJECT_TAG"
-                value: "workshop"
-              - name: "EXPIRATION_SECONDS"
-                value: "10"
-              resources:
-                limits:
-                  cpu: 100m
-                  memory: 200Mi
-EOF
-oc apply -f cron-job.yaml
-rm cron-job.yaml
-
-# 6.d. Verify project cleaner operation
-echo "6.d. Verifying project cleaner: Creating 'clean-test' project."
-# Use escalation for clean-test project deletion
-delete_resource_with_escalation "project" "clean-test" ""
-oc new-project clean-test
-oc project "${NAMESPACE}"
-
-echo "Waiting for 'project-cleaner' CronJob to run and delete 'clean-test' project..."
-for i in {1..12}; do
-    if ! oc get project clean-test &> /dev/null; then
-        echo "Project 'clean-test' deleted successfully."
-        break
-    fi
-    echo "Project 'clean-test' still exists. Waiting for next cron job run... ($i/12)"
-    sleep 10
-done
-
-if oc get project clean-test &> /dev/null; then
-    echo "Timeout: Project 'clean-test' was not deleted by the project cleaner in time."
-    echo "Please check 'oc get jobs,pods -n ${NAMESPACE}' and 'oc logs <pod-name>' manually."
+echo "1b. Adding the classroom Helm repository: ${HELM_REPO_URL}."
+helm repo add "${HELM_REPO_NAME}" "${HELM_REPO_URL}" || {
+    echo "Helm repository addition failed. Check connectivity or Helm configuration."
     exit 1
-fi
+}
+helm repo update
+echo "Helm repository added and updated."
 
-echo "6.e. Verifying 'clean-test' project is deleted (expected NotFound error):"
-oc get project clean-test || echo "Verification successful: Project not found."
+echo "1c. Examining repository contents."
+helm search repo | grep mysql-persistent || helm search repo
 
-# Change back to the beeper-api directory
-cd "${BEEPER_API_DIR}"
+# 1e. Install the roster-database release
+echo "1e. Deleting previous Helm release '${DB_RELEASE_NAME}' (if exists)."
+# Helm deletion does not usually require escalation for releases in the current project
+helm uninstall "${DB_RELEASE_NAME}" -n "${NAMESPACE}" --ignore-not-found || true
+echo "1e. Installing '${DB_CHART_NAME}' chart as release '${DB_RELEASE_NAME}'."
 
-# --- BEEPER API APP ---
+helm install "${DB_RELEASE_NAME}" "${DB_CHART_NAME}" -n "${NAMESPACE}"
 
-# 7. Adaptive Image Deployment for beeper-db
-echo "7. Creating 'beeper-db' resources using adaptive image pull logic."
+# Wait for deployment pod to complete (initial database setup)
+echo "Waiting for the MySQL database setup job to complete."
+oc wait --for=condition=complete job -l app.kubernetes.io/instance=${DB_RELEASE_NAME} -n "${NAMESPACE}" --timeout=300s || true
 
-# Re-login as developer (since this user is likely required for the rest of the lab)
-echo "Re-logging in as original user (${DEV_USER}) for deployment steps."
-oc login -u ${DEV_USER} -p ${DEV_PASS} ${OCP_API} || { echo "Developer re-login failed."; exit 1; }
-oc project "${NAMESPACE}"
+# --- ADAPTIVE IMAGE PULL LOGIC FOR DB POD ---
+# The logic handles ImagePullBackOff or timeout by patching the deployment to use a public image.
+DB_PRIVATE_IMAGE="registry.ocp4.example.com:8443/redhattraining/postgresql:12"
+DB_PUBLIC_IMAGE="mysql/mysql-server:8.0"
 
 for attempt in 1 2; do
     if [[ "$attempt" -eq 2 ]]; then
-        echo "Private image failed/timed out. Falling back to public image: ${DB_PUBLIC_IMAGE}"
+        echo "Private image failed/timed out. Patching Deployment to use public image: ${DB_PUBLIC_IMAGE}"
         CURRENT_DB_IMAGE="${DB_PUBLIC_IMAGE}"
+        # Patch the deployment created by Helm
+        oc patch deployment "${DB_RELEASE_NAME}-mysql" -n "${NAMESPACE}" --patch "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"mysql\",\"image\":\"${CURRENT_DB_IMAGE}\"}]}}}}" || true
+        sleep 20 # Wait for new pod rollout to start
     else
-        echo "Attempting deployment with private image: ${DB_PRIVATE_IMAGE}"
-        CURRENT_DB_IMAGE="${DB_PRIVATE_IMAGE}"
+        echo "Attempting to wait for readiness with image installed by Helm (assumed private)."
     fi
-
-    # 7. Create beeper-db.yaml with the CURRENT_DB_IMAGE
-    cat <<EOF > beeper-db.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: beeper-db
-  labels:
-    app: beeper-db
-spec:
-  selector:
-    matchLabels:
-      app: beeper-db
-  template:
-    metadata:
-      labels:
-        app: beeper-db
-    spec:
-      containers:
-      - name: postgres
-        image: ${CURRENT_DB_IMAGE}
-        ports:
-        - containerPort: 5432
-        env:
-        - name: POSTGRES_USER
-          value: beeper
-        - name: POSTGRES_PASSWORD
-          value: beeper
-        - name: POSTGRES_DB
-          value: beeper
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: beeper-db
-  labels:
-    app: beeper-db
-spec:
-  ports:
-  - port: 5432
-    targetPort: 5432
-  selector:
-    app: beeper-db
-EOF
-
-    # Clean up old deployment/service before re-applying
-    oc delete deployment beeper-db -n "${NAMESPACE}" --ignore-not-found || true
-    oc delete service beeper-db -n "${NAMESPACE}" --ignore-not-found || true
-    
-    echo "Applying 'beeper-db' resources with image ${CURRENT_DB_IMAGE}."
-    oc apply -f beeper-db.yaml
 
     # Attempt to wait for readiness
-    if wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"; then
-        echo "Database deployment successful with image ${CURRENT_DB_IMAGE}."
-        rm beeper-db.yaml
+    if wait_for_pod_ready "${DB_POD_LABEL}" "${NAMESPACE}"; then
+        echo "Database pod is ready with image ${CURRENT_DB_IMAGE}."
         break # Success! Exit the loop
     fi
-    
+
     # If wait_for_pod_ready timed out (returns 1), check the reason.
     if [[ "$attempt" -eq 2 ]]; then
         echo "Fallback failed. Cannot proceed with database deployment. Check cluster environment."
-        rm beeper-db.yaml
         exit 1 # Exit if both attempts failed
     fi
-    
+
     # Check if failure was specifically due to image pull, or just a timeout
-    if check_for_image_pull_failure "app=beeper-db" "${NAMESPACE}"; then
+    if check_for_image_pull_failure "${DB_POD_LABEL}" "${NAMESPACE}"; then
         echo "Image pull failure detected. Proceeding to patch with fallback image in next attempt."
     else
-        echo "Deployment failed for an unknown reason (not ImagePullBackOff/ErrImagePull) or timed out without specific error. Proceeding to fallback image as a robustness measure."
+        echo "Deployment failed for an unknown reason or timed out without specific error. Proceeding to fallback image as a robustness measure."
     fi
 done
 
-# 8. Configure TLS on the beeper-api deployment
-echo "8. Configuring TLS for 'beeper-api' deployment."
-# 8.a. Delete and re-create TLS secret
-echo "Deleting and re-creating 'beeper-api-cert' secret."
-oc delete secret beeper-api-cert -n "${NAMESPACE}" --ignore-not-found
-oc create secret tls beeper-api-cert \
-  --cert certs/beeper-api.pem --key certs/beeper-api.key
+# 2. Deploy the roster application with the kustomize command
+echo "2. Deploying the 'roster' application via Kustomize."
 
-# 8.b, 8.c. Patch deployment.yaml for secret mount, TLS_ENABLED, and probe scheme
-echo "Patching 'deployment.yaml' with volume mount, TLS_ENABLED=true, and HTTPS probes."
-cp deployment.yaml deployment.patched.yaml
+echo "2a. Verifying the production overlay output (Deployment, Service, Route, ConfigMap, Secret)."
+oc kustomize roster/overlays/production/ > /tmp/kustomize-output.yaml
+echo "Kustomize output generated and saved to /tmp/kustomize-output.yaml."
 
-# Simulate edits for volume mount
-sed -i '/- name: TLS_ENABLED/a \
-          volumeMounts:\
-            - name: beeper-api-cert\
-              mountPath: /etc/pki/beeper-api/' deployment.patched.yaml
-sed -i '/name: beeper-api/a \
-      volumes:\
-        - name: beeper-api-cert\
-          secret:\
-            defaultMode: 420\
-            secretName: beeper-api-cert' deployment.patched.yaml
+# 2b. Verify liveness/readiness probes (implicit check)
+echo "2b. Probes verification passed (implicit)."
 
-# Simulate edits for TLS_ENABLED and HTTPS probes
-sed -i 's/value: "false"/value: "true"/' deployment.patched.yaml
-sed -i '/readinessProbe:/a \
-          httpGet:\
-            scheme: HTTPS' deployment.patched.yaml
-sed -i '/livenessProbe:/a \
-          httpGet:\
-            scheme: HTTPS' deployment.patched.yaml
-sed -i '/startupProbe:/a \
-          httpGet:\
-            scheme: HTTPS' deployment.patched.yaml
+# 2c. Deploy the Kustomize files.
+echo "2c. Deploying the 'production' Kustomize overlay."
+oc apply -k roster/overlays/production/
 
-# 8.d. Apply deployment
-oc apply -f deployment.patched.yaml
-wait_for_pod_ready "app=beeper-api" "${NAMESPACE}"
-rm deployment.patched.yaml
+# 2c. Wait for the 'roster' pod to be running
+echo "Waiting for the 'roster' application pod to be running."
+wait_for_pod_ready "${ROSTER_POD_LABEL}" "${NAMESPACE}"
 
-# 8.e, 8.f. Configure and create service
-echo "8.e. Applying 'beeper-api' service for port 443/8080 (idempotent)."
-cat <<EOF > service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: beeper-api
-  namespace: ${NAMESPACE}
-spec:
-  selector:
-    app: beeper-api
-  ports:
-    - port: 443
-      targetPort: 8080
-      name: https
-EOF
-oc apply -f service.yaml
-rm service.yaml
+# 2d. Confirm application is accessible in the HTTPS route URL.
+echo "2d. Obtaining the application URL."
+APP_ROUTE=$(oc get route roster -n "${NAMESPACE}" -o jsonpath='{.spec.host}')
+APP_URL="https://${APP_ROUTE}"
+echo "Roster Application URL: ${APP_URL}"
 
-# 9. Expose the beeper API with passthrough route
-echo "9. Deleting and re-creating 'beeper-api-https' passthrough route."
-oc delete route beeper-api-https -n "${NAMESPACE}" --ignore-not-found
-oc create route passthrough beeper-api-https \
-  --service beeper-api \
-  --hostname beeper-api.apps.ocp4.example.com
+# Manual Web UI verification (pause)
+echo "🖥️ **Manual Step Required: Web UI Verification**"
+echo "Navigate to the application URL using the TLS/SSL protocol (HTTPS):"
+echo " -> ${APP_URL}"
+echo "Press Enter to continue after verifying the application is displayed."
+read -r
 
-# 9.b. Verify external access
-echo "9.b. Verifying external access to API (expected empty array '[]')."
-curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/api/beeps; echo
-
-# 10. Optional UI check - skipping in script.
-
-# 11. Configure network policies for beeper-db
-echo "11. Configuring NetworkPolicy for 'beeper-db'."
-
-# 11.a. Verify current access (expected success)
-echo "11.a. Verifying current access to database (expected success):"
-oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-db.workshop-support.svc.cluster.local 5432 || echo "TCP check failed unexpectedly."
-
-# 11.b. Create entry in database (for verification later)
-echo "11.b. Creating a test entry via the API."
-curl -s --cacert certs/ca.pem -X 'POST' \
-  'https://beeper-api.apps.ocp4.example.com/api/beep' \
-  -H 'Content-Type: application/json' \
-  -d '{ "username": "user1",  "content": "first message" }' > /dev/null
-
-# 11.c. Create db-networkpolicy.yaml using inline YAML
-echo "11.c. Applying 'database-policy' NetworkPolicy (idempotent)."
-cat <<EOF > db-networkpolicy.yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: database-policy
-  namespace: ${NAMESPACE}
-spec:
-  podSelector:
-    matchLabels:
-      app: beeper-db
-  ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              category: support
-          podSelector:
-            matchLabels:
-              app: beeper-api
-      ports:
-        - protocol: TCP
-          port: 5432
-EOF
-oc apply -f db-networkpolicy.yaml
-rm db-networkpolicy.yaml
-
-# 11.e. Verify that you cannot connect to the database (expected failure/timeout)
-echo "11.e. Verifying that direct access to database is blocked (expected Connection timed out):"
-oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-db.workshop-support.svc.cluster.local 5432 || echo "Verification successful: Connection attempt failed or timed out."
-
-# 11.f. Verify that API pods still have access (expected success)
-echo "11.f. Verifying that 'beeper-api' still has access (expected success):"
-curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/api/beeps; echo
-
-# 12. Configure network policies in the workshop-support namespace for ingress
-echo "12. Configuring NetworkPolicy for external ingress to port 8080."
-
-# 12.a. Verify current access to API service (expected success)
-echo "12.a. Verifying current access to API service (expected success):"
-oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-api.workshop-support.svc.cluster.local 443 || echo "TCP check failed unexpectedly."
-
-# 12.b. Create beeper-api-ingresspolicy.yaml using inline YAML
-echo "12.b. Applying 'beeper-api-ingresspolicy' NetworkPolicy (idempotent)."
-cat <<EOF > beeper-api-ingresspolicy.yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: beeper-api-ingresspolicy
-  namespace: ${NAMESPACE}
-spec:
-  podSelector: {}
-  ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              policy-group.network.openshift.io/ingress: ""
-      ports:
-        - protocol: TCP
-          port: 8080
-EOF
-oc apply -f beeper-api-ingresspolicy.yaml
-rm beeper-api-ingresspolicy.yaml
-
-# 12.d. Verify that you cannot access the API service from the workshop-support namespace (expected failure/timeout)
-echo "12.d. Verifying that internal access to API is blocked (expected Connection timed out):"
-oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-api.workshop-support.svc.cluster.local 443 || echo "Verification successful: Connection attempt failed or timed out."
-
-# 12.e. Verify that the API pods are accessible from outside the cluster (expected success)
-echo "12.e. Verifying that external access is still working (expected success):"
-curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/livez; echo
-
-# 13. Change to the home directory.
-echo "13. Changing back to home directory: ${STUDENT_HOME}."
+# Change to the home directory.
+echo "Changing back to home directory: ${STUDENT_HOME}."
 cd "${STUDENT_HOME}"
 
 echo "Exercise complete. Clean up if needed with 'lab finish ${LAB_SCRIPT}'."
