@@ -45,18 +45,25 @@ echo "Logged in as ${ADMIN_USER}."
 
 # 2. Create and prepare the workshop-support namespace
 echo "2. Creating and configuring the '${NAMESPACE}' namespace."
-oc create namespace "${NAMESPACE}" || echo "Namespace '${NAMESPACE}' already exists."
+# Delete and re-create the namespace
+oc delete namespace "${NAMESPACE}" --ignore-not-found
+oc create namespace "${NAMESPACE}"
 oc label namespace "${NAMESPACE}" category=support
 oc project "${NAMESPACE}"
+
+# Use 'oc adm policy add-cluster-role-to-group' instead of delete/create for ClusterRoleBinding
+echo "Granting 'admin' cluster role to 'workshop-support' group."
 oc adm policy add-cluster-role-to-group admin workshop-support
 
 # 3. Create the resource quota
-echo "3. Creating resource quota 'workshop-support'."
+echo "3. Deleting and re-creating resource quota 'workshop-support'."
+# Delete and re-create the quota
+oc delete resourcequota workshop-support -n "${NAMESPACE}" --ignore-not-found
 oc create quota workshop-support \
  --hard=limits.cpu=4,limits.memory=4Gi,requests.cpu=3500m,requests.memory=3Gi
 
-# 4. Create the limit range (Using inline YAML based on solution)
-echo "4. Creating limit range 'workshop-support'."
+# 4. Create the limit range
+echo "4. Creating limit range 'workshop-support' using oc apply (idempotent)."
 cat <<EOF > limitrange.yaml
 apiVersion: v1
 kind: LimitRange
@@ -77,16 +84,20 @@ oc apply -f limitrange.yaml
 rm limitrange.yaml # Clean up the temporary file
 
 # --- PROJECT CLEANER APP ---
+cd project-cleaner
 
 # 5. Create Service Account and ClusterRoleBinding
-echo "5. Creating 'project-cleaner-sa' ServiceAccount and ClusterRoleBinding."
-oc create sa project-cleaner-sa || echo "ServiceAccount already exists, continuing."
-cd project-cleaner
+echo "5. Deleting and re-creating 'project-cleaner-sa' ServiceAccount."
+oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
+oc create sa project-cleaner-sa
+
+echo "Applying ClusterRole 'project-cleaner' and binding it to 'project-cleaner-sa'."
 oc apply -f cluster-role.yaml
+# Use 'oc adm policy add-cluster-role-to-user' instead of delete/create for ClusterRoleBinding
 oc adm policy add-cluster-role-to-user project-cleaner -z project-cleaner-sa
 
 # 6. Create the project-cleaner CronJob as do280-support
-echo "6. Creating 'project-cleaner' CronJob as ${SUPPORT_USER}."
+echo "6. Logging in as ${SUPPORT_USER} and applying 'project-cleaner' CronJob."
 oc login -u ${SUPPORT_USER} -p ${SUPPORT_PASS} || { echo "Support login failed."; exit 1; }
 echo "Logged in as ${SUPPORT_USER}."
 
@@ -120,6 +131,7 @@ spec:
                   cpu: 100m
                   memory: 200Mi
 EOF
+# Use oc apply -f for the CronJob
 oc apply -f cron-job.yaml
 rm cron-job.yaml # Clean up the temporary file
 
@@ -128,9 +140,8 @@ echo "6.d. Verifying project cleaner: Creating 'clean-test' project."
 oc new-project clean-test
 oc project "${NAMESPACE}"
 
-# Wait for a job run and project deletion. The project should be deleted quickly.
+# Wait for a job run and project deletion.
 echo "Waiting for 'project-cleaner' CronJob to run and delete 'clean-test' project..."
-# Wait for clean-test project to be deleted, up to 120 seconds (2 minutes)
 for i in {1..12}; do
     if ! oc get project clean-test &> /dev/null; then
         echo "Project 'clean-test' deleted successfully."
@@ -155,24 +166,24 @@ cd .. # Back to compreview-apps directory
 cd beeper-api
 
 # 7. Create the beeper database
-echo "7. Creating 'beeper-db' database resources."
+echo "7. Applying 'beeper-db' database resources (idempotent)."
 oc apply -f beeper-db.yaml
 wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"
 
 # 8. Configure TLS on the beeper-api deployment
 echo "8. Configuring TLS for 'beeper-api' deployment."
-# 8.a. Create TLS secret
+# 8.a. Delete and re-create TLS secret
+echo "Deleting and re-creating 'beeper-api-cert' secret."
+oc delete secret beeper-api-cert -n "${NAMESPACE}" --ignore-not-found
 oc create secret tls beeper-api-cert \
   --cert certs/beeper-api.pem --key certs/beeper-api.key
 
 # 8.b, 8.c. Patch deployment.yaml for secret mount, TLS_ENABLED, and probe scheme
 echo "Patching 'deployment.yaml' with volume mount, TLS_ENABLED=true, and HTTPS probes."
-# We will use 'oc patch' or 'oc edit' to avoid complex file manipulation, but the lab uses file edit, so we'll simulate the edits:
-
 # Create a temporary patched deployment file
 cp deployment.yaml deployment.patched.yaml
 
-# Simulate edits for volume mount (using sed for simplicity of automation)
+# Simulate edits for volume mount
 sed -i '/- name: TLS_ENABLED/a \
           volumeMounts:\
             - name: beeper-api-cert\
@@ -202,7 +213,7 @@ wait_for_pod_ready "app=beeper-api" "${NAMESPACE}"
 rm deployment.patched.yaml
 
 # 8.e, 8.f. Configure and create service
-echo "8.e. Configuring 'beeper-api' service for port 443/8080."
+echo "8.e. Applying 'beeper-api' service for port 443/8080 (idempotent)."
 cat <<EOF > service.yaml
 apiVersion: v1
 kind: Service
@@ -220,10 +231,12 @@ EOF
 oc apply -f service.yaml
 
 # 9. Expose the beeper API with passthrough route
-echo "9. Exposing 'beeper-api' with passthrough route."
+echo "9. Deleting and re-creating 'beeper-api-https' passthrough route."
+# Delete and re-create the route
+oc delete route beeper-api-https -n "${NAMESPACE}" --ignore-not-found
 oc create route passthrough beeper-api-https \
   --service beeper-api \
-  --hostname beeper-api.apps.ocp4.example.com || echo "Route already exists, continuing."
+  --hostname beeper-api.apps.ocp4.example.com
 
 # 9.b. Verify external access
 echo "9.b. Verifying external access to API (expected empty array '[]')."
@@ -232,7 +245,7 @@ curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/api/beeps
 # 10. Optional UI check - skipping in script.
 
 # 11. Configure network policies for beeper-db
-echo "11. Configuring NetworkPolicy for 'beeper-db' to allow traffic only from 'beeper-api' pods."
+echo "11. Configuring NetworkPolicy for 'beeper-db'."
 
 # 11.a. Verify current access (expected success)
 echo "11.a. Verifying current access to database (expected success):"
@@ -246,7 +259,7 @@ curl -s --cacert certs/ca.pem -X 'POST' \
   -d '{ "username": "user1",  "content": "first message" }' > /dev/null
 
 # 11.c. Create db-networkpolicy.yaml using inline YAML
-echo "11.c. Creating 'database-policy' NetworkPolicy."
+echo "11.c. Applying 'database-policy' NetworkPolicy (idempotent)."
 cat <<EOF > db-networkpolicy.yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -288,7 +301,7 @@ echo "12.a. Verifying current access to API service (expected success):"
 oc debug --to-namespace="${NAMESPACE}" -- nc -z -v beeper-api.workshop-support.svc.cluster.local 443 || echo "TCP check failed unexpectedly."
 
 # 12.b. Create beeper-api-ingresspolicy.yaml using inline YAML
-echo "12.b. Creating 'beeper-api-ingresspolicy' NetworkPolicy."
+echo "12.b. Applying 'beeper-api-ingresspolicy' NetworkPolicy (idempotent)."
 cat <<EOF > beeper-api-ingresspolicy.yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
