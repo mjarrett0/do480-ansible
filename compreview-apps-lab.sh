@@ -26,17 +26,21 @@ CURRENT_DB_IMAGE="${DB_PRIVATE_IMAGE}" # Start with private image
 
 # --- Helper Functions ---
 
-# Function to check for pod readiness in a namespace
+# Function to check for pod readiness in a namespace. RETURNS 0 ON SUCCESS, 1 ON FAILURE.
 wait_for_pod_ready() {
     local label="$1"
     local ns="$2"
-    echo "Waiting for pod with label '$label' to be ready in namespace '$ns'..."
-    oc wait --for=condition=Ready pod -l "$label" -n "$ns" --timeout=300s || {
-        echo "Timeout waiting for pod with label '$label' to be ready."
-        oc get pods -l "$label" -n "$ns"
-        exit 1
-    }
-    echo "Pod with label '$label' is ready."
+    local timeout=300
+    echo "Waiting for pod with label '$label' to be ready in namespace '$ns' (Timeout: ${timeout}s)..."
+    
+    # Use oc wait, which returns 0 on success, 1 on timeout
+    if oc wait --for=condition=Ready pod -l "$label" -n "$ns" --timeout="${timeout}s"; then
+        echo "Pod with label '$label' is ready."
+        return 0
+    else
+        echo "Timeout waiting for pod with label '$label' to be ready/stable."
+        return 1
+    fi
 }
 
 # Function to check if a pod has failed due to image pull (short check)
@@ -66,7 +70,6 @@ echo "Lab preparation complete."
 
 # 1. Log in as admin and change directory
 echo "1. Logging in as ${ADMIN_USER} and ensuring lab directories exist."
-# Ensure directories exist and then change to the main lab directory
 mkdir -p "${LAB_DIR}"
 mkdir -p "${PROJECT_CLEANER_DIR}"
 mkdir -p "${BEEPER_API_DIR}"
@@ -111,7 +114,7 @@ spec:
      type: Container
 EOF
 oc apply -f limitrange.yaml
-rm limitrange.yaml # Clean up the temporary file
+rm limitrange.yaml
 
 # --- PROJECT CLEANER APP ---
 cd "${PROJECT_CLEANER_DIR}"
@@ -223,13 +226,14 @@ cd "${BEEPER_API_DIR}"
 # 7. Adaptive Image Deployment for beeper-db
 echo "7. Creating 'beeper-db' resources using adaptive image pull logic."
 
-# Start loop: Try private image first, then public image if pull fails
+# Start loop: Try private image first, then public image if pull fails/times out
 for attempt in 1 2; do
     if [[ "$attempt" -eq 2 ]]; then
-        echo "Private image pull failed. Falling back to public image: ${DB_PUBLIC_IMAGE}"
+        echo "Private image failed/timed out. Falling back to public image: ${DB_PUBLIC_IMAGE}"
         CURRENT_DB_IMAGE="${DB_PUBLIC_IMAGE}"
     else
         echo "Attempting deployment with private image: ${DB_PRIVATE_IMAGE}"
+        CURRENT_DB_IMAGE="${DB_PRIVATE_IMAGE}"
     fi
 
     # 7. Create beeper-db.yaml with the CURRENT_DB_IMAGE
@@ -283,27 +287,27 @@ EOF
     echo "Applying 'beeper-db' resources with image ${CURRENT_DB_IMAGE}."
     oc apply -f beeper-db.yaml
 
-    # Attempt to wait for readiness (300s)
-    if wait_for_pod_ready "app=beeper-db" "${NAMESPACE}" 2>/dev/null; then
+    # Attempt to wait for readiness
+    if wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"; then
         echo "Database deployment successful with image ${CURRENT_DB_IMAGE}."
         rm beeper-db.yaml
         break # Success! Exit the loop
     fi
     
-    # If wait_for_pod_ready timed out, check if it was an ImagePullBackOff
-    if check_for_image_pull_failure "app=beeper-db" "${NAMESPACE}"; then
-        # Image pull failure detected, loop continues to attempt 2 (public image)
-        if [[ "$attempt" -eq 2 ]]; then
-            echo "Fallback failed. Cannot proceed with database deployment. Check registry configuration."
-            rm beeper-db.yaml
-            exit 1 # Exit if both attempts failed
-        fi
-    else
-        # Pod timed out but not due to ImagePullBackOff, suggest manual check
-        echo "Deployment failed for an unknown reason. Check 'oc describe pod' manually."
+    # If wait_for_pod_ready timed out (returns 1), check the reason.
+    if [[ "$attempt" -eq 2 ]]; then
+        echo "Fallback failed. Cannot proceed with database deployment. Check cluster environment."
         rm beeper-db.yaml
-        exit 1
+        exit 1 # Exit if both attempts failed
     fi
+    
+    # Check if failure was specifically due to image pull, or just a timeout
+    if check_for_image_pull_failure "app=beeper-db" "${NAMESPACE}"; then
+        echo "Image pull failure detected. Proceeding to fallback image in next attempt."
+    else
+        echo "Deployment failed for an unknown reason (not ImagePullBackOff/ErrImagePull) or timed out without specific error. Proceeding to fallback image as a robustness measure."
+    fi
+    # Loop continues to attempt 2 (public image)
 done
 
 # 8. Configure TLS on the beeper-api deployment
