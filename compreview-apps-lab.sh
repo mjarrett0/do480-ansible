@@ -12,7 +12,12 @@ ADMIN_PASS="redhatocp"
 SUPPORT_USER="do280-support"
 SUPPORT_PASS="redhat"
 NAMESPACE="workshop-support"
-LAB_DIR="~/DO280/labs/${LAB_SCRIPT}"
+
+# Use full paths as requested
+STUDENT_HOME="/home/student"
+LAB_DIR="${STUDENT_HOME}/DO280/labs/${LAB_SCRIPT}"
+PROJECT_CLEANER_DIR="${LAB_DIR}/project-cleaner"
+BEEPER_API_DIR="${LAB_DIR}/beeper-api"
 
 # --- Helper Functions ---
 
@@ -21,9 +26,9 @@ wait_for_pod_ready() {
     local label="$1"
     local ns="$2"
     echo "Waiting for pod with label '$label' to be ready in namespace '$ns'..."
-    oc wait --for=condition=Ready pod -l $label -n $ns --timeout=300s || {
+    oc wait --for=condition=Ready pod -l "$label" -n "$ns" --timeout=300s || {
         echo "Timeout waiting for pod with label '$label' to be ready."
-        oc get pods -l $label -n $ns
+        oc get pods -l "$label" -n "$ns"
         exit 1
     }
     echo "Pod with label '$label' is ready."
@@ -38,8 +43,14 @@ lab start "${LAB_SCRIPT}" || { echo "Lab start failed."; exit 1; }
 echo "Lab preparation complete."
 
 # 1. Log in as admin and change directory
-echo "1. Logging in as ${ADMIN_USER} and changing to lab directory."
+echo "1. Logging in as ${ADMIN_USER} and ensuring lab directories exist."
+# Ensure directories exist and then change to the main lab directory
+mkdir -p "${LAB_DIR}"
+mkdir -p "${PROJECT_CLEANER_DIR}"
+mkdir -p "${BEEPER_API_DIR}"
 cd "${LAB_DIR}"
+echo "Changed directory to ${LAB_DIR}."
+
 oc login -u ${ADMIN_USER} -p ${ADMIN_PASS} ${OCP_API} || { echo "Admin login failed."; exit 1; }
 echo "Logged in as ${ADMIN_USER}."
 
@@ -84,16 +95,15 @@ oc apply -f limitrange.yaml
 rm limitrange.yaml # Clean up the temporary file
 
 # --- PROJECT CLEANER APP ---
-cd project-cleaner
+cd "${PROJECT_CLEANER_DIR}"
 
 # 5. Create Service Account and ClusterRoleBinding
 echo "5.a. Deleting and re-creating 'project-cleaner-sa' ServiceAccount."
 oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
 oc create sa project-cleaner-sa -n "${NAMESPACE}"
 
-# 5.c. CORRECTED: Create the ClusterRole by generating the file inline
-# This final corrected version adds 'delete' to namespaces (core API group) to fix the 403 error.
-echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions."
+# 5.c. CORRECTED: Create the ClusterRole (Includes permissions for 'projects' and 'namespaces' with 'delete' verb)
+echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions to prevent 403 errors."
 oc delete clusterrole project-cleaner --ignore-not-found
 cat <<EOF > cluster-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -116,7 +126,7 @@ rules:
   verbs:
   - get
   - list
-  - delete # <<< This is the final fix for the 403 DELETE error
+  - delete
 EOF
 oc apply -f cluster-role.yaml
 rm cluster-role.yaml # Clean up the temporary file
@@ -191,12 +201,57 @@ fi
 # 6.e. Final verification of deletion
 echo "6.e. Verifying 'clean-test' project is deleted (expected NotFound error):"
 oc get project clean-test || echo "Verification successful: Project not found."
-cd .. # Back to compreview-apps directory
+
+# Change back to the beeper-api directory for the next steps
+cd "${BEEPER_API_DIR}"
 
 # --- BEEPER API APP ---
-cd beeper-api
 
 # 7. Create the beeper database
+echo "7. Creating 'beeper-db.yaml' (assumed standard Postgres for lab context)."
+cat <<EOF > beeper-db.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beeper-db
+  labels:
+    app: beeper-db
+spec:
+  selector:
+    matchLabels:
+      app: beeper-db
+  template:
+    metadata:
+      labels:
+        app: beeper-db
+    spec:
+      containers:
+      - name: postgres
+        image: registry.ocp4.example.com:8443/redhattraining/postgresql:12
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          value: beeper
+        - name: POSTGRES_PASSWORD
+          value: beeper
+        - name: POSTGRES_DB
+          value: beeper
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: beeper-db
+  labels:
+    app: beeper-db
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: beeper-db
+EOF
+
 echo "7. Applying 'beeper-db' database resources (idempotent)."
 oc apply -f beeper-db.yaml
 wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"
@@ -206,6 +261,7 @@ echo "8. Configuring TLS for 'beeper-api' deployment."
 # 8.a. Delete and re-create TLS secret
 echo "Deleting and re-creating 'beeper-api-cert' secret."
 oc delete secret beeper-api-cert -n "${NAMESPACE}" --ignore-not-found
+# Assuming certs/beeper-api.pem and certs/beeper-api.key exist in BEEPER_API_DIR relative path
 oc create secret tls beeper-api-cert \
   --cert certs/beeper-api.pem --key certs/beeper-api.key
 
@@ -260,6 +316,7 @@ spec:
       name: https
 EOF
 oc apply -f service.yaml
+rm service.yaml
 
 # 9. Expose the beeper API with passthrough route
 echo "9. Deleting and re-creating 'beeper-api-https' passthrough route."
@@ -362,7 +419,7 @@ echo "12.e. Verifying that external access is still working (expected success):"
 curl -s --cacert certs/ca.pem https://beeper-api.apps.ocp4.example.com/livez; echo
 
 # 13. Change to the home directory.
-echo "13. Changing back to home directory."
-cd
+echo "13. Changing back to home directory: ${STUDENT_HOME}."
+cd "${STUDENT_HOME}"
 
 echo "Exercise complete. Clean up if needed with 'lab finish ${LAB_SCRIPT}'."
