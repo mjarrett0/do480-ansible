@@ -17,11 +17,18 @@ NAMESPACE="${LAB_SCRIPT}"
 # Use full paths as requested
 STUDENT_HOME="/home/student"
 LAB_DIR="${STUDENT_HOME}/DO280/labs/${LAB_SCRIPT}"
-KUSTOMIZE_OVERLAY_DIR="${LAB_DIR}/roster/overlays/production"
+ROSTER_DIR="${LAB_DIR}/roster"
+KUSTOMIZE_OVERLAY_DIR="${ROSTER_DIR}/overlays/production"
+HELM_REPO_NAME="do280-repo"
+HELM_REPO_URL="http://helm.ocp4.example.com/charts"
 DB_RELEASE_NAME="roster-database"
-DB_CHART_NAME="do280-repo/mysql-persistent"
+DB_CHART_NAME="${HELM_REPO_NAME}/mysql-persistent"
 DB_POD_LABEL="release=${DB_RELEASE_NAME},app=mysql"
 ROSTER_POD_LABEL="app=roster"
+
+# Adaptive Image Variables for DB (to handle ImagePullBackOff from private registry)
+DB_PUBLIC_IMAGE="mysql/mysql-server:8.0" # Standard MySQL image as fallback
+CURRENT_DB_IMAGE="" # Determined during runtime
 
 # --- Helper Functions ---
 
@@ -61,7 +68,7 @@ check_for_image_pull_failure() {
 delete_resource_with_escalation() {
     local resource_type="$1"
     local resource_name="$2"
-    local ns_flag="$3" # e.g., "-n namespace" or ""
+    local ns_flag="$3"
     
     echo "Attempting to delete ${resource_type} ${resource_name} as current user..."
     if oc delete "${resource_type}" "${resource_name}" ${ns_flag} --ignore-not-found; then
@@ -93,9 +100,9 @@ lab start "${LAB_SCRIPT}" || { echo "Lab start failed."; exit 1; }
 echo "Lab preparation complete."
 
 # 2a. Login as developer and setup environment
-echo "2a. Logging in as ${DEV_USER} and ensuring lab directory exists."
-mkdir -p "${LAB_DIR}"
-mkdir -p "${KUSTOMIZE_OVERLAY_DIR}" # Ensuring the overlay dir exists
+echo "2a. Logging in as ${DEV_USER} and ensuring lab directories exist."
+# Ensure directories exist and change to the main lab directory
+mkdir -p "${KUSTOMIZE_OVERLAY_DIR}"
 cd "${LAB_DIR}"
 echo "Changed directory to ${LAB_DIR}."
 
@@ -108,7 +115,7 @@ echo "2b. Deleting and re-creating the '${NAMESPACE}' project."
 delete_resource_with_escalation "project" "${NAMESPACE}" ""
 oc new-project "${NAMESPACE}"
 
-# 1. Deploy the mysql-persistent chart
+# 1. Add the classroom Helm repository
 echo "1. Helm operations for MySQL deployment."
 
 echo "1b. Adding the classroom Helm repository: ${HELM_REPO_URL}."
@@ -124,7 +131,6 @@ helm search repo | grep mysql-persistent || helm search repo
 
 # 1e. Install the roster-database release
 echo "1e. Deleting previous Helm release '${DB_RELEASE_NAME}' (if exists)."
-# Helm deletion does not usually require escalation for releases in the current project
 helm uninstall "${DB_RELEASE_NAME}" -n "${NAMESPACE}" --ignore-not-found || true
 echo "1e. Installing '${DB_CHART_NAME}' chart as release '${DB_RELEASE_NAME}'."
 
@@ -135,10 +141,6 @@ echo "Waiting for the MySQL database setup job to complete."
 oc wait --for=condition=complete job -l app.kubernetes.io/instance=${DB_RELEASE_NAME} -n "${NAMESPACE}" --timeout=300s || true
 
 # --- ADAPTIVE IMAGE PULL LOGIC FOR DB POD ---
-# The logic handles ImagePullBackOff or timeout by patching the deployment to use a public image.
-DB_PRIVATE_IMAGE="registry.ocp4.example.com:8443/redhattraining/postgresql:12"
-DB_PUBLIC_IMAGE="mysql/mysql-server:8.0"
-
 for attempt in 1 2; do
     if [[ "$attempt" -eq 2 ]]; then
         echo "Private image failed/timed out. Patching Deployment to use public image: ${DB_PUBLIC_IMAGE}"
@@ -148,6 +150,7 @@ for attempt in 1 2; do
         sleep 20 # Wait for new pod rollout to start
     else
         echo "Attempting to wait for readiness with image installed by Helm (assumed private)."
+        # In a real scenario, the Helm chart handles the image definition, but this step ensures we check the state.
     fi
 
     # Attempt to wait for readiness
@@ -173,12 +176,10 @@ done
 # 2. Deploy the roster application with the kustomize command
 echo "2. Deploying the 'roster' application via Kustomize."
 
-echo "2a. Verifying the production overlay output (Deployment, Service, Route, ConfigMap, Secret)."
+echo "2a. Verifying the production overlay output."
+# Generating the file inline is not required as lab expects it to exist, but using oc kustomize to verify.
 oc kustomize roster/overlays/production/ > /tmp/kustomize-output.yaml
 echo "Kustomize output generated and saved to /tmp/kustomize-output.yaml."
-
-# 2b. Verify liveness/readiness probes (implicit check)
-echo "2b. Probes verification passed (implicit)."
 
 # 2c. Deploy the Kustomize files.
 echo "2c. Deploying the 'production' Kustomize overlay."
