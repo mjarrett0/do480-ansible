@@ -91,8 +91,10 @@ echo "5.a. Deleting and re-creating 'project-cleaner-sa' ServiceAccount."
 oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
 oc create sa project-cleaner-sa -n "${NAMESPACE}"
 
-# 5.c. Create the ClusterRole by generating the file inline (as file was not provided)
-echo "5.c. Creating 'project-cleaner' ClusterRole with permissions to delete projects."
+# 5.c. CORRECTED: Create the ClusterRole by generating the file inline
+# This corrected version adds 'namespaces' (core API group) to fix the 403 Forbidden error.
+echo "5.c. Creating 'project-cleaner' ClusterRole with permissions for projects and namespaces."
+oc delete clusterrole project-cleaner --ignore-not-found
 cat <<EOF > cluster-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -107,6 +109,13 @@ rules:
   - get
   - list
   - delete
+- apiGroups:
+  - "" # Core API Group for standard Kubernetes Namespaces
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
 EOF
 oc apply -f cluster-role.yaml
 rm cluster-role.yaml # Clean up the temporary file
@@ -156,7 +165,7 @@ rm cron-job.yaml # Clean up the temporary file
 
 # 6.d. Verify project cleaner operation
 echo "6.d. Verifying project cleaner: Creating 'clean-test' project."
-# Delete the project first to ensure a clean test run
+# Ensure project is deleted before creating
 oc delete project clean-test --ignore-not-found
 oc new-project clean-test
 oc project "${NAMESPACE}"
@@ -205,12 +214,10 @@ echo "Patching 'deployment.yaml' with volume mount, TLS_ENABLED=true, and HTTPS 
 cp deployment.yaml deployment.patched.yaml
 
 # Simulate edits for volume mount
-# Adding volumeMounts block
 sed -i '/- name: TLS_ENABLED/a \
           volumeMounts:\
             - name: beeper-api-cert\
               mountPath: /etc/pki/beeper-api/' deployment.patched.yaml
-# Adding volumes block
 sed -i '/name: beeper-api/a \
       volumes:\
         - name: beeper-api-cert\
