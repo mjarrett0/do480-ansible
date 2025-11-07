@@ -19,6 +19,11 @@ LAB_DIR="${STUDENT_HOME}/DO280/labs/${LAB_SCRIPT}"
 PROJECT_CLEANER_DIR="${LAB_DIR}/project-cleaner"
 BEEPER_API_DIR="${LAB_DIR}/beeper-api"
 
+# Image Variables
+DB_PRIVATE_IMAGE="registry.ocp4.example.com:8443/redhattraining/postgresql:12"
+DB_PUBLIC_IMAGE="postgres:12"
+CURRENT_DB_IMAGE="${DB_PRIVATE_IMAGE}" # Start with private image
+
 # --- Helper Functions ---
 
 # Function to check for pod readiness in a namespace
@@ -32,6 +37,23 @@ wait_for_pod_ready() {
         exit 1
     }
     echo "Pod with label '$label' is ready."
+}
+
+# Function to check if a pod has failed due to image pull (short check)
+check_for_image_pull_failure() {
+    local label="$1"
+    local ns="$2"
+    # Check for ImagePullBackOff or ErrImagePull status quickly (1 minute timeout)
+    echo "Checking for ImagePullBackOff status..."
+    for i in {1..6}; do # 6 loops * 10 seconds = 60 seconds
+        local status=$(oc get pods -l "$label" -n "$ns" -o 'jsonpath={.items[0].status.containerStatuses[0].state.waiting.reason}')
+        if [[ "$status" == "ImagePullBackOff" || "$status" == "ErrImagePull" ]]; then
+            echo "Failure detected: Pod status is $status."
+            return 0 # Failure detected
+        fi
+        sleep 10
+    done
+    return 1 # No failure detected within 60 seconds
 }
 
 # --- Script Start ---
@@ -56,19 +78,16 @@ echo "Logged in as ${ADMIN_USER}."
 
 # 2. Create and prepare the workshop-support namespace
 echo "2. Creating and configuring the '${NAMESPACE}' namespace."
-# Delete and re-create the namespace
 oc delete namespace "${NAMESPACE}" --ignore-not-found
 oc create namespace "${NAMESPACE}"
 oc label namespace "${NAMESPACE}" category=support
 oc project "${NAMESPACE}"
 
-# Grant admin cluster role to workshop-support group
 echo "Granting 'admin' cluster role to 'workshop-support' group."
 oc adm policy add-cluster-role-to-group admin workshop-support
 
 # 3. Create the resource quota
 echo "3. Deleting and re-creating resource quota 'workshop-support'."
-# Delete and re-create the quota
 oc delete resourcequota workshop-support -n "${NAMESPACE}" --ignore-not-found
 oc create quota workshop-support \
  --hard=limits.cpu=4,limits.memory=4Gi,requests.cpu=3500m,requests.memory=3Gi
@@ -102,8 +121,7 @@ echo "5.a. Deleting and re-creating 'project-cleaner-sa' ServiceAccount."
 oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
 oc create sa project-cleaner-sa -n "${NAMESPACE}"
 
-# 5.c. CORRECTED: Create the ClusterRole (Includes permissions for 'projects' and 'namespaces' with 'delete' verb)
-echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions to prevent 403 errors."
+echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions."
 oc delete clusterrole project-cleaner --ignore-not-found
 cat <<EOF > cluster-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -120,7 +138,7 @@ rules:
   - list
   - delete
 - apiGroups:
-  - "" # Core API Group (for standard Kubernetes Namespaces)
+  - ""
   resources:
   - namespaces
   verbs:
@@ -129,9 +147,8 @@ rules:
   - delete
 EOF
 oc apply -f cluster-role.yaml
-rm cluster-role.yaml # Clean up the temporary file
+rm cluster-role.yaml
 
-# 5.d. Create the ClusterRoleBinding
 echo "5.d. Binding 'project-cleaner' ClusterRole to 'project-cleaner-sa' ServiceAccount."
 oc adm policy add-cluster-role-to-user project-cleaner -z project-cleaner-sa
 
@@ -140,7 +157,7 @@ echo "6. Logging in as ${SUPPORT_USER} and applying 'project-cleaner' CronJob."
 oc login -u ${SUPPORT_USER} -p ${SUPPORT_PASS} || { echo "Support login failed."; exit 1; }
 echo "Logged in as ${SUPPORT_USER}."
 
-# Create cron-job.yaml using inline YAML based on solution
+# Create cron-job.yaml
 cat <<EOF > cron-job.yaml
 apiVersion: batch/v1
 kind: CronJob
@@ -170,18 +187,15 @@ spec:
                   cpu: 100m
                   memory: 200Mi
 EOF
-# Use oc apply -f for the CronJob
 oc apply -f cron-job.yaml
-rm cron-job.yaml # Clean up the temporary file
+rm cron-job.yaml
 
 # 6.d. Verify project cleaner operation
 echo "6.d. Verifying project cleaner: Creating 'clean-test' project."
-# Ensure project is deleted before creating
 oc delete project clean-test --ignore-not-found
 oc new-project clean-test
 oc project "${NAMESPACE}"
 
-# Wait for a job run and project deletion.
 echo "Waiting for 'project-cleaner' CronJob to run and delete 'clean-test' project..."
 for i in {1..12}; do
     if ! oc get project clean-test &> /dev/null; then
@@ -198,18 +212,28 @@ if oc get project clean-test &> /dev/null; then
     exit 1
 fi
 
-# 6.e. Final verification of deletion
 echo "6.e. Verifying 'clean-test' project is deleted (expected NotFound error):"
 oc get project clean-test || echo "Verification successful: Project not found."
 
-# Change back to the beeper-api directory for the next steps
+# Change back to the beeper-api directory
 cd "${BEEPER_API_DIR}"
 
 # --- BEEPER API APP ---
 
-# 7. Create the beeper database
-echo "7. Creating 'beeper-db.yaml' (assumed standard Postgres for lab context)."
-cat <<EOF > beeper-db.yaml
+# 7. Adaptive Image Deployment for beeper-db
+echo "7. Creating 'beeper-db' resources using adaptive image pull logic."
+
+# Start loop: Try private image first, then public image if pull fails
+for attempt in 1 2; do
+    if [[ "$attempt" -eq 2 ]]; then
+        echo "Private image pull failed. Falling back to public image: ${DB_PUBLIC_IMAGE}"
+        CURRENT_DB_IMAGE="${DB_PUBLIC_IMAGE}"
+    else
+        echo "Attempting deployment with private image: ${DB_PRIVATE_IMAGE}"
+    fi
+
+    # 7. Create beeper-db.yaml with the CURRENT_DB_IMAGE
+    cat <<EOF > beeper-db.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -227,7 +251,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: registry.ocp4.example.com:8443/redhattraining/postgresql:12
+        image: ${CURRENT_DB_IMAGE}
         ports:
         - containerPort: 5432
         env:
@@ -252,22 +276,46 @@ spec:
     app: beeper-db
 EOF
 
-echo "7. Applying 'beeper-db' database resources (idempotent)."
-oc apply -f beeper-db.yaml
-wait_for_pod_ready "app=beeper-db" "${NAMESPACE}"
+    # Clean up old deployment/service before re-applying
+    oc delete deployment beeper-db --ignore-not-found || true
+    oc delete service beeper-db --ignore-not-found || true
+    
+    echo "Applying 'beeper-db' resources with image ${CURRENT_DB_IMAGE}."
+    oc apply -f beeper-db.yaml
+
+    # Attempt to wait for readiness (300s)
+    if wait_for_pod_ready "app=beeper-db" "${NAMESPACE}" 2>/dev/null; then
+        echo "Database deployment successful with image ${CURRENT_DB_IMAGE}."
+        rm beeper-db.yaml
+        break # Success! Exit the loop
+    fi
+    
+    # If wait_for_pod_ready timed out, check if it was an ImagePullBackOff
+    if check_for_image_pull_failure "app=beeper-db" "${NAMESPACE}"; then
+        # Image pull failure detected, loop continues to attempt 2 (public image)
+        if [[ "$attempt" -eq 2 ]]; then
+            echo "Fallback failed. Cannot proceed with database deployment. Check registry configuration."
+            rm beeper-db.yaml
+            exit 1 # Exit if both attempts failed
+        fi
+    else
+        # Pod timed out but not due to ImagePullBackOff, suggest manual check
+        echo "Deployment failed for an unknown reason. Check 'oc describe pod' manually."
+        rm beeper-db.yaml
+        exit 1
+    fi
+done
 
 # 8. Configure TLS on the beeper-api deployment
 echo "8. Configuring TLS for 'beeper-api' deployment."
 # 8.a. Delete and re-create TLS secret
 echo "Deleting and re-creating 'beeper-api-cert' secret."
 oc delete secret beeper-api-cert -n "${NAMESPACE}" --ignore-not-found
-# Assuming certs/beeper-api.pem and certs/beeper-api.key exist in BEEPER_API_DIR relative path
 oc create secret tls beeper-api-cert \
   --cert certs/beeper-api.pem --key certs/beeper-api.key
 
 # 8.b, 8.c. Patch deployment.yaml for secret mount, TLS_ENABLED, and probe scheme
 echo "Patching 'deployment.yaml' with volume mount, TLS_ENABLED=true, and HTTPS probes."
-# Create a temporary patched deployment file
 cp deployment.yaml deployment.patched.yaml
 
 # Simulate edits for volume mount
@@ -320,7 +368,6 @@ rm service.yaml
 
 # 9. Expose the beeper API with passthrough route
 echo "9. Deleting and re-creating 'beeper-api-https' passthrough route."
-# Delete and re-create the route
 oc delete route beeper-api-https -n "${NAMESPACE}" --ignore-not-found
 oc create route passthrough beeper-api-https \
   --service beeper-api \
@@ -371,7 +418,7 @@ spec:
           port: 5432
 EOF
 oc apply -f db-networkpolicy.yaml
-rm db-networkpolicy.yaml # Clean up the temporary file
+rm db-networkpolicy.yaml
 
 # 11.e. Verify that you cannot connect to the database (expected failure/timeout)
 echo "11.e. Verifying that direct access to database is blocked (expected Connection timed out):"
@@ -408,7 +455,7 @@ spec:
           port: 8080
 EOF
 oc apply -f beeper-api-ingresspolicy.yaml
-rm beeper-api-ingresspolicy.yaml # Clean up the temporary file
+rm beeper-api-ingresspolicy.yaml
 
 # 12.d. Verify that you cannot access the API service from the workshop-support namespace (expected failure/timeout)
 echo "12.d. Verifying that internal access to API is blocked (expected Connection timed out):"
