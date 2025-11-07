@@ -92,8 +92,8 @@ oc delete sa project-cleaner-sa -n "${NAMESPACE}" --ignore-not-found
 oc create sa project-cleaner-sa -n "${NAMESPACE}"
 
 # 5.c. CORRECTED: Create the ClusterRole by generating the file inline
-# This corrected version adds 'namespaces' (core API group) to fix the 403 Forbidden error.
-echo "5.c. Creating 'project-cleaner' ClusterRole with permissions for projects and namespaces."
+# This final corrected version adds 'delete' to namespaces (core API group) to fix the 403 error.
+echo "5.c. Creating 'project-cleaner' ClusterRole with final corrected permissions."
 oc delete clusterrole project-cleaner --ignore-not-found
 cat <<EOF > cluster-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -110,12 +110,13 @@ rules:
   - list
   - delete
 - apiGroups:
-  - "" # Core API Group for standard Kubernetes Namespaces
+  - "" # Core API Group (for standard Kubernetes Namespaces)
   resources:
   - namespaces
   verbs:
   - get
   - list
+  - delete # <<< This is the final fix for the 403 DELETE error
 EOF
 oc apply -f cluster-role.yaml
 rm cluster-role.yaml # Clean up the temporary file
