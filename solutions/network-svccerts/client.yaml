@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: client
+  name: client
+  namespace: network-svccerts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: client
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        deployment: client
+    spec:
+      containers:
+      - image: registry.ocp4.example.com:8443/redhattraining/hello-world-nginx@sha256:6926d361b8e2f778f88341fbd0d231337c38d12c177fdacf2a677dc6b70a1f59
+        imagePullPolicy: IfNotPresent
+        name: client-deploy
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - mountPath: /etc/pki/ca-trust/extracted/pem
+          name: CHANGE_ME
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: CHANGE_ME
+            items:
+              - key: CHANGE_ME
+                path: tls-ca-bundle.pem
+          name: CHANGE_ME
+      name: trusted-ca

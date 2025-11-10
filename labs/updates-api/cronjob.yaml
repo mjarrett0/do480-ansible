@@ -1,0 +1,35 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ubi
+  labels:
+    app: ubi
+    ge: updates-api
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: ubi
+            ge: updates-api
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: ubi
+            image: registry.ocp4.example.com:8443/ubi9/ubi
+            imagePullPolicy: IfNotPresent
+            command:
+            - echo
+            - "Hello from the Kubernetes cluster"
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop: ["ALL"]
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: "RuntimeDefault"
