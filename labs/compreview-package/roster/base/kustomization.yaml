@@ -1,8 +1,27 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - roster-deployment.yaml
   - roster-service.yaml
   - roster-route.yaml
-  - configmap.yaml
-  - secret.yaml
+
+configMapGenerator:
+  - name: roster
+    literals:
+      - DATABASE_SERVICE_NAME=mysql
+      - MYSQL_USER=testu
+      - MYSQL_DATABASE=testdb
+      - INIT_DB=true
+    behavior: create
+
+secretGenerator:
+  - name: roster
+    literals:
+      - MYSQL_PASSWORD=testp
+    type: Opaque
+    behavior: create
+
+# Critical: disable hash suffix → matches GE behavior
+generatorOptions:
+  disableNameSuffixHash: true
