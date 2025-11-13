@@ -26,7 +26,6 @@ DB_POD_LABEL="app=etherpad" # Label assumed for the primary Etherpad pod
 ROSTER_POD_LABEL="app=roster"
 
 # ASSUMED DB CONNECTION DETAILS for the chart's bundled database
-# The bundled database is often exposed via a standard service name, e.g., 'release-name-postgresql'
 DB_HOST_SERVICE="${DB_RELEASE_NAME}-postgresql"
 DB_PORT="5432"
 DB_USER="rosterdbuser"
@@ -48,7 +47,23 @@ wait_for_pod_ready() {
     else
         echo "Timeout waiting for pod with label '$label' to be ready/stable."
         return 1
-    }
+    fi
+}
+
+# Function to check if a pod has failed due to image pull (short check)
+check_for_image_pull_failure() {
+    local label="$1"
+    local ns="$2"
+    echo "Checking for ImagePullBackOff status..."
+    for i in {1..6}; do
+        local status=$(oc get pods -l "$label" -n "$ns" -o 'jsonpath={.items[0].status.containerStatuses[0].state.waiting.reason}')
+        if [[ "$status" == "ImagePullBackOff" || "$status" == "ErrImagePull" ]]; then
+            echo "Failure detected: Pod status is $status."
+            return 0
+        fi
+        sleep 10
+    done
+    return 1
 }
 
 # Function to handle resource deletion with admin escalation if needed.
@@ -128,7 +143,6 @@ helm install "${DB_RELEASE_NAME}" "${DB_CHART_NAME}" -n "${NAMESPACE}" \
 
 # Wait for database pod readiness (assuming MySQL is bundled/created)
 echo "Waiting for the database pod to be ready inside the ${DB_RELEASE_NAME} chart."
-# NOTE: The label is complex here, checking for the database pod itself.
 DB_POD_CHECK_LABEL="release=${DB_RELEASE_NAME},app=mysql" 
 if ! wait_for_pod_ready "${DB_POD_CHECK_LABEL}" "${NAMESPACE}"; then
     echo "Database pod failed or timed out. Check logs for ${DB_RELEASE_NAME} pods."
