@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to perform the Comprehensive Review - Package exercise as the student user.
-# This version uses the do280-repo/etherpad chart to deploy a working database and connects Roster to it.
+# This version fixes the syntax error and the pod label error for the database deployment.
 set -e  # Exit on error
 
 # --- Variables ---
@@ -22,49 +22,38 @@ HELM_REPO_NAME="do280-repo"
 HELM_REPO_URL="http://helm.ocp4.example.com/charts"
 DB_RELEASE_NAME="roster-db-provider" # Release name for the database provider
 DB_CHART_NAME="${HELM_REPO_NAME}/etherpad" # The requested chart from the classroom repo
-DB_POD_LABEL="app=etherpad" # Label assumed for the primary Etherpad pod
 ROSTER_POD_LABEL="app=roster"
 
+# CRITICAL FIX: The database deployment object name is consistently RELEASE-NAME-mysql.
+DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}-mysql"
+
 # ASSUMED DB CONNECTION DETAILS for the chart's bundled database
-DB_HOST_SERVICE="${DB_RELEASE_NAME}-postgresql"
-DB_PORT="5432"
+DB_HOST_SERVICE="${DB_DEPLOYMENT_NAME}" # The service name is usually the deployment name
+DB_PORT="3306" # Standard MySQL port (Etherpad chart uses MySQL sub-chart here)
 DB_USER="rosterdbuser"
 DB_PASSWORD="rosterdbpassword"
 DB_NAME="rosterdb"
 
 # --- Helper Functions ---
 
-# Function to check for pod readiness in a namespace. RETURNS 0 ON SUCCESS, 1 ON FAILURE.
-wait_for_pod_ready() {
-    local label="$1"
+# Function to check for deployment readiness. RETURNS 0 ON SUCCESS, 1 ON FAILURE.
+wait_for_deployment_ready() {
+    local deployment_name="$1"
     local ns="$2"
     local timeout=300
-    echo "Waiting for pod with label '$label' to be ready in namespace '$ns' (Timeout: ${timeout}s)..."
+    echo "Waiting for Deployment '$deployment_name' to be ready (Timeout: ${timeout}s)..."
 
-    if oc wait --for=condition=Ready pod -l "$label" -n "$ns" --timeout="${timeout}s"; then
-        echo "Pod with label '$label' is ready."
+    # We target the Deployment object directly for readiness
+    if oc wait --for=condition=Available deployment/"$deployment_name" -n "$ns" --timeout="${timeout}s"; then
+        echo "Deployment '$deployment_name' is ready."
         return 0
     else
-        echo "Timeout waiting for pod with label '$label' to be ready/stable."
+        echo "Timeout waiting for Deployment '$deployment_name' to be ready/available."
         return 1
     fi
 }
 
-# Function to check if a pod has failed due to image pull (short check)
-check_for_image_pull_failure() {
-    local label="$1"
-    local ns="$2"
-    echo "Checking for ImagePullBackOff status..."
-    for i in {1..6}; do
-        local status=$(oc get pods -l "$label" -n "$ns" -o 'jsonpath={.items[0].status.containerStatuses[0].state.waiting.reason}')
-        if [[ "$status" == "ImagePullBackOff" || "$status" == "ErrImagePull" ]]; then
-            echo "Failure detected: Pod status is $status."
-            return 0
-        fi
-        sleep 10
-    done
-    return 1
-}
+# (The check_for_image_pull_failure function is not used in this final flow.)
 
 # Function to handle resource deletion with admin escalation if needed.
 delete_resource_with_escalation() {
@@ -81,7 +70,6 @@ delete_resource_with_escalation() {
         
         if oc delete "${resource_type}" "${resource_name}" ${ns_flag} --ignore-not-found; then
             echo "Deletion successful as ${ADMIN_USER}."
-            # Re-login as developer since project creation/deletion is followed by developer steps
             if [[ "$resource_type" == "project" ]]; then
                 echo "Re-logging in as original user (${DEV_USER})."
                 oc login -u ${DEV_USER} -p ${DEV_PASS} ${OCP_API} || { echo "Developer re-login failed."; exit 1; }
@@ -91,7 +79,7 @@ delete_resource_with_escalation() {
             exit 1
         fi
     fi
-} # <-- Corrected: Ensure the function ends cleanly
+}
 
 # --- Script Start ---
 echo "Starting the ${EXERCISE_NAME} exercise."
@@ -142,14 +130,12 @@ helm install "${DB_RELEASE_NAME}" "${DB_CHART_NAME}" -n "${NAMESPACE}" \
   --set service.port=8080 \
   --wait --timeout 300s || { echo "Etherpad chart installation timed out or failed. Exiting."; exit 1; }
 
-# Wait for database pod readiness (assuming MySQL is bundled/created)
-echo "Waiting for the database pod to be ready inside the ${DB_RELEASE_NAME} chart."
-DB_POD_CHECK_LABEL="release=${DB_RELEASE_NAME},app=mysql" 
-if ! wait_for_pod_ready "${DB_POD_CHECK_LABEL}" "${NAMESPACE}"; then
-    echo "Database pod failed or timed out. Check logs for ${DB_RELEASE_NAME} pods."
+# Wait for database deployment readiness
+echo "Waiting for the database deployment (${DB_DEPLOYMENT_NAME}) to be ready."
+if ! wait_for_deployment_ready "${DB_DEPLOYMENT_NAME}" "${NAMESPACE}"; then
+    echo "Database deployment failed or timed out. Check oc get pods/deployments."
     exit 1
 fi
-echo "Database (MySQL) is running inside the chart release at service: ${DB_HOST_SERVICE}"
 
 # 2. Deploy the roster application with the kustomize command
 echo "2. Deploying the 'roster' application via Kustomize."
@@ -158,7 +144,7 @@ echo "2. Deploying the 'roster' application via Kustomize."
 echo "2a. Manually creating roster ConfigMap and Secret to point to the working chart's database."
 
 # The database service name provided by the chart is typically '${DB_RELEASE_NAME}-mysql'
-DB_HOST_SERVICE_ACTUAL="${DB_RELEASE_NAME}-mysql"
+DB_HOST_SERVICE_ACTUAL="${DB_DEPLOYMENT_NAME}"
 
 # 2a.i. Create the roster Secret (for credentials)
 delete_resource_with_escalation "secret" "roster" "-n ${NAMESPACE}"
@@ -181,7 +167,11 @@ oc apply -k roster/overlays/production/
 
 # 2c. Wait for the 'roster' pod to be running
 echo "Waiting for the 'roster' application pod to be running."
-wait_for_pod_ready "${ROSTER_POD_LABEL}" "${NAMESPACE}"
+# Note: Roster is a single pod, so waiting on pod readiness directly is fine here.
+if ! oc wait --for=condition=Ready pod -l ${ROSTER_POD_LABEL} -n "${NAMESPACE}" --timeout=300s; then
+    echo "Roster application pod failed to become ready. Check logs."
+    exit 1
+fi
 
 # 2d. Confirm application is accessible in the HTTPS route URL.
 echo "2d. Obtaining the application URL."
@@ -193,7 +183,7 @@ echo "Roster Application URL: ${APP_URL}"
 echo "🖥️ **Manual Step Required: Web UI Verification**"
 echo "Navigate to the application URL using the TLS/SSL protocol (HTTPS):"
 echo " -> ${APP_URL}"
-echo "The application should now load correctly, bypassing the image pull issues."
+echo "The application should now load correctly."
 echo "Press Enter to continue after verifying the application is displayed."
 read -r
 
