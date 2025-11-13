@@ -81,6 +81,7 @@ delete_resource_with_escalation() {
         
         if oc delete "${resource_type}" "${resource_name}" ${ns_flag} --ignore-not-found; then
             echo "Deletion successful as ${ADMIN_USER}."
+            # Re-login as developer since project creation/deletion is followed by developer steps
             if [[ "$resource_type" == "project" ]]; then
                 echo "Re-logging in as original user (${DEV_USER})."
                 oc login -u ${DEV_USER} -p ${DEV_PASS} ${OCP_API} || { echo "Developer re-login failed."; exit 1; }
@@ -90,7 +91,7 @@ delete_resource_with_escalation() {
             exit 1
         fi
     fi
-}
+} # <-- Corrected: Ensure the function ends cleanly
 
 # --- Script Start ---
 echo "Starting the ${EXERCISE_NAME} exercise."
