@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to perform the Comprehensive Review - Package exercise as the student user.
-# This version fixes the database deployment name mismatch to target the correct object.
+# This version fixes the syntax error and the database deployment name mismatch.
 set -e  # Exit on error
 
 # --- Variables ---
@@ -24,8 +24,8 @@ DB_RELEASE_NAME="roster-db-provider" # Release name for the database provider
 DB_CHART_NAME="${HELM_REPO_NAME}/etherpad" 
 ROSTER_POD_LABEL="app=roster"
 
-# CRITICAL FIX: The database deployment is named after the release name itself.
-DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}"
+# CRITICAL FIX: The database deployment is likely named release-name-mysql.
+DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}-mysql"
 
 # ASSUMED DB CONNECTION DETAILS for the chart's bundled database
 DB_PORT="3306" # Standard MySQL port
@@ -48,6 +48,7 @@ wait_for_deployment_ready() {
         return 0
     else
         echo "Timeout waiting for Deployment '$deployment_name' to be ready/available."
+        oc get pods -n "$ns" # Show current pods for diagnostics
         return 1
     fi
 }
@@ -120,11 +121,11 @@ helm install "${DB_RELEASE_NAME}" "${DB_CHART_NAME}" -n "${NAMESPACE}" \
   --set service.type=ClusterIP \
   --set persistence.enabled=false \
   --set mysql.enabled=true \
+  --set etherpad.enabled=false \
   --set mysql.mysqlUser="${DB_USER}" \
   --set mysql.mysqlPassword="${DB_PASSWORD}" \
   --set mysql.mysqlDatabase="${DB_NAME}" \
   --set mysql.service.port="${DB_PORT}" \
-  --set service.port=8080 \
   --wait --timeout 300s || { echo "Etherpad chart installation timed out or failed. Exiting."; exit 1; }
 
 # Wait for database deployment readiness
@@ -140,7 +141,7 @@ echo "2. Deploying the 'roster' application via Kustomize."
 # --- CRITICAL FIX: OVERRIDE ROSTER CONFIGMAP AND SECRET ---
 echo "2a. Manually creating roster ConfigMap and Secret to point to the working chart's database."
 
-# The database service name provided by the chart is simply the release name.
+# The database service name provided by the chart is the deployment name.
 DB_HOST_SERVICE_ACTUAL="${DB_DEPLOYMENT_NAME}"
 
 # 2a.i. Create the roster Secret (for credentials)
@@ -164,7 +165,6 @@ oc apply -k roster/overlays/production/
 
 # 2c. Wait for the 'roster' pod to be running
 echo "Waiting for the 'roster' application pod to be running."
-# Waiting on pod readiness directly for the application deployment
 if ! oc wait --for=condition=Ready pod -l ${ROSTER_POD_LABEL} -n "${NAMESPACE}" --timeout=300s; then
     echo "Roster application pod failed to become ready. Check logs."
     exit 1
