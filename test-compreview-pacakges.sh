@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to perform the Comprehensive Review - Package exercise as the student user.
-# This version fixes the syntax error and the pod label error for the database deployment.
+# This version fixes the database deployment name mismatch to target the correct object.
 set -e  # Exit on error
 
 # --- Variables ---
@@ -21,15 +21,14 @@ KUSTOMIZE_OVERLAY_DIR="${ROSTER_DIR}/overlays/production"
 HELM_REPO_NAME="do280-repo"
 HELM_REPO_URL="http://helm.ocp4.example.com/charts"
 DB_RELEASE_NAME="roster-db-provider" # Release name for the database provider
-DB_CHART_NAME="${HELM_REPO_NAME}/etherpad" # The requested chart from the classroom repo
+DB_CHART_NAME="${HELM_REPO_NAME}/etherpad" 
 ROSTER_POD_LABEL="app=roster"
 
-# CRITICAL FIX: The database deployment object name is consistently RELEASE-NAME-mysql.
-DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}-mysql"
+# CRITICAL FIX: The database deployment is named after the release name itself.
+DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}"
 
 # ASSUMED DB CONNECTION DETAILS for the chart's bundled database
-DB_HOST_SERVICE="${DB_DEPLOYMENT_NAME}" # The service name is usually the deployment name
-DB_PORT="3306" # Standard MySQL port (Etherpad chart uses MySQL sub-chart here)
+DB_PORT="3306" # Standard MySQL port
 DB_USER="rosterdbuser"
 DB_PASSWORD="rosterdbpassword"
 DB_NAME="rosterdb"
@@ -52,8 +51,6 @@ wait_for_deployment_ready() {
         return 1
     fi
 }
-
-# (The check_for_image_pull_failure function is not used in this final flow.)
 
 # Function to handle resource deletion with admin escalation if needed.
 delete_resource_with_escalation() {
@@ -143,7 +140,7 @@ echo "2. Deploying the 'roster' application via Kustomize."
 # --- CRITICAL FIX: OVERRIDE ROSTER CONFIGMAP AND SECRET ---
 echo "2a. Manually creating roster ConfigMap and Secret to point to the working chart's database."
 
-# The database service name provided by the chart is typically '${DB_RELEASE_NAME}-mysql'
+# The database service name provided by the chart is simply the release name.
 DB_HOST_SERVICE_ACTUAL="${DB_DEPLOYMENT_NAME}"
 
 # 2a.i. Create the roster Secret (for credentials)
@@ -167,7 +164,7 @@ oc apply -k roster/overlays/production/
 
 # 2c. Wait for the 'roster' pod to be running
 echo "Waiting for the 'roster' application pod to be running."
-# Note: Roster is a single pod, so waiting on pod readiness directly is fine here.
+# Waiting on pod readiness directly for the application deployment
 if ! oc wait --for=condition=Ready pod -l ${ROSTER_POD_LABEL} -n "${NAMESPACE}" --timeout=300s; then
     echo "Roster application pod failed to become ready. Check logs."
     exit 1
