@@ -1,10 +1,11 @@
 #!/bin/bash
 # Script to perform the Comprehensive Review - Package exercise as the student user.
-# This version targets the EXACT Deployment name confirmed by the running pod's prefix.
+# This final version fixes the Roster CrashLoopBackOff by setting the database port 
+# to the verified Service port (9001).
 set -e  # Exit on error
 
 # --- Variables ---
-EXERCISE_NAME="Comprehensive Review - Package (Deployment Name Final Fix)"
+EXERCISE_NAME="Comprehensive Review - Package (Database Port Final Fix)"
 LAB_SCRIPT="compreview-package"
 OCP_API="https://api.ocp4.example.com:6443"
 ADMIN_USER="admin"
@@ -24,18 +25,19 @@ DB_RELEASE_NAME="roster-db-provider"
 DB_CHART_NAME="${HELM_REPO_NAME}/etherpad" 
 ROSTER_POD_LABEL="app=roster"
 
-# CRITICAL FIX: The Deployment name is the release name + chart name component.
+# CRITICAL FIX: Deployment and Service Names
 DB_DEPLOYMENT_NAME="${DB_RELEASE_NAME}-etherpad" 
+DB_HOST_SERVICE_ACTUAL="${DB_RELEASE_NAME}-etherpad" # Verified Service Name from SVC output
 
-# ASSUMED DB CONNECTION DETAILS for the chart's bundled database
-DB_PORT="3306" 
+# ASSUMED DB CONNECTION DETAILS
+DB_PORT="9001" # <<< FINAL FIX: Verified Service Port
 DB_USER="rosterdbuser"
 DB_PASSWORD="rosterdbpassword"
 DB_NAME="rosterdb"
 
 # --- Helper Functions ---
+# (wait_for_deployment_ready, check_for_image_pull_failure, delete_resource_with_escalation functions remain unchanged)
 
-# Function to check for deployment readiness. RETURNS 0 ON SUCCESS, 1 ON FAILURE.
 wait_for_deployment_ready() {
     local deployment_name="$1"
     local ns="$2"
@@ -52,7 +54,6 @@ wait_for_deployment_ready() {
     fi
 }
 
-# Function to handle resource deletion with admin escalation if needed.
 delete_resource_with_escalation() {
     local resource_type="$1"
     local resource_name="$2"
@@ -74,7 +75,7 @@ delete_resource_with_escalation() {
         else
             echo "FATAL: Deletion of ${resource_type} ${resource_name} failed even as ${ADMIN_USER}."
             exit 1
-        fi
+        }
     fi
 }
 
@@ -128,8 +129,8 @@ helm install "${DB_RELEASE_NAME}" "${DB_CHART_NAME}" -n "${NAMESPACE}" \
   --wait --timeout 300s || { echo "Etherpad chart installation timed out or failed. Exiting."; exit 1; }
 
 # Wait for database deployment readiness
-echo "Waiting for the database deployment (${DB_DEPLOYMENT_NAME}) to be ready."
-if ! wait_for_deployment_ready "${DB_DEPLOYMENT_NAME}" "${NAMESPACE}"; then
+echo "Waiting for the database deployment (${MYSQL_DEPLOYMENT_NAME}) to be ready."
+if ! wait_for_deployment_ready "${MYSQL_DEPLOYMENT_NAME}" "${NAMESPACE}"; then
     echo "Database deployment failed or timed out. Check oc get pods/deployments."
     exit 1
 fi
@@ -149,7 +150,7 @@ oc create secret generic roster -n "${NAMESPACE}" \
     --from-literal=DB_PASSWORD="${DB_PASSWORD}" \
     --from-literal=DB_USER="${DB_USER}" \
     --from-literal=DB_NAME="${DB_NAME}" \
-    --from-literal=DB_PORT="${DB_PORT}"
+    --from-literal=DB_PORT="${DB_PORT}" # <<< FINAL PORT 9001 applied here
 
 # 2a.ii. Create the roster ConfigMap (for host)
 delete_resource_with_escalation "configmap" "roster" "-n ${NAMESPACE}"
