@@ -39,14 +39,17 @@ echo "--- Step $STEP_NUM: Creating groups (platform, presenters, workshop-suppor
 # Log in as admin to perform cluster-level group operations
 oc login -u $ADMIN_USER -p $ADMIN_PASS $API_SERVER || { echo "Admin login failed; check credentials or cluster availability."; exit 1; }
 
-# Create groups and add users
-oc adm groups new platform --dry-run=client -o name | oc apply -f -
+# FIX: Using direct 'oc adm groups new' instead of piping to 'oc apply'
+echo "Creating group: platform"
+oc adm groups new platform || echo "Group 'platform' may already exist, continuing."
 oc adm groups add-users platform do280-platform
 
-oc adm groups new presenters --dry-run=client -o name | oc apply -f -
+echo "Creating group: presenters"
+oc adm groups new presenters || echo "Group 'presenters' may already exist, continuing."
 oc adm groups add-users presenters do280-presenter
 
-oc adm groups new workshop-support --dry-run=client -o name | oc apply -f -
+echo "Creating group: workshop-support"
+oc adm groups new workshop-support || echo "Group 'workshop-support' may already exist, continuing."
 oc adm groups add-users workshop-support do280-support
 
 echo "Groups created and users added. Verifying groups:"
@@ -339,6 +342,7 @@ echo "Target pod IP: $TARGET_IP"
 
 # 2. Test connectivity from the 'default' project (Expected to FAIL)
 echo "  - Testing connectivity from 'default' project (Expected to FAIL with Timeout)..."
+# The 'curl: (28) Connection timed out' message is expected here
 if oc debug --to-namespace="default" -- curl -sS --connect-timeout 5 http://${TARGET_IP}:8080 2>&1 | grep -q 'Connection timed out'; then
     echo "    -> PASS: Connection from 'default' project timed out (Blocked by NetworkPolicy)."
 else
@@ -348,6 +352,7 @@ fi
 
 # 3. Test connectivity from the 'do280' project (Expected to SUCCEED)
 echo "  - Testing connectivity from 'do280' project (Expected to SUCCEED)..."
+# Should receive the "Hello, world from nginx!" message
 if oc debug --to-namespace="do280" -- curl -sS --connect-timeout 5 http://${TARGET_IP}:8080 2>&1 | grep -q 'Hello, world from nginx'; then
     echo "    -> PASS: Connection from 'do280' project was successful (Allowed by NetworkPolicy)."
 else
