@@ -293,7 +293,8 @@ check_command
 
 # Wait for API server restart
 echo "Waiting for openshift-apiserver pods to roll out new configuration (max 10 minutes)..."
-oc wait --for=condition=ready pod -l app=openshift-apiserver -n openshift-apiserver --timeout=600s
+# FIX: Changed selector from 'app=openshift-apiserver' to the more common and reliable 'apiserver=true'
+oc wait --for=condition=ready pod -l apiserver=true -n openshift-apiserver --timeout=600s
 check_command
 echo "API server configuration update complete."
 
