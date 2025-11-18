@@ -39,7 +39,7 @@ echo "--- Step $STEP_NUM: Creating groups (platform, presenters, workshop-suppor
 # Log in as admin to perform cluster-level group operations
 oc login -u $ADMIN_USER -p $ADMIN_PASS $API_SERVER || { echo "Admin login failed; check credentials or cluster availability."; exit 1; }
 
-# FIX: Using direct 'oc adm groups new' instead of piping to 'oc apply'
+# FIX: Using direct 'oc adm groups new' and ignoring AlreadyExists errors
 echo "Creating group: platform"
 oc adm groups new platform || echo "Group 'platform' may already exist, continuing."
 oc adm groups add-users platform do280-platform
@@ -129,6 +129,20 @@ oc login -u $ADMIN_USER -p $ADMIN_PASS $API_SERVER
 STEP_NUM=4
 echo "--- Step $STEP_NUM: Creating project template resources and the project template..."
 
+# ROBUSTNESS FIX: Delete template resources if they exist from a previous failed run
+oc delete project template-test --ignore-not-found=true --wait=false
+oc delete template project-request -n openshift-config --ignore-not-found=true
+
+# Wait for the project to fully terminate before recreation
+echo "Waiting for template-test project to fully terminate..."
+for i in {1..30}; do
+  if ! oc get project template-test 2>/dev/null; then
+    echo "template-test project terminated."
+    break
+  fi
+  sleep 2
+done
+
 # a. Create template-test namespace
 echo "a. Creating template-test namespace..."
 oc new-project template-test
@@ -173,7 +187,7 @@ oc create -f limitrange.yaml -n template-test
 echo "c. Creating NetworkPolicy in template-test..."
 oc label ns template-test workshop=template-test --overwrite
 
-# FIX: Corrected indentation for the ingress rules to resolve YAML parsing error
+# FIX: Corrected indentation for the ingress rules
 cat <<EOF > networkpolicy.yaml
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -293,12 +307,12 @@ check_command
 
 # Wait for API server restart
 echo "Waiting for openshift-apiserver pods to roll out new configuration (max 10 minutes)..."
-# FIX: Changed selector from 'app=openshift-apiserver' to the more common and reliable 'apiserver=true'
+# FIX: Changed selector to 'apiserver=true' to fix 'no matching resources found'
 oc wait --for=condition=ready pod -l apiserver=true -n openshift-apiserver --timeout=600s
 check_command
 echo "API server configuration update complete."
 
-# Clean up template-test project
+# Clean up template-test project (This is redundant due to the fix above, but kept for clarity)
 oc delete project template-test --ignore-not-found=true
 
 # --- Step 5: Create Workshop Project and Confirm Resources ---
