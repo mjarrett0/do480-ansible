@@ -312,7 +312,7 @@ oc wait --for=condition=ready pod -l apiserver=true -n openshift-apiserver --tim
 check_command
 echo "API server configuration update complete."
 
-# Clean up template-test project (This is redundant due to the fix above, but kept for clarity)
+# Clean up template-test project
 oc delete project template-test --ignore-not-found=true
 
 # --- Step 5: Create Workshop Project and Confirm Resources ---
@@ -341,7 +341,8 @@ echo "Label workshop=do280 found."
 echo "c. Verifying Network Policy (traffic isolation)..."
 
 # 1. Create a test workload in do280
-oc create deployment test-workload --image registry.ocp4.example.com:8443/redhattraining/hello-world-nginx:v1.0 -l workshop=do280
+# FINAL FIX: Corrected label flag from '-l' to '--labels'
+oc create deployment test-workload --image registry.ocp4.example.com:8443/redhattraining/hello-world-nginx:v1.0 --labels workshop=do280
 oc expose deployment test-workload --port 8080 --type ClusterIP
 oc wait --for=condition=ready pod -l app=test-workload -n do280 --timeout=120s
 check_command
@@ -395,7 +396,7 @@ check_command
 # Add the do280-attendee user to the group
 oc adm groups add-users do280-attendees $ATTENDEE_USER
 check_command
-echo "do280-attendees group created, 'edit' role assigned in do280, and user $ATTENDEE_USER added."
+echo "do280-attendees group created, 'edit' role assigned in do280, and user $ATTENNE_USER added."
 
 # Log in as do280-attendee
 echo "b. Verifying workload creation as do280-attendee..."
