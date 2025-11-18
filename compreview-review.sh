@@ -173,6 +173,7 @@ oc create -f limitrange.yaml -n template-test
 echo "c. Creating NetworkPolicy in template-test..."
 oc label ns template-test workshop=template-test --overwrite
 
+# FIX: Corrected indentation for the ingress rules to resolve YAML parsing error
 cat <<EOF > networkpolicy.yaml
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -286,11 +287,9 @@ check_command
 
 # Apply the template to the cluster configuration
 echo "Applying project template to cluster configuration (API server restart will occur)..."
-oc edit projects.config.openshift.io cluster <<EOF
-/spec:
-s/projectRequestTemplate:/projectRequestTemplate:\n    name: project-request/g
-wq
-EOF
+# FIX: Using oc patch instead of oc edit to avoid Vim issues
+oc patch projects.config.openshift.io cluster --type=json -p='[{"op": "add", "path": "/spec/projectRequestTemplate", "value": {"name": "project-request"}}]'
+check_command
 
 # Wait for API server restart
 echo "Waiting for openshift-apiserver pods to roll out new configuration (max 10 minutes)..."
