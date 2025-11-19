@@ -1,0 +1,146 @@
+[[ge-helm-packaged-charts-review]]
+= Graded Exercise: Deploy and Manage Etherpad with Helm Packaged Charts
+
+In this graded exercise, you will demonstrate your ability to work with Helm charts from a remote repository. You will install, customize, upgrade, and scale an Etherpad application using a packaged Helm chart.
+
+== Learning Outcomes
+
+After completing this exercise, you will be able to:
+
+* Add an external Helm chart repository and explore its contents
+* Install a specific version of a packaged Helm chart into an OpenShift project
+* Override default chart values (custom container image and OpenShift route hostname)
+* Perform a Helm upgrade to a newer chart version
+* Deploy the same chart into multiple namespaces with different configurations
+* Scale an application by changing the replica count via Helm
+
+== Prerequisites
+
+Log in to the `workstation` VM as the `student` user and start the environment:
+
+[subs="+attributes,+quotes"]
+----
+[student@workstation ~]$ *lab start ge-helm-review*
+----
+
+== Instructions
+
+All commands must be executed as the `student` user on `workstation` unless otherwise specified otherwise.
+
+. Add the classroom Helm repository (if not already present) and verify that the `etherpad` chart is available.
++
+The repository URL is `http://helm.ocp4.example.com/charts`.
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm repo add classroom http://helm.ocp4.example.com/charts*
+[student@workstation ~]$ *helm repo update*
+[student@workstation ~]$ *helm search repo etherpad --versions*
+----
++
+You should see at least versions `0.0.6` and `0.0.7` of `classroom/etherpad`.
+
+. Log in to the cluster as the `developer` user (password is also `developer`):
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *oc login -u developer -p developer https://api.ocp4.example.com:6443*
+----
+
+. Create a new project called `etherpad-staging` and deploy the Etherpad application with the following requirements:
+  * Release name: `staging`
+  * Chart: `classroom/etherpad`
+  * Chart version: **0.0.6**
+  * Container image: `registry.ocp4.example.com:8443/etherpad/etherpad:1.8.18`
+  * Exposed route hostname: **https://etherpad-staging.apps.ocp4.example.com**
++
+Create a file named `staging-values.yaml` containing only the overrides needed to meet the requirements above, then install the chart:
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm install staging classroom/etherpad \
+  --version 0.0.6 \
+  -f staging-values.yaml \
+  --namespace etherpad-staging \
+  --create-namespace*
+----
++
+Verify with `oc get route` in the `etherpad-staging` project and by opening the URL in a browser.
+
+. Upgrade the `staging` release to chart version **0.0.7** while keeping all existing custom values.
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm upgrade staging classroom/etherpad \
+  --version 0.0.7 \
+  -f staging-values.yaml \
+  --namespace etherpad-staging*
+----
++
+Confirm the upgrade succeeded and that the chart version is now `etherpad-0.0.7`:
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm list -n etherpad-staging*
+----
+
+. Create a second, independent deployment for production with these specifications:
+  * Project: `etherpad-production`
+  * Release name: `prod-app`
+  * Chart version: **0.0.7**
+  * Same custom image as before
+  * Route hostname: **https://etherpad.apps.ocp4.example.com**
+  * Number of replicas: **4**
++
+Create (or edit) a file called `prod-values.yaml` with the necessary overrides, then perform the installation:
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm install prod-app classroom/etherpad \
+  --version 0.0.7 \
+  -f prod-values.yaml \
+  --namespace etherpad-production \
+  --create-namespace*
+----
++
+Verify that exactly **four** Etherpad pods are running and that the route works in the browser.
+
+. Demonstrate that you can change the replica count of the production deployment without reinstalling the chart.
+  Increase the number of replicas from 4 to **6** using only a Helm upgrade.
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *helm upgrade prod-app classroom/etherpad \
+  -f prod-values.yaml \
+  --set replicaCount=6 \
+  --namespace etherpad-production*
+----
++
+Confirm with `oc get pods -n etherpad-production` that six pods are now running.
+
+. Clean up the `staging-values.yaml` and `prod-values.yaml` files (optional, for neatness):
++
+[subs="+quotes"]
+----
+[student@workstation ~]$ *rm staging-values.yaml prod-values.yaml*
+----
+
+== Evaluation
+
+Your instructor (or automated grading script) will verify:
+
+- Both projects (`etherpad-staging` and `etherpad-production`) exist
+- Release `staging` is using chart version `etherpad-0.0.7`
+- Release `prod-app` is using chart version `etherpad-0.0.7` with exactly 6 pod replicas
+- Both routes are correctly configured and reachable:
+  - https://etherpad-staging.apps.ocp4.example.com
+  - https://etherpad.apps.ocp4.example.com
+- The custom image `registry.ocp4.example.com:8443/etherpad/etherpad:1.8.18` is used in both deployments
+
+When you have completed all steps, notify your instructor with:
+
+----
+[student@workstation ~]$ lab finish ge-helm-review
+----
+
+Good luck!
