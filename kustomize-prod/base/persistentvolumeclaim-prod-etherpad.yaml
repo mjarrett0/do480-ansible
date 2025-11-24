@@ -1,0 +1,19 @@
+---
+# Source: etherpad/templates/pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prod-etherpad
+  labels:
+    helm.sh/chart: etherpad-0.0.7
+    app.kubernetes.io/name: etherpad
+    app.kubernetes.io/instance: prod
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "1Gi"

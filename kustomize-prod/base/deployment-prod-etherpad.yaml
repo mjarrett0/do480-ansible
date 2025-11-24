@@ -1,0 +1,58 @@
+---
+# Source: etherpad/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-etherpad
+  labels:
+    helm.sh/chart: etherpad-0.0.7
+    app.kubernetes.io/name: etherpad
+    app.kubernetes.io/instance: prod
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etherpad
+      app.kubernetes.io/instance: prod
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: etherpad
+        app.kubernetes.io/instance: prod
+    spec:
+      securityContext:
+        {}
+      containers:
+        - env:
+          - name: TITLE
+            value: Labs Etherpad
+          - name: DEFAULT_PAD_TEXT
+            value: ✍️ Assign yourself a user and share your ideas! ✍️
+          name: etherpad
+          securityContext:
+            {}
+          image: "registry.ocp4.example.com:8443/etherpad/etherpad:1.8.18"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9001
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+          volumeMounts:
+            - name: etherpad-data
+              mountPath: /opt/etherpad-lite/var
+      volumes:
+      - name: etherpad-data
+        persistentVolumeClaim:
+          claimName: prod-etherpad
