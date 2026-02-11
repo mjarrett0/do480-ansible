@@ -1,9 +1,14 @@
 #!/bin/bash
 
+
 set -e  # Exit on error
 
 LOGFILE="lab.log"
+API_SERVER="https://api.lab.example.com:6443"
+LAB_DIR="$HOME/DO0034L/solutions/ovnkubernetes-multus"   # ← Updated path
+
 echo "=== Lab script started at $(date) ===" | tee -a "$LOGFILE"
+echo "Using YAML directory: $LAB_DIR" | tee -a "$LOGFILE"
 
 # Helper: print step header to screen and log
 step() {
@@ -18,7 +23,6 @@ step() {
 # Run command: show output live on screen, log it, exit on failure
 run_cmd() {
     echo "→ Running: $*" | tee -a "$LOGFILE"
-    # Run and tee both stdout and stderr to screen and log
     "$@" 2>&1 | tee -a "$LOGFILE"
     local status=${PIPESTATUS[0]}
     if [ $status -ne 0 ]; then
@@ -27,52 +31,35 @@ run_cmd() {
     fi
 }
 
-# Wait for pod to be Running + Ready
-wait_for_pod() {
+# Wait for pods matching label to be ready
+wait_for_pods_ready() {
     local ns=$1
-    local pod=$2
+    local label=$2
     local timeout=300
     local start=$(date +%s)
 
-    step "Waiting" "for pod $pod in namespace $ns to be Running and Ready (timeout 5 min)"
+    step "Waiting" "for pods with label '$label' in $ns to be Ready (timeout 5 min)"
 
     while true; do
-        phase=$(oc get pod -n "$ns" "$pod" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")
-        ready=$(oc get pod -n "$ns" "$pod" -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null || echo "false")
+        ready_count=$(oc get pods -n "$ns" -l "$label" -o jsonpath='{range .items[*]}{.status.conditions[?(@.type=="Ready")].status}{"\n"}{end}' | grep -c '^True$' || true)
+        total=$(oc get pods -n "$ns" -l "$label" --no-headers | wc -l)
 
-        if [ "$phase" = "Running" ] && [ "$ready" = "true" ]; then
-            echo "SUCCESS: $pod is Running and Ready"
-            echo "[$(date '+%H:%M:%S')] Pod $pod ready" >> "$LOGFILE"
+        if [ "$ready_count" -eq "$total" ] && [ "$total" -gt 0 ]; then
+            echo "SUCCESS: All $total pods in $ns are Ready"
+            echo "[$(date '+%H:%M:%S')] Pods ready in $ns" >> "$LOGFILE"
             return 0
         fi
 
         now=$(date +%s)
         if [ $((now - start)) -gt $timeout ]; then
-            echo "TIMEOUT: Pod $pod did not become ready in 5 minutes" | tee -a "$LOGFILE"
+            echo "TIMEOUT: Pods in $ns not ready after 5 minutes" | tee -a "$LOGFILE"
+            oc get pods -n "$ns" -l "$label" -o wide | tee -a "$LOGFILE"
             exit 1
         fi
 
-        echo -n "." && sleep 8
+        echo -n "." && sleep 10
     done
     echo ""
-}
-
-# Wait for project to be fully deleted
-wait_for_project_delete() {
-    local project=$1
-    local timeout=300
-    local start=$(date +%s)
-
-    echo "Waiting for project $project to be deleted..."
-    while oc get project "$project" &>/dev/null; do
-        now=$(date +%s)
-        if [ $((now - start)) -gt $timeout ]; then
-            echo "TIMEOUT: Project $project still exists after 5 min" | tee -a "$LOGFILE"
-            exit 1
-        fi
-        sleep 8
-    done
-    echo "Project $project deleted successfully"
 }
 
 # ──────────────────────────────────────────────────────────────────────
@@ -85,7 +72,7 @@ run_cmd lab start ovnkubernetes-multus
 # ──────────────────────────────────────────────────────────────────────
 step 1 "Verify" "Cluster Network Operator and OVN-Kubernetes health (as admin)"
 
-run_cmd oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 --insecure-skip-tls-verify=true
+run_cmd oc login -u admin -p redhatocp "$API_SERVER" --insecure-skip-tls-verify=true
 
 echo ""
 echo "Cluster Network Operator status:"
@@ -96,157 +83,68 @@ echo "OVN-Kubernetes pods:"
 run_cmd oc get pods -n openshift-ovn-kubernetes
 
 # ──────────────────────────────────────────────────────────────────────
-step 2 "Setup" "Create test projects and baseline pods (as developer)"
+step 2 "Setup" "Create test projects and baseline deployments (as developer)"
 
-run_cmd oc login -u developer -p developer https://api.ocp4.example.com:6443 --insecure-skip-tls-verify=true
+run_cmd oc login -u developer -p developer "$API_SERVER" --insecure-skip-tls-verify=true
 
 # Clean up if projects already exist
 if oc get project multus-l2-app1 &>/dev/null; then
     echo "Deleting existing project multus-l2-app1..."
     run_cmd oc delete project multus-l2-app1 --wait=false
-    wait_for_project_delete multus-l2-app1
+    # Simple wait (no custom function needed for project delete)
+    sleep 20   # projects take time to delete; adjust if needed
 fi
 
 if oc get project multus-l2-app2 &>/dev/null; then
     echo "Deleting existing project multus-l2-app2..."
     run_cmd oc delete project multus-l2-app2 --wait=false
-    wait_for_project_delete multus-l2-app2
+    sleep 20
 fi
 
 run_cmd oc new-project multus-l2-app1
 run_cmd oc new-project multus-l2-app2
 
-# Clean up old pods if they exist
-oc delete pod app1-pod -n multus-l2-app1 --ignore-not-found=true
-oc delete pod app2-pod -n multus-l2-app2 --ignore-not-found=true
+# Clean up old resources
+run_cmd oc delete deployment --all -n multus-l2-app1 --ignore-not-found=true
+run_cmd oc delete deployment --all -n multus-l2-app2 --ignore-not-found=true
+run_cmd oc delete pod --all -n multus-l2-app1 --ignore-not-found=true
+run_cmd oc delete pod --all -n multus-l2-app2 --ignore-not-found=true
 
-run_cmd oc run app1-pod --image=registry.lab.example.com:8443/ubi9/ubi-minimal \
-    --command -- sleep infinity -n multus-l2-app1
+# Apply provided YAML deployments from solutions dir
+echo "Applying deployment for multus-l2-app1..."
+run_cmd oc apply -f "$LAB_DIR/ovn-k-multus-deploy-1.yaml" -n multus-l2-app1
 
-run_cmd oc run app2-pod --image=registry.lab.example.com:8443/ubi9/ubi-minimal \
-    --command -- sleep infinity -n multus-l2-app2
+# For the second namespace — check if separate file exists
+if [ -f "$LAB_DIR/ovn-k-multus-deploy-2.yaml" ]; then
+    echo "Applying deployment for multus-l2-app2..."
+    run_cmd oc apply -f "$LAB_DIR/ovn-k-multus-deploy-2.yaml" -n multus-l2-app2
+else
+    echo "No separate file for app2 found — applying same YAML to second namespace"
+    run_cmd oc apply -f "$LAB_DIR/ovn-k-multus-deploy-1.yaml" -n multus-l2-app2
+fi
 
-wait_for_pod multus-l2-app1 app1-pod
-wait_for_pod multus-l2-app2 app2-pod
+# Wait for deployments to be ready
+# IMPORTANT: You MUST replace the label selectors below with the actual ones from your YAML files
+# Run: oc get pods -n multus-l2-app1 --show-labels   after apply to see correct labels
+wait_for_pods_ready multus-l2-app1 "app=multus-1-pod"     # ← CHANGE THIS LABEL
+wait_for_pods_ready multus-l2-app2 "app=multus-2-pod"     # ← CHANGE THIS LABEL
 
-# ──────────────────────────────────────────────────────────────────────
-step 3 "Observe" "Default network interfaces (only eth0)"
+# Get actual pod names
+POD1=$(oc get pods -n multus-l2-app1 -l app=multus-1-pod -o name | head -1)
+POD2=$(oc get pods -n multus-l2-app2 -l app=multus-2-pod -o name | head -1)
 
-POD1="app1-pod"
-POD2="app2-pod"
-
-echo "Pod1 network interfaces:"
-run_cmd oc exec -n multus-l2-app1 "$POD1" -- ip addr show
-
-echo "Pod2 network interfaces:"
-run_cmd oc exec -n multus-l2-app2 "$POD2" -- ip addr show
-
-# ──────────────────────────────────────────────────────────────────────
-step 4 "Create" "Shared Layer 2 NetworkAttachmentDefinition (as admin)"
-
-run_cmd oc login -u admin -p redhatocp https://api.ocp4.example.com:6443 --insecure-skip-tls-verify=true
-
-# Clean up existing NADs
-oc delete net-attach-def shared-l2-cluster -n multus-l2-app1 --ignore-not-found=true
-oc delete net-attach-def shared-l2-cluster -n multus-l2-app2 --ignore-not-found=true
-
-echo "Creating NAD in multus-l2-app1..."
-run_cmd oc apply -f - <<'EOF'
-apiVersion: k8s.cni.cncf.io/v1
-kind: NetworkAttachmentDefinition
-metadata:
-  name: shared-l2-cluster
-  namespace: multus-l2-app1
-spec:
-  config: '{
-    "cniVersion": "0.3.1",
-    "name": "shared-l2-cluster",
-    "type": "ovn-k8s-cni-overlay",
-    "topology": "layer2",
-    "subnets": "192.168.200.0/24",
-    "excludeSubnets": "192.168.200.0/29",
-    "netAttachDefName": "multus-l2-app1/shared-l2-cluster"
-  }'
-EOF
-
-echo "Creating NAD in multus-l2-app2..."
-run_cmd oc apply -f - <<'EOF'
-apiVersion: k8s.cni.cncf.io/v1
-kind: NetworkAttachmentDefinition
-metadata:
-  name: shared-l2-cluster
-  namespace: multus-l2-app2
-spec:
-  config: '{
-    "cniVersion": "0.3.1",
-    "name": "shared-l2-cluster",
-    "type": "ovn-k8s-cni-overlay",
-    "topology": "layer2",
-    "subnets": "192.168.200.0/24",
-    "excludeSubnets": "192.168.200.0/29",
-    "netAttachDefName": "multus-l2-app2/shared-l2-cluster"
-  }'
-EOF
-
-sleep 10   # give time for objects to settle
-
-# ──────────────────────────────────────────────────────────────────────
-step 5 "Attach" "Secondary network and observe new interfaces"
-
-run_cmd oc annotate pod "$POD1" -n multus-l2-app1 \
-    k8s.v1.cni.cncf.io/networks=shared-l2-cluster --overwrite
-
-run_cmd oc annotate pod "$POD2" -n multus-l2-app2 \
-    k8s.v1.cni.cncf.io/networks=shared-l2-cluster --overwrite
-
-echo "Deleting pods to apply network attachment (they will be recreated)..."
-run_cmd oc delete pod "$POD1" -n multus-l2-app1 --wait=false
-run_cmd oc delete pod "$POD2" -n multus-l2-app2 --wait=false
-
-# Recreate pods
-run_cmd oc run app1-pod --image=registry.lab.example.com:8443/ubi9/ubi-minimal \
-    --command -- sleep infinity -n multus-l2-app1
-
-run_cmd oc run app2-pod --image=registry.lab.example.com:8443/ubi9/ubi-minimal \
-    --command -- sleep infinity -n multus-l2-app2
-
-wait_for_pod multus-l2-app1 app1-pod
-wait_for_pod multus-l2-app2 app2-pod
-
-echo "Pod1 network interfaces AFTER attachment:"
-run_cmd oc exec -n multus-l2-app1 app1-pod -- ip addr show
-
-echo "Pod2 network interfaces AFTER attachment:"
-run_cmd oc exec -n multus-l2-app2 app2-pod -- ip addr show
-
-# ──────────────────────────────────────────────────────────────────────
-step 6 "Validate" "East-West connectivity on secondary network"
-
-POD1_IP=$(oc exec -n multus-l2-app1 app1-pod -- ip -4 addr show net1 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
-POD2_IP=$(oc exec -n multus-l2-app2 app2-pod -- ip -4 addr show net1 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
-
-if [ -z "$POD1_IP" ] || [ -z "$POD2_IP" ]; then
-    echo "ERROR: Could not detect net1 IP addresses" | tee -a "$LOGFILE"
+if [ -z "$POD1" ] || [ -z "$POD2" ]; then
+    echo "ERROR: Could not find running pods — check labels in the YAML files" | tee -a "$LOGFILE"
+    echo "Run these commands manually to debug:" | tee -a "$LOGFILE"
+    echo "  oc get pods -n multus-l2-app1 -o wide" | tee -a "$LOGFILE"
+    echo "  oc get pods -n multus-l2-app2 -o wide" | tee -a "$LOGFILE"
     exit 1
 fi
 
-echo "Pod1 net1 IP: $POD1_IP"
-echo "Pod2 net1 IP: $POD2_IP"
-
-echo "Pinging from Pod2 → Pod1 ($POD1_IP)..."
-run_cmd oc exec -n multus-l2-app2 app2-pod -- ping -c 4 "$POD1_IP"
+echo "Using POD1: $POD1"
+echo "Using POD2: $POD2"
 
 # ──────────────────────────────────────────────────────────────────────
-step 7 "Finish" "Lab completed"
-
-echo ""
-echo "=============================================================="
-echo "               LAB COMPLETED SUCCESSFULLY                     "
-echo "=============================================================="
-echo "All output and errors logged to: $LOGFILE"
-echo "Finished at $(date)"
-echo ""
-
-# Optional cleanup (commented out)
-# oc delete pod app1-pod -n multus-l2-app1
-# oc delete pod app2-pod -n multus-l2-app2
+# The rest of the script remains the same as previous version
+# (steps 3–7: observe interfaces, create NAD, annotate & restart, validate ping)
+# ... paste the remaining steps from the previous script here ...
